@@ -203,72 +203,116 @@ class RippleEffect {
     }
 }
 
-// Prayer Times Update for Golden Mosque
+// Prayer Times Update for Golden Mosque - Using same API as timesprayer.js
 class MosquePrayerTimes {
     constructor() {
         this.prayerNameEl = document.getElementById('centerPrayerName');
         this.prayerTimeEl = document.getElementById('centerPrayerTime');
         this.countdownEl = document.getElementById('centerCountdown');
         
-        this.prayers = [
-            { name: 'الفجر', time: '04:30' },
-            { name: 'الشروق', time: '06:00' },
-            { name: 'الظهر', time: '12:00' },
-            { name: 'العصر', time: '15:30' },
-            { name: 'المغرب', time: '18:00' },
-            { name: 'العشاء', time: '19:30' }
-        ];
-        
         this.init();
     }
     
-    init() {
-        this.updatePrayerInfo();
+    async init() {
+        // Fetch prayer times from same API as timesprayer.js
+        await this.fetchPrayerTimes('Cairo');
         setInterval(() => this.updateCountdown(), 1000);
         this.addTypingEffect();
     }
     
-    getNextPrayer() {
-        const now = new Date();
-        const currentTime = now.getHours() * 60 + now.getMinutes();
-        
-        for (let prayer of this.prayers) {
-            const [hours, minutes] = prayer.time.split(':').map(Number);
-            const prayerTime = hours * 60 + minutes;
+    async fetchPrayerTimes(city) {
+        try {
+            const response = await fetch(
+                `https://api.aladhan.com/v1/timingsByCity?city=${city}&country=egypt&method=5`
+            );
+            const data = await response.json();
             
-            if (prayerTime > currentTime) {
-                return prayer;
+            this.timings = data.data.timings;
+            this.getNextPrayer();
+            this.updatePrayerInfo();
+        } catch (error) {
+            console.error("Error fetching prayer times:", error);
+            // Fallback times
+            this.timings = {
+                Fajr: '04:30',
+                Dhuhr: '12:00',
+                Asr: '15:30',
+                Maghrib: '18:00',
+                Isha: '19:30'
+            };
+            this.getNextPrayer();
+            this.updatePrayerInfo();
+        }
+    }
+    
+    getNextPrayer() {
+        const prayerOrder = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+        const now = new Date();
+        
+        for (let name of prayerOrder) {
+            const [hour, minute] = this.timings[name].split(":").map(Number);
+            const prayerTime = new Date();
+            prayerTime.setHours(hour, minute, 0, 0);
+            
+            if (prayerTime > now) {
+                this.nextPrayer = {
+                    name: this.translatePrayer(name),
+                    time: this.timings[name],
+                    date: prayerTime
+                };
+                return;
             }
         }
         
-        return this.prayers[0];
+        // If no prayer left today, return first prayer of tomorrow
+        this.nextPrayer = {
+            name: this.translatePrayer(prayerOrder[0]),
+            time: this.timings[prayerOrder[0]],
+            date: new Date()
+        };
+        this.nextPrayer.date.setDate(this.nextPrayer.date.getDate() + 1);
+    }
+    
+    translatePrayer(name) {
+        const translations = {
+            'Fajr': 'الفجر',
+            'Dhuhr': 'الظهر',
+            'Asr': 'العصر',
+            'Maghrib': 'المغرب',
+            'Isha': 'العشاء'
+        };
+        return translations[name] || name;
     }
     
     updatePrayerInfo() {
-        const nextPrayer = this.getNextPrayer();
-        
-        if (this.prayerNameEl) {
-            this.prayerNameEl.textContent = nextPrayer.name;
+        if (this.nextPrayer && this.prayerNameEl) {
+            this.prayerNameEl.textContent = this.nextPrayer.name;
+            this.prayerNameEl.setAttribute('data-text', this.nextPrayer.name);
         }
         
-        if (this.prayerTimeEl) {
-            this.prayerTimeEl.textContent = nextPrayer.time;
+        if (this.nextPrayer && this.prayerTimeEl) {
+            const [hours, minutes] = this.nextPrayer.time.split(':').map(Number);
+            const period = hours >= 12 ? 'PM' : 'AM';
+            const hours12 = hours % 12 || 12;
+            this.prayerTimeEl.textContent = `${hours12}:${minutes < 10 ? '0' + minutes : minutes} ${period}`;
         }
     }
     
     updateCountdown() {
-        const nextPrayer = this.getNextPrayer();
+        if (!this.nextPrayer) return;
+        
         const now = new Date();
-        const [hours, minutes] = nextPrayer.time.split(':').map(Number);
+        const diff = this.nextPrayer.date - now;
         
-        let prayerDate = new Date();
-        prayerDate.setHours(hours, minutes, 0, 0);
-        
-        if (prayerDate < now) {
-            prayerDate.setDate(prayerDate.getDate() + 1);
+        if (diff <= 0) {
+            if (this.countdownEl) {
+                this.countdownEl.textContent = 'حان الآن';
+            }
+            this.getNextPrayer();
+            this.updatePrayerInfo();
+            return;
         }
         
-        const diff = prayerDate - now;
         const hours = Math.floor(diff / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
