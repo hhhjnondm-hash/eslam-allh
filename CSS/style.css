@@ -573,6 +573,22 @@ nav .nav-item {
     display: inline-block;
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
     animation: fadeInUp 0.8s ease-out 0.8s both;
+    margin-bottom: 15px;
+}
+
+.current-time {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+    animation: fadeInUp 0.8s ease-out 1s both;
+}
+
+.date-display {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    animation: fadeInUp 0.8s ease-out 1.2s both;
 }
 
 @keyframes fadeInUp {

@@ -4,6 +4,8 @@ class PrayerDisplay {
         this.prayerNameEl = document.getElementById('prayerName');
         this.prayerTimeEl = document.getElementById('prayerTime');
         this.countdownEl = document.getElementById('prayerCountdown');
+        this.currentTimeEl = document.getElementById('currentTime');
+        this.dateDisplayEl = document.getElementById('dateDisplay');
         this.particlesContainer = document.getElementById('prayerParticles');
         
         this.init();
@@ -11,6 +13,8 @@ class PrayerDisplay {
     
     async init() {
         this.createParticles();
+        this.updateClock();
+        setInterval(() => this.updateClock(), 1000);
         await this.fetchPrayerTimes('Cairo');
         setInterval(() => this.updateCountdown(), 1000);
     }
@@ -41,6 +45,22 @@ class PrayerDisplay {
         }
     }
     
+    updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        const ampm = hours >= 12 ? 'م' : 'ص';
+        
+        hours = hours % 12 || 12;
+        
+        const timeStr = `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${ampm}`;
+        
+        if (this.currentTimeEl) {
+            this.currentTimeEl.textContent = `الوقت الآن: ${timeStr}`;
+        }
+    }
+    
     async fetchPrayerTimes(city) {
         try {
             const response = await fetch(
@@ -49,6 +69,9 @@ class PrayerDisplay {
             const data = await response.json();
             
             this.timings = data.data.timings;
+            this.dateInfo = data.data.date;
+            
+            this.updateDateDisplay();
             this.getNextPrayer();
             this.updatePrayerInfo();
         } catch (error) {
@@ -63,6 +86,29 @@ class PrayerDisplay {
             this.getNextPrayer();
             this.updatePrayerInfo();
         }
+    }
+    
+    updateDateDisplay() {
+        if (!this.dateInfo || !this.dateDisplayEl) return;
+        
+        const dayName = this.getArabicDayName(this.dateInfo.gregorian.weekday.en);
+        const hijriDate = this.dateInfo.hijri.date;
+        const gregorianDate = this.dateInfo.gregorian.date;
+        
+        this.dateDisplayEl.textContent = `${dayName} | ${hijriDate} هـ / ${gregorianDate} م`;
+    }
+    
+    getArabicDayName(day) {
+        const days = {
+            'Sunday': 'الأحد',
+            'Monday': 'الإثنين',
+            'Tuesday': 'الثلاثاء',
+            'Wednesday': 'الأربعاء',
+            'Thursday': 'الخميس',
+            'Friday': 'الجمعة',
+            'Saturday': 'السبت'
+        };
+        return days[day] || day;
     }
     
     getNextPrayer() {
@@ -110,7 +156,7 @@ class PrayerDisplay {
         
         if (this.nextPrayer && this.prayerTimeEl) {
             const [hours, minutes] = this.nextPrayer.time.split(':').map(Number);
-            const period = hours >= 12 ? 'PM' : 'AM';
+            const period = hours >= 12 ? 'م' : 'ص';
             const hours12 = hours % 12 || 12;
             this.prayerTimeEl.textContent = `${hours12}:${minutes < 10 ? '0' + minutes : minutes} ${period}`;
         }
