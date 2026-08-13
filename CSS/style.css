@@ -403,7 +403,7 @@ nav .nav-item {
 .main-section {
     width: 100%;
     height: 100vh;
-    background-image: url(../Images/Home/home.jpg);
+    background-image: url(Images/Home/home.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -441,7 +441,6 @@ nav .nav-item {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
-    width: 100%;
     max-width: 400px;
     padding: 20px;
 }
@@ -460,6 +459,7 @@ nav .nav-item {
         inset 0 0 30px rgba(255, 215, 0, 0.05);
     animation: containerFloat 6s ease-in-out infinite;
     overflow: hidden;
+    width: 100%;
 }
 
 @keyframes containerFloat {
