@@ -32,6 +32,8 @@
             
             if (this.isTelegram) {
                 this.initializeWebApp();
+                // Add telegram-webapp class to body for CSS targeting
+                document.body.classList.add('telegram-webapp');
             }
             
             // Check for debug mode
