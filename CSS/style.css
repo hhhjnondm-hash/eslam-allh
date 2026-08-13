@@ -724,33 +724,33 @@ footer p a:hover {
 }
 
 /* ============================================================
-   GOLDEN MOSQUE DESIGN
+   SIMPLE PRAYER DISPLAY
    ============================================================ */
 
-.golden-mosque-container {
+.simple-prayer-display {
     position: relative;
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    overflow: hidden;
 }
 
-.mosque-glow {
+.prayer-glow {
     position: absolute;
-    width: 600px;
-    height: 600px;
+    width: 400px;
+    height: 400px;
     background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(255, 165, 0, 0.1) 50%, transparent 70%);
     border-radius: 50%;
-    animation: glowPulse 3s ease-in-out infinite;
+    animation: glowPulse 4s ease-in-out infinite;
 }
 
 @keyframes glowPulse {
     0%, 100% {
         transform: scale(1);
-        opacity: 0.8;
+        opacity: 0.6;
     }
     50% {
         transform: scale(1.2);
@@ -758,54 +758,15 @@ footer p a:hover {
     }
 }
 
-.mosque-particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-.mosque-shape {
+.prayer-content {
     position: relative;
     z-index: 10;
-    animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
-}
-
-.mosque-svg {
-    width: 200px;
-    height: 200px;
-    filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));
-}
-
-.mosque-ring {
-    animation: ringPulse 2s ease-in-out infinite;
-}
-
-@keyframes ringPulse {
-    0%, 100% {
-        opacity: 0.5;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.1);
-    }
-}
-
-.prayer-info-center {
-    position: absolute;
-    z-index: 20;
     text-align: center;
-    color: white;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
     animation: fadeInUp 1s ease-out;
 }
 
@@ -820,115 +781,110 @@ footer p a:hover {
     }
 }
 
-.prayer-label-fancy {
-    font-size: 14px;
-    font-weight: 600;
-    color: #FFD700;
-    margin-bottom: 8px;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+.prayer-label {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
     letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-.prayer-name-fancy {
-    font-size: 24px;
-    font-weight: 800;
-    color: white;
-    margin-bottom: 10px;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-    font-family: 'thuluth-decorated', sans-serif;
-}
-
-.prayer-time-fancy {
-    font-size: 32px;
+.prayer-time {
+    font-size: 48px;
     font-weight: 900;
     color: #FFD700;
-    margin-bottom: 8px;
-    text-shadow: 0 0 30px rgba(255, 215, 0, 1);
-    font-family: 'Courier New', monospace;
+    margin-bottom: 10px;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+    background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
 }
 
-.prayer-countdown-fancy {
-    margin-top: 10px;
+@keyframes shimmer {
+    to {
+        background-position: 200% center;
+    }
 }
 
-.countdown-fancy {
-    font-size: 18px;
+.prayer-name {
+    font-size: 28px;
     font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.prayer-countdown {
+    font-size: 24px;
+    font-weight: 600;
     color: rgba(255, 255, 255, 0.9);
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
     font-family: 'Courier New', monospace;
+    padding: 10px 30px;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    display: inline-block;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
 }
 
-.star {
+.prayer-particles {
     position: absolute;
-    color: #FFD700;
-    font-size: 20px;
-    animation: twinkle 2s ease-in-out infinite;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
 }
 
-.star-1 {
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
+.prayer-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: particleFloat 8s linear infinite;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
 }
 
-.star-2 {
-    top: 15%;
-    right: 15%;
-    animation-delay: 0.5s;
-}
-
-.star-3 {
-    top: 25%;
-    left: 25%;
-    animation-delay: 1s;
-}
-
-.star-4 {
-    top: 20%;
-    right: 25%;
-    animation-delay: 1.5s;
-}
-
-.star-5 {
-    top: 30%;
-    left: 50%;
-    animation-delay: 2s;
-}
-
-@keyframes twinkle {
-    0%, 100% {
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% {
         opacity: 1;
         transform: scale(1);
     }
-    50% {
-        opacity: 0.3;
-        transform: scale(0.7);
+    90% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        transform: translateY(-100vh) scale(0);
+        opacity: 0;
     }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .mosque-svg {
-        width: 200px;
-        height: 200px;
+    .prayer-content {
+        padding: 30px 20px;
+        border-radius: 20px;
     }
     
-    .prayer-name-fancy {
-        font-size: 24px;
-    }
-    
-    .prayer-time-fancy {
+    .prayer-time {
         font-size: 36px;
     }
     
-    .countdown-fancy {
-        font-size: 18px;
+    .prayer-name {
+        font-size: 20px;
     }
     
-    .star {
-        font-size: 14px;
+    .prayer-countdown {
+        font-size: 18px;
+        padding: 8px 20px;
     }
 }
 
