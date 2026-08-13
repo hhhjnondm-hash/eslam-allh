@@ -254,16 +254,87 @@
 
 
   <div class="main-section">
-    <!-- Simple Next Prayer Display -->
-    <div class="simple-prayer-display">
-      <div class="prayer-glow"></div>
-      <div class="prayer-content">
-        <div class="prayer-label">الصلاة القادمة</div>
-        <div class="prayer-time" id="simple-prayer-time">--:--</div>
-        <div class="prayer-name" id="simple-prayer-name">جاري التحميل...</div>
-        <div class="prayer-countdown" id="simple-countdown">00:00:00</div>
+    <!-- Golden Mosque Design with Prayer Info -->
+    <div class="golden-mosque-container">
+      <div class="mosque-glow"></div>
+      <div class="mosque-particles" id="mosqueParticles"></div>
+      
+      <div class="mosque-shape">
+        <!-- Orbit Rings -->
+        <div class="orbit-ring" style="width: 350px; height: 350px; animation-duration: 15s;"></div>
+        <div class="orbit-ring" style="width: 400px; height: 400px; animation-duration: 20s; animation-direction: reverse;"></div>
+        <div class="orbit-ring" style="width: 450px; height: 450px; animation-duration: 25s;"></div>
+        
+        <svg class="mosque-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Golden Gradients -->
+          <defs>
+            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+              <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.8" />
+              <stop offset="100%" style="stop-color:#FF6B00;stop-opacity:0.3" />
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          
+          <!-- Main Dome -->
+          <ellipse cx="200" cy="120" rx="100" ry="80" fill="url(#goldGradient)" filter="url(#glow)"/>
+          <rect x="100" y="120" width="200" height="180" fill="url(#goldGradient)" filter="url(#glow)"/>
+          
+          <!-- Crescent on Top -->
+          <circle cx="200" cy="60" r="20" fill="url(#goldGradient)" filter="url(#glow)"/>
+          <circle cx="190" cy="55" r="18" fill="#1a1a2e"/>
+          
+          <!-- Left Minaret -->
+          <rect x="50" y="80" width="30" height="220" fill="url(#goldGradient)" filter="url(#glow)"/>
+          <ellipse cx="65" cy="80" rx="20" ry="15" fill="url(#goldGradient)" filter="url(#glow)"/>
+          <circle cx="65" cy="65" r="12" fill="url(#goldGradient)" filter="url(#glow)"/>
+          <circle cx="60" cy="62" r="10" fill="#1a1a2e"/>
+          
+          <!-- Right Minaret -->
+          <rect x="320" y="80" width="30" height="220" fill="url(#goldGradient)" filter="url(#glow)"/>
+          <ellipse cx="335" cy="80" rx="20" ry="15" fill="url(#goldGradient)" filter="url(#glow)"/>
+          <circle cx="335" cy="65" r="12" fill="url(#goldGradient)" filter="url(#glow)"/>
+          <circle cx="330" cy="62" r="10" fill="#1a1a2e"/>
+          
+          <!-- Door -->
+          <rect x="170" y="200" width="60" height="100" rx="30" fill="#1a1a2e" stroke="url(#goldGradient)" stroke-width="3"/>
+          
+          <!-- Windows -->
+          <rect x="130" y="160" width="25" height="30" rx="12" fill="#1a1a2e" stroke="url(#goldGradient)" stroke-width="2"/>
+          <rect x="245" y="160" width="25" height="30" rx="12" fill="#1a1a2e" stroke="url(#goldGradient)" stroke-width="2"/>
+          
+          <!-- Decorative Elements -->
+          <circle cx="200" cy="120" r="60" fill="none" stroke="url(#goldGlow)" stroke-width="2" class="mosque-ring"/>
+          <circle cx="200" cy="120" r="70" fill="none" stroke="url(#goldGlow)" stroke-width="1" class="mosque-ring"/>
+        </svg>
       </div>
-      <div class="prayer-particles" id="prayer-particles"></div>
+      
+      <!-- Prayer Info Centered -->
+      <div class="prayer-info-center">
+        <div class="prayer-label-fancy">الصلاة القادمة</div>
+        <div class="prayer-name-fancy" id="centerPrayerName" data-text="جاري التحميل...">جاري التحميل...</div>
+        <div class="prayer-time-fancy" id="centerPrayerTime">--:--</div>
+        <div class="prayer-countdown-fancy">
+          <span class="countdown-fancy" id="centerCountdown">00:00:00</span>
+        </div>
+      </div>
+      
+      <!-- Floating Stars -->
+      <div class="star star-1">★</div>
+      <div class="star star-2">★</div>
+      <div class="star star-3">★</div>
+      <div class="star star-4">★</div>
+      <div class="star star-5">★</div>
     </div>
   </div>
 
