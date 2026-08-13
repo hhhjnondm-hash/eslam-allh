@@ -1,0 +1,74 @@
+:root {
+  --main-color: #DC9C51;
+  --text-color: #fff;
+  --other-color: #212121;
+  --second-color: #3F200C;
+  --bg-color: #111111;
+
+  /* fonts */
+  --big-font: 4.5rem;
+  --h2-font: 2.6rem;
+  --p-font: 1.1rem;
+
+  /* borders */
+  --shadow-main: #ff9f0d 0 1px 25px;
+}
+
+.loader-content p {
+  font-family: 'Cairo', sans-serif;
+  font-size: 18px;
+  color: #3F200C;
+}
+
+
+body{
+  background-color: white !important;
+}
+.ask-answer{
+
+      padding-bottom: 50px;
+    margin-top: 72px;
+  padding-top: 30px;
+      position: relative;
+  min-height: 60vh; /* عشان اللودر يطلع في نص الصفحة */
+
+font-family: 'Changa', sans-serif!important;
+font-family: 'Tajawal', sans-serif!important;
+font-family: 'Cairo', sans-serif !important;
+
+}
+.ask-answer .ask{
+  border:1px solid var(--main-color);
+  border-radius:10px ;
+  -webkit-border-radius:10px ;
+  -moz-border-radius:10px ;
+  -ms-border-radius:10px ;
+  -o-border-radius:10px ;
+  padding: 6px;
+  font-size: 17px;
+  background: rgba(226, 212, 181, 0.5);
+
+}
+.container-ask{
+  border: 2px solid rgb(126, 122, 122);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.ask-answer-icon{
+  border: 2px solid var(--main-color);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  padding: 0;
+}

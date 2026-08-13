@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+package-lock.json
+package.json
+
+# Cache directories
+.hts-cache/
+cdn.jsdelivr.net/
+unicons.iconscout.com/
+unpkg.com/
+
+# Environment files
+.env
+.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build files
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.temp

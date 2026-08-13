@@ -1,0 +1,124 @@
+:root {
+  --main-color: #DC9C51;
+  --text-color: #fff;
+  --other-color: #212121;
+  --second-color: #663311;
+  --bg-color: #111111;
+
+  /* fonts */
+  --big-font: 4.5rem;
+  --h2-font: 2.6rem;
+  --p-font: 1.1rem;
+
+  /* borders */
+  --shadow-main: #ff9f0d 0 1px 25px;
+}
+body {
+  background-color: white !important;
+}
+
+.hadith-section {
+  border: 2px solid green;
+  margin-top: 100px;
+  padding: 50px;
+}
+
+.hadithContainer {
+  min-height: 350px;
+  position: relative;
+  box-shadow: 4px 4px 4px 0 rgba(211, 175, 96, 0.5),
+    -4px 4px 4px 0 rgba(211, 175, 96, 0.5),
+    4px -4px 4px 0 rgba(211, 175, 96, 0.5),
+    -4px -4px 4px 0 rgba(211, 175, 96, 0.5);
+
+  color: #232323;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+}
+
+.hadith-section .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.hadith-section .buttons div {
+  background-color: var(--main-color);
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.hadith-section .buttons .number {
+  padding: 10px 20px;
+  color: var(--main-color);
+  background: transparent;
+  border: 2px solid grey;
+
+}
+
+.ahadith {
+  padding-bottom: 50px;
+  margin-top: 100px;
+}
+
+.ahadith .hadith {
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  padding: 20px;
+  font-size: 17px;
+  background: rgba(226, 212, 181, 0.5);
+  position: relative;
+
+}
+
+.shapes {
+  list-style: none;
+  /* border: 2px solid red; */
+  display: flex;
+  /* width: 250px; */
+  justify-content: space-between;
+  position: absolute;
+  bottom: -24px;
+  left: 0px;
+}
+
+.shapes li {
+  width: 15px;
+  height: 15px;
+  background-color: var(--second-color);
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  margin-right: 8px;
+}
+.shapes li:last-child {
+  width: 10px;
+  height: 10px;
+  background-color: var(--second-color);
+  border-radius:50% ;
+  -webkit-border-radius:50% ;
+  -moz-border-radius:50% ;
+  -ms-border-radius:50% ;
+  -o-border-radius:50% ;
+  margin-top: 2px;
+}

@@ -1,0 +1,139 @@
+body {
+    background-color: white !important;
+}
+
+:root {
+    --main-color: #DC9C51;
+    --text-color: #fff;
+    --other-color: #212121;
+    --second-color: #3F200C ;
+    --bg-color: #111111;
+}
+
+.text-color{
+    color: #9e4001;
+}
+.azkar button{
+    border: none;
+outline: none;
+
+}
+.azkars {
+    padding-bottom: 50px;
+    margin-top: 72px;
+  padding-top: 30px;
+      position: relative;
+  min-height: 60vh; /* عشان اللودر يطلع في نص الصفحة */
+}
+
+.azkars .azkar,
+.azkars .azkar-aya {
+    border: 1px solid var(--main-color);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 20px;
+    font-size: 17px;
+    background: rgba(226, 212, 181, 0.5);
+    position: relative;
+    /* padding-left: 60px; */
+
+}
+
+.count {
+    width: 30px;
+    height: 30px;
+    background-color: var(--second-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease;
+    color: white;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    position: absolute;
+    bottom: -15px;
+    left:30px;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+}
+
+.count div {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+
+}
+
+.azkars .azkar-aya {
+    padding: 20px;
+    /* padding-left: 60px; */
+    padding-bottom: 70px;
+    /* border: 2px solid red; */
+
+
+}
+
+.count-aya div {
+    min-width: 115px;
+    margin-right: auto;
+    background-color: var(--second-color);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease;
+    color: white;
+    padding: 5px;
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+
+}
+
+.aya-icons {
+    /* border: 2px solid red; */
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+
+}
+
+.aya-icons li {
+    list-style: none;
+    color: var(--second-color); 
+}
+.aya-icons .btn {
+    font-size: 20px;
+    color: var(--second-color); 
+    border: none;
+
+}
+.aya-icons .btn:hover {
+    cursor: pointer;
+    color: var(--main-color);
+    border: none;
+   
+}
+
+.name-aya h2 {
+    color: var(--main-color);
+}
+
+.name-aya p {
+    color: var(--second-color);
+}

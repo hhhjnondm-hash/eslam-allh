@@ -1,0 +1,261 @@
+@font-face {
+  font-family: 'thuluth-decorated';
+  src: url('../fonts/thuluth-decorated.eot');
+  src: local('ثلث مزخرف'), local('thuluth-decorated'),
+      url('../fonts/thuluth-decorated.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'cairo-bold';
+  src: url('../fonts/cairo-bold.eot');
+  src: local('القاهرة ثقيل'), local('cairo-bold'), url('../fonts/cairo-bold.woff') format('woff');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200;300;400;500;600&amp;family=Tajawal:wght@400;500;700;800;900&amp;display=swap');
+
+:root {
+  --main-color: #DC9C51;
+  --text-color: #fff;
+  --other-color: #212121;
+  --second-color: #3F200C;
+  --bg-color: #111111;
+
+  /* fonts */
+  --big-font: 4.5rem;
+  --h2-font: 2.6rem;
+  --p-font: 1.1rem;
+
+  /* borders */
+  --shadow-main: #ff9f0d 0 1px 25px;
+}
+
+.quran {
+   margin-top: 72px;
+  padding-top: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: white !important; 
+
+  position: relative;
+  min-height: 60vh; 
+
+}
+
+.surhasContainer {
+  align-items: center;
+  padding-bottom: 50px;
+
+}
+
+.surhasContainer .surah {
+  font-family: 'Roboto Condensed', sans-serif;
+  min-height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  cursor: pointer;
+  color: black;
+  font-size: 17px;
+  border-radius: 0.25rem;
+  transition: all .3s ease-in-out;
+  padding: 10px 20px;
+  background-image: url(../Images/Surah/background.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.surhasContainer .surah .surah-txt {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+}
+.ll {
+  width: 40px;
+  height: 40px;
+  background-color: var(--second-color);
+  transform: rotate(45deg);
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .3s ease;
+  color: white;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.ll-kaaba{
+  background-color:rgb(154, 152, 152);
+}
+.ll p {
+  transform: rotate(-45deg);
+}
+.ll .icon-kaaba {
+  transform: rotate(-45deg);
+  /* color: black; */
+}
+.surhasContainer .surah:hover {
+  border-color: var(--main-color);
+  color: var(--main-color);
+}
+
+.surhasContainer .surah:hover .ll {
+  background-color: var(--main-color);
+  color: #111111;
+}
+
+.surah-popup {
+  font-family: 'Roboto Condensed', sans-serif;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100000;
+  background-color: #fff;
+  overflow-y: hidden;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
+
+}
+
+.surah-popup.active {
+  transform: translateX(0);
+  transition: .7s transform ease-in-out;
+}
+
+.close-popup {
+  position: sticky;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  color: white;
+  cursor: pointer;
+  background-color: rgb(193, 41, 41);
+  transition: all .3s ease;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.close-popup:hover {
+  background-color: rgb(193, 41, 41);
+}
+
+.surah-popup .ayat {
+  width: 100%;
+  margin-top: 15px;
+  color: #121212;
+  text-align: center;
+  max-height: 80vh;
+  overflow-y: auto;
+  display: block;
+
+}
+
+.surah-popup .ayat .Quran-ayah {
+  line-height: 2;
+  /* width: 100%; */
+  text-align: justify ;
+  padding-inline: 10px !important;
+}
+.name-aya h2 {
+  color: var(--main-color);
+}
+.card-body{
+  padding: 0 !important;
+}
+.words-before-all{
+  font-family: 'cairo';
+}
+/* YouTube Lite Embed Styles */
+    .youtube-lite-embed {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 0.375rem;
+            background-color: #000;
+            aspect-ratio: 16 / 9;
+            transition: transform 0.2s ease;
+            border: 2px solid var(--main-color);
+}
+
+    /* .youtube-lite-embed:hover {
+      transform: scale(1.05);
+} */
+
+    .youtube-lite-embed img.video-thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+
+    .youtube-lite-embed:hover img.video-thumbnail {
+      opacity: 0.8;
+    }
+
+    .play-button-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 68px;
+      height: 48px;
+      pointer-events: none;
+      transition: transform 0.2s ease, opacity 0.3s ease;
+    }
+
+    .youtube-lite-embed:hover .play-button-overlay {
+      transform: translate(-50%, -50%) scale(1.1);
+      opacity: 0.9;
+    }
+
+    .youtube-lite-embed.loaded {
+      cursor: default;
+    }
+
+    .youtube-lite-embed.loaded:hover {
+      transform: none;
+    }
+
+    /* Ensure iframe fills container properly */
+    .youtube-lite-embed iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Status container adjustments */
+    .status-conainer {
+      background: #fff;
+      overflow: hidden;
+      /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+      /* border: 1px solid var(--main-color); */
+      border-radius: 0.5rem;
+      -webkit-border-radius: 0.5rem;
+      -moz-border-radius: 0.5rem;
+      -ms-border-radius: 0.5rem;
+      -o-border-radius: 0.5rem;
+}

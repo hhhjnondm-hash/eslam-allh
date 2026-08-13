@@ -1,0 +1,105 @@
+body {
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(#fdf7e8)) !important;
+  background: -webkit-linear-gradient(top, transparent, #fdf7e8) !important;
+}
+
+.pray {
+  margin-top: 100px;
+  padding-bottom: 50px;
+}
+
+.date-pray {
+  direction: ltr;
+  display: none;
+}
+
+.pray .cards {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.cards .card {
+  width: 180px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+  margin: 20px auto;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  background-color: #05123f;
+}
+
+.card .circle {
+  position: relative;
+
+}
+
+.circle svg {
+  width: 210px;
+  height: 210px;
+}
+
+.circle svg circle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-width: 10;
+  stroke: var(--main-color);
+  transform: translate(5px, 5px);
+  stroke-dasharray: 2;
+  stroke-dashoffset: 1000;
+  animation: dash 2s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.circle .praytime {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--main-color);
+  font-size: 30px;
+  font-family: 'Cairo', sans-serif;
+}
+
+.praytime {
+
+  font-weight: bold;
+  font-family: 'thuluth-decorated';
+
+}
+
+.card-asr {
+  border: 1px solid red;
+  height: 200px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cites{
+outline: none;
+  border: 2px solid var(--main-color) !important;
+  width: 150px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
