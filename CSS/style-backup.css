@@ -1,0 +1,1631 @@
+@font-face {
+    font-family: 'thuluth-decorated';
+    src: url('../fonts/thuluth-decorated.eot');
+    src: local('ثلث مزخرف'), local('thuluth-decorated'),
+        url('../fonts/thuluth-decorated.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'cairo-bold';
+    src: url('../fonts/cairo-bold.eot');
+    src: local('القاهرة ثقيل'), local('cairo-bold'), url('../fonts/cairo-bold.woff') format('woff');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200;300;400;500;600&amp;family=Tajawal:wght@400;500;700;800;900&amp;display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    direction: rtl;
+    background-color: #e8dac3;
+    font-family: 'Changa', sans-serif;
+    font-family: 'Tajawal', sans-serif;
+    font-family: 'Cairo', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+:root {
+    --main-color: #DC9C51;
+    --text-color: #fff;
+    --other-color: #212121;
+    --second-color: #3F200C;
+    --bg-color: #111111;
+
+    /* fonts */
+    --big-font: 4.5rem;
+    --h2-font: 2.6rem;
+    --p-font: 1.1rem;
+
+    /* borders */
+    --shadow-main: #ff9f0d 0 1px 25px;
+}
+
+.icon-color-surah {
+    color: #864419;
+}
+
+.general-header {
+    font-family: 'thuluth-decorated';
+    color: var(--main-color);
+    text-align: center;
+    font-size: 40px !important;
+}
+
+.general-color {
+    color: var(--main-color);
+}
+
+.general-btn {
+    background-color: var(--main-color);
+    outline: 0;
+    border: 0;
+    border-radius: 2px;
+    padding: 10px 30px;
+    font-size: 18px;
+    transition: all .3s ease-in-out;
+    text-transform: capitalize;
+    color: white;
+}
+
+.general-btn:hover {
+    transform: scale(1.03);
+}
+
+/* Firefox */
+/* {
+    scrollbar-width: thin;
+    scrollbar-color: #DC9C51 rgba(245, 241, 241, 0.981);
+} */
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(245, 241, 241, 0.981);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #DC9C51;
+    border-radius: 10px;
+    border: 2px solid rgba(245, 241, 241, 0.981);
+}
+
+#page-loader {
+  position: absolute;
+  inset: 0;
+  /* background: rgba(43, 26, 15, 0.9); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: opacity 0.4s ease;
+
+
+}
+
+#page-loader.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+.spinner {
+    width: 55px;
+    height: 55px;
+    border: 5px solid rgba(220, 156, 81, 0.3);
+    border-top-color: #DC9C51;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+::selection {
+    background-color: var(--main-color);
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+.scrolling-up {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: var(--main-color);
+    color: var(--second-color);
+    border-radius: 50%;
+    z-index: 999;
+    cursor: pointer;
+    opacity: 0;
+    transition: all .3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    transition: all .3s ease;
+}
+
+.scrolling-up.show {
+    opacity: 1;
+}
+
+
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: top 0.5s ease;
+    background-color: #3F200C;
+    direction: rtl;
+    padding: 4px 6.5rem 4px 2rem;
+
+    /* border: 2px solid red; */
+
+}
+
+/* منع الاسكرول عند فتح المينيو */
+body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+    touch-action: none;
+    /* مهم للموبايل */
+}
+
+
+.logo,
+.logo span {
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 600;
+    font-family: 'thuluth-decorated' !important;
+    color: var(--main-color);
+
+}
+
+.logo i {
+    vertical-align: middle;
+    margin-right: 8px;
+    color: var(--main-color);
+}
+
+@media only screen and (max-width:1500px) {
+    .logo {
+        margin-right: 0 !important;
+    }
+}
+
+.nav-list {
+    display: flex;
+    /* flex-direction: column;  */
+    list-style: none;
+    font-size: 18px;
+    justify-content: flex-start;
+    /* لتصحيح المحاذاة عموديًا */
+    margin-top: 15px;
+    padding: 0 !important;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100vh;
+    /* تحديد أقصى ارتفاع */
+    /* border: 2px solid green; */
+    z-index: 100000 !important;
+    align-items: flex-start;
+    overflow-x: hidden;
+
+
+}
+
+
+
+.nav-list::-webkit-scrollbar {
+    width: 0px;
+}
+
+.nav-list::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+}
+
+.nav-list::-webkit-scrollbar-thumb {
+    background: var(--main-color);
+    border-radius: 4px;
+}
+
+.nav-list li {
+    margin-right: clamp(20px, 3vw, 44px);
+}
+
+@media (max-width: 768px) {
+    .nav-list li {
+        margin-right: 0;
+    }
+}
+
+.dropdown-menu li {
+    /* border: 2px solid red; */
+    margin-left: 10px;
+}
+
+.nav-list a {
+    color: var(--text-color);
+    font-size: var(--p-font);
+    font-weight: 600;
+    transition: all 0.5s ease;
+    /* border: 2px solid blue; */
+    /* margin-right: 0px; */
+    /* width: 90%; */
+
+}
+
+.nav-list a:hover {
+    color: var(--main-color);
+}
+
+.nav-list a.active {
+    color: var(--main-color);
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border-radius: 3rem;
+    gap: 15px;
+}
+
+
+.nav-icons i {
+    vertical-align: middle;
+    font-size: 25px;
+    color: var(--main-color);
+    margin-right: 8px;
+    margin-left: 5px;
+    transition: all 0.5s ease;
+
+}
+
+.dropdown-menu {
+    background-color: #2c2925;
+
+}
+
+#menu-icon {
+    font-size: 40px;
+    color: var(--main-color);
+    z-index: 10001;
+    cursor: pointer;
+    display: none;
+    margin-left: -20px;
+}
+
+.bx-x {
+    font-size: 50px;
+    color: red !important;
+}
+
+.nav-icons i:hover {
+    transform: scale(1.1);
+    color: var(--text-color);
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+    flex-shrink: 0;
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.dark-mode-toggle::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .dark-mode-toggle {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .dark-mode-toggle::before {
+    left: 33px;
+    content: '🌙';
+}
+
+.dark-mode-toggle:not(.dark-mode)::before {
+    content: '☀️';
+}
+
+.dark-mode-toggle:hover {
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    transform: scale(1.05);
+}
+
+.dark-mode .dark-mode-toggle:hover {
+    box-shadow: 0 0 20px rgba(129, 140, 248, 0.5);
+}
+
+@media (max-width: 768px) {
+    .dark-mode-toggle {
+        width: 50px;
+        height: 25px;
+    }
+    
+    .dark-mode-toggle::before {
+        width: 19px;
+        height: 19px;
+        font-size: 12px;
+    }
+    
+    .dark-mode .dark-mode-toggle::before {
+        left: 28px;
+    }
+}
+
+.active-azkar {
+    background-color: var(--main-color);
+    color: white;
+}
+
+.azkar-icon:hover {
+    background-color: var(--main-color);
+    color: white !important;
+}
+
+.azkar-icon:hover .azkar-icons {
+    color: white !important;
+}
+
+@media only screen and (min-width:1500px) {
+    .dropdown-menu li {
+        background-color: #2c2925;
+        width: 100%;
+        margin: auto;
+    }
+
+}
+
+
+@media only screen and (max-width: 992px) {
+    .header {
+        padding: clamp(4px, 1vw, 10px) clamp(0.5rem, 2vw, 1rem);
+        /* border: 2px solid blue; */
+        max-width: 100vw;
+        overflow: hidden;
+    }
+
+    #menu-icon {
+        display: initial;
+    }
+
+    .nav-list {
+        position: fixed;
+        /* top: 60px;              تحت الهيدر */
+        top: clamp(72px, 10vw, 80px);
+        right: 0;
+
+        width: clamp(250px, 70vw, 300px);
+        max-width: 85vw;
+        height: calc(100vh - clamp(72px, 10vw, 80px));
+
+        background: #2f1b05;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        /* الإخفاء من اليمين */
+        transform: translateX(100%);
+        transition: transform 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        z-index: 99999;
+    }
+
+    .nav-list {
+        margin-top: 0px;
+    }
+
+    .nav-list a {
+        display: block;
+        padding: 0.5rem;
+        margin-inline: 1rem;
+        margin-block: .5rem;
+        border-right: 2px solid var(--main-color);
+
+    }
+
+    .nav-list li {
+        margin-right: 0px;
+    }
+
+    .dropdown-menu-link {
+
+        /* border: 2px solid green; */
+        /* margin-right: 0px; */
+        width: 90%;
+
+
+    }
+}
+
+.nav-list li a {
+    margin-top: 3px;
+
+}
+
+
+
+.nav-list.open {
+    transform: translateX(0);
+}
+
+nav .nav-item {
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.main-section {
+    width: 100%;
+    height: 100vh;
+    background-image: url(../Images/Home/home.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 768px) {
+    .main-section {
+        height: auto;
+        min-height: 100vh;
+        background-position: center center;
+    }
+}
+
+.main-section .txt-main-section {
+    position: absolute;
+    top: 0;
+    right: 0;
+    -webkit-transform: translate(-40%, -50%);
+    -moz-transform: translate(-40%, -50%);
+    -ms-transform: translate(-40%, -50%);
+    -o-transform: translate(-40%, -50%);
+
+    transform: translate(-40%, -50%);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .main-section .txt-main-section {
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        text-align: center;
+        right: 50%;
+        max-width: 90vw;
+    }
+
+    .main-section .txt-main-section p {
+        font-size: clamp(24px, 6vw, 32px);
+    }
+}
+
+.main-section .txt-main-section p {
+    font-size: 40px;
+    color: var(--main-color);
+}
+
+.readers-section {
+    padding: 60px 0 100px 0;
+
+}
+
+.readers-section .card {
+    padding-bottom: 2px;
+    background: linear-gradient(0deg, #3F200C, #3F200C),
+        linear-gradient(0deg, #EFAC5A, #EFAC5A);
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border: 2px solid var(--main-color);
+    text-align: center;
+}
+
+.readers-section .card img {
+    border-radius: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    -ms-border-radius: 9px;
+    -o-border-radius: 9px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.readers-section .card .card-body {
+    padding: 9px 0 !important;
+}
+
+.readers-section .card:hover {
+    background-color: #1f2947;
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+}
+
+.websites {
+    padding-bottom: 80px;
+    background-image: url(../Images/Books/background.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: #e8dac3;
+}
+
+.imag-q {
+    text-align: center;
+}
+
+.imag-q img {
+    max-width: 100%;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.websites .website {
+    padding: 20px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9f9f9;
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    cursor: pointer;
+    border: 1px solid var(--main-color);
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    -ms-border-radius: 18px;
+    -o-border-radius: 18px;
+}
+
+.website-1 {
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid var(--main-color);
+    border-right: none;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    padding-left: 20px;
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    cursor: pointer;
+    background-color: white;
+}
+
+.website-1 img {
+
+    border: 2px solid var(--main-color);
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+
+.website-3 {
+    flex-direction: column;
+    z-index: 2000 !important;
+}
+
+.icon-phone {
+    display: inline-block;
+    outline: 2px solid var(--main-color);
+    border: 2px solid gray;
+    outline-offset: 3px;
+    width: 40px;
+    height: 40px;
+    /*display: flex;
+  justify-content: center;
+  align-items: center;
+  */
+    text-align: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.txt-website {
+    text-align: center;
+    width: 80%;
+}
+
+.website-1 img {
+    height: 125px
+}
+
+.website-1 a,
+.website-3 a {
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    color: #75777d;
+}
+
+.website-1 a:hover,
+.website-3 a:hover {
+    color: var(--main-color);
+}
+
+.website-1 p,
+.website-3 p {
+    flex-direction: column;
+    font-size: 22px;
+}
+
+.websites .website:hover,
+.websites .website-1:hover {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+}
+
+.web {
+    margin-top: 30px;
+    padding: 150px 0 !important;
+    background-image: url(../Images/Websites/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.bbb {
+    background-attachment: fixed;
+}
+
+.web1 {
+    margin-top: 30px;
+    background-image: url(../Images/Apps/background.png);
+    background-size: contain;
+    background-color: #e8dac3;
+}
+
+.web-link {
+    z-index: 200 !important;
+}
+
+.web::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    top: 0;
+    left: 0;
+}
+
+.cc {
+    z-index: 200 !important;
+}
+
+.status-conainer {
+    padding-bottom: 20px;
+    /* border: 2px solid red; */
+
+}
+
+.status-conainer .btn {
+    outline: 0;
+    border: 0;
+
+}
+
+.status {
+    border: 2px solid var(--main-color);
+
+}
+
+.bb {
+    padding: 0;
+    top: 10px;
+    left: 10px;
+    border: 2px solid white;
+    padding: 2px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.ayy {
+
+    background-color: var(--main-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+
+}
+
+.facebook {
+    color: #4267B2;
+}
+
+.share {
+    color: #1f85de;
+}
+
+.status-conainer .icon:hover {
+    cursor: pointer;
+}
+
+footer {
+    background-color: rgb(82, 49, 28) !important;
+    color: white !important;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
+
+/* Responsive Footer Grid */
+footer .container .row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+@media (max-width: 576px) {
+    footer .container .row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+footer .logo-footer {
+    font-size: 40px;
+    font-weight: 600;
+    font-family: 'thuluth-decorated' !important;
+    color: var(--main-color);
+}
+
+footer p a {
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+}
+
+footer p a:hover {
+    color: var(--main-color) !important;
+}
+
+/* Prayer Widget Bar Styles */
+.prayer-widget-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, rgba(220, 156, 81, 0.95), rgba(63, 32, 12, 0.95));
+  backdrop-filter: blur(20px);
+  padding: 15px 30px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.prayer-widget-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.prayer-widget-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.prayer-icon {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #DC9C51;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.prayer-info {
+  color: white;
+}
+
+.prayer-label {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.prayer-name {
+  font-size: 18px;
+  font-weight: 800;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.prayer-widget-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.prayer-time {
+  font-size: 28px;
+  font-weight: 900;
+  color: #000000;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.prayer-countdown {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.countdown-part {
+  font-size: 20px;
+  font-weight: 800;
+  color: #000000;
+  font-family: 'Courier New', monospace;
+  min-width: 25px;
+  text-align: center;
+}
+
+.countdown-separator {
+  font-size: 20px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.close-widget {
+  width: 35px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.close-widget:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+.prayer-widget-bar.hide {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* Adjust header position when widget is shown */
+body.has-prayer-widget .header {
+  top: 80px;
+}
+
+/* Adjust main section when widget is shown */
+body.has-prayer-widget .main-section {
+  padding-top: 80px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .prayer-widget-bar {
+    padding: 8px 12px;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  .prayer-widget-content {
+    flex-direction: column;
+    gap: 8px;
+    max-width: 100%;
+  }
+
+  .prayer-widget-left {
+    width: 100%;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .prayer-widget-right {
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+    max-width: 100%;
+  }
+
+  .prayer-time {
+    font-size: clamp(16px, 4vw, 20px);
+  }
+
+  .countdown-part {
+    font-size: clamp(12px, 3vw, 16px);
+    min-width: 18px;
+  }
+
+  .prayer-name {
+    font-size: clamp(14px, 3vw, 18px);
+  }
+
+  .prayer-label {
+    font-size: clamp(10px, 2.5vw, 12px);
+  }
+
+  body.has-prayer-widget .header {
+    top: 70px;
+  }
+
+  body.has-prayer-widget .main-section {
+    padding-top: 70px;
+  }
+}
+
+/* Safe Areas Support for iPhone */
+@supports (padding: max(0px)) {
+  .header {
+    padding-top: max(4px, env(safe-area-inset-top));
+    padding-bottom: max(4px, env(safe-area-inset-bottom));
+  }
+
+  body.has-prayer-widget .header {
+    top: max(80px, env(safe-area-inset-top));
+  }
+
+  .prayer-widget-bar {
+    padding-top: max(15px, env(safe-area-inset-top));
+  }
+
+  footer {
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .header {
+    transition: none !important;
+  }
+
+  .nav-list {
+    transition: none !important;
+  }
+
+  .prayer-widget-bar {
+    animation: none !important;
+  }
+
+  .prayer-icon {
+    animation: none !important;
+  }
+
+  .scrolling-up {
+    transition: none !important;
+  }
+}
+
+/* Fluid Typography for Better Responsive */
+@media (min-width: 320px) {
+  .logo,
+  .logo span {
+    font-size: clamp(24px, 5vw, 40px);
+  }
+
+  .general-header {
+    font-size: clamp(28px, 6vw, 40px) !important;
+  }
+
+  .nav-list {
+    font-size: clamp(14px, 2.5vw, 18px);
+  }
+}
+
+/* Prevent Horizontal Overflow */
+.container,
+.row,
+.col {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Responsive Spacing */
+@media (max-width: 576px) {
+  .nav-list li {
+    margin-right: clamp(10px, 3vw, 20px);
+  }
+
+  .readers-section {
+    padding: clamp(30px, 5vw, 60px) 0 clamp(50px, 8vw, 100px) 0;
+  }
+
+  .websites {
+    padding-bottom: clamp(40px, 8vw, 80px);
+  }
+}
+
+/* Additional Responsive Improvements */
+/* Telegram WebApp Support */
+@supports (padding: env(safe-area-inset-top)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .header {
+    padding-top: max(4px, env(safe-area-inset-top));
+  }
+
+  .prayer-widget-bar {
+    padding-top: max(15px, env(safe-area-inset-top));
+  }
+
+  .back-button {
+    top: max(15px, env(safe-area-inset-top));
+    right: max(15px, env(safe-area-inset-right));
+  }
+}
+
+/* Telegram WebApp Bottom Navigation Handling */
+.telegram-webapp-bottom-nav {
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
+
+/* Prevent Content Under Telegram Header */
+body.telegram-webapp {
+  padding-top: 60px;
+}
+
+/* Telegram WebView Specific */
+.telegram-webapp .header {
+  position: relative;
+  top: 0;
+}
+
+/* Mini App Layout Optimization */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px 20px;
+  }
+}
+
+/* Mini App Card Optimization */
+@media (max-width: 380px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .dashboard-btn {
+    padding: 15px;
+  }
+
+  .dashboard-icon {
+    font-size: 24px;
+  }
+
+  .dashboard-title {
+    font-size: 16px;
+  }
+
+  .dashboard-desc {
+    font-size: 12px;
+  }
+}
+
+/* Fluid Typography */
+.general-header {
+  font-family: 'thuluth-decorated';
+  color: var(--main-color);
+  text-align: center;
+  font-size: clamp(28px, 5vw, 40px) !important;
+}
+
+/* Responsive Container */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(15px, 4vw, 30px);
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .header {
+    padding: 4px 0.5rem;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  .logo {
+    margin-right: 0 !important;
+    font-size: clamp(20px, 6vw, 32px);
+  }
+
+  #menu-icon {
+    margin-left: 0;
+  }
+
+  .nav-icons {
+    gap: 10px;
+  }
+
+  .dark-mode-toggle {
+    width: 50px;
+    height: 25px;
+  }
+
+  .nav-list {
+    max-width: 100vw;
+  }
+
+  .nav-list a {
+    font-size: clamp(14px, 3vw, 16px);
+  }
+
+  .nav-item {
+    flex-shrink: 0;
+  }
+}
+
+  .logo {
+    font-size: clamp(24px, 6vw, 40px);
+  }
+
+  .prayer-widget-bar {
+    padding: 10px 15px;
+  }
+
+  .prayer-widget-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .prayer-widget-left {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .prayer-widget-right {
+    width: 100%;
+    justify-content: space-between;
+    gap: 15px;
+  }
+
+  .prayer-time {
+    font-size: clamp(18px, 5vw, 24px);
+  }
+
+  .countdown-part {
+    font-size: clamp(14px, 4vw, 16px);
+    min-width: 20px;
+  }
+
+  .prayer-name {
+    font-size: clamp(16px, 4vw, 20px);
+  }
+
+  .readers-section .card {
+    padding: 10px;
+  }
+
+  .readers-section .card img {
+    height: auto;
+    max-height: 150px;
+  }
+
+  .readers-section .card .card-body {
+    padding: 8px 0 !important;
+  }
+
+  .websites .website {
+    padding: 15px;
+    height: auto;
+    min-height: 120px;
+  }
+
+  .general-header {
+    font-size: clamp(24px, 6vw, 32px) !important;
+  }
+}
+
+/* Tablet Optimization */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .readers-section .row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .websites .row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+}
+
+/* Desktop & Large Screens */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
+/* Ultra-wide Screens */
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1800px;
+  }
+
+  .readers-section .row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Horizontal Scroll Prevention */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100vw;
+  }
+
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Images Responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* RTL Text Optimization */
+body {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Touch Device Optimization */
+@media (hover: none) and (pointer: coarse) {
+  .nav-list a:hover {
+    transform: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .prayer-widget-mini:hover {
+    transform: none;
+  }
+}
+
+/* Global Responsive Improvements */
+.content-wrapper {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.card {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.card-title {
+  font-size: clamp(16px, 3vw, 20px);
+  word-wrap: break-word;
+}
+
+.card-text {
+  font-size: clamp(14px, 2.5vw, 16px);
+  line-height: 1.6;
+}
+
+/* Responsive Tables */
+table {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+/* Responsive Forms */
+.form-control {
+  width: 100%;
+  max-width: 100%;
+}
+
+.btn {
+  max-width: 100%;
+  white-space: normal;
+}
+
+/* Audio Player Responsive */
+.audio-player {
+  width: 100%;
+  max-width: 100%;
+}
+
+.audio-controls {
+  flex-wrap: wrap;
+}
+
+/* Quran Reader Responsive */
+.quran-text {
+  font-size: clamp(18px, 4vw, 28px);
+  line-height: 2;
+}
+
+.ayah-text {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Reciters Grid Responsive */
+.reciters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 15px;
+}
+
+/* Books Grid Responsive */
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 20px;
+}
+
+/* Adhkar Cards Responsive */
+.azkar-card {
+  width: 100%;
+  max-width: 100%;
+}
+
+.azkar-text {
+  font-size: clamp(16px, 3vw, 20px);
+  line-height: 1.8;
+}
+
+/* Prayer Times Responsive */
+.prayer-times-table {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.prayer-time-cell {
+  font-size: clamp(14px, 2.5vw, 16px);
+}
+
+/* Modal Responsive */
+.modal {
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-content {
+  max-width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+/* Footer Responsive */
+footer {
+  padding: clamp(20px, 5vw, 40px);
+}
+
+.footer-links {
+  flex-wrap: wrap;
+}
+
+/* Navigation Responsive */
+.nav-link {
+  font-size: clamp(14px, 2.5vw, 16px);
+  white-space: nowrap;
+}
+
+/* Hero Section Responsive */
+.hero-section {
+  min-height: clamp(300px, 50vh, 600px);
+}
+
+.hero-title {
+  font-size: clamp(24px, 6vw, 48px);
+}
+
+.hero-subtitle {
+  font-size: clamp(16px, 3vw, 20px);
+}
+
+/* Stats Section Responsive */
+.stats-item {
+  padding: clamp(15px, 3vw, 30px);
+}
+
+.stats-number {
+  font-size: clamp(24px, 5vw, 36px);
+}
+
+.stats-label {
+  font-size: clamp(12px, 2.5vw, 14px);
+}
+ 
+ 
