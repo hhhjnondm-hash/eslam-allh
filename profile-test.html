@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Profile Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        .data-display {
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Telegram Profile Integration Test</h1>
+        
+        <div class="test-section">
+            <h3>Test Controls</h3>
+            <button onclick="loadWithFakeData()">Load with Fake Telegram Data</button>
+            <button onclick="loadWithoutTelegram()">Load without Telegram</button>
+            <button onclick="showDiagnostics()">Show Diagnostics</button>
+        </div>
+
+        <div class="test-section">
+            <h3>Connection Status</h3>
+            <div id="connection-status" class="status info">Loading...</div>
+        </div>
+
+        <div class="test-section">
+            <h3>Profile Data</h3>
+            <div id="profile-data" class="data-display">Loading...</div>
+        </div>
+
+        <div class="test-section">
+            <h3>Diagnostics</h3>
+            <div id="diagnostics" class="data-display">Click "Show Diagnostics" to see details</div>
+        </div>
+    </div>
+
+    <!-- Mock Telegram WebApp for testing -->
+    <script>
+        // Mock Telegram WebApp for browser testing
+        window.Telegram = {
+            WebApp: {
+                initData: '',
+                initDataUnsafe: null,
+                version: '6.0',
+                platform: 'web',
+                colorScheme: 'light',
+                themeParams: {},
+                isExpanded: false,
+                viewportHeight: 0,
+                viewportStableHeight: 0,
+                headerColor: '',
+                backgroundColor: '',
+                isClosingConfirmationEnabled: false,
+                BackButton: {},
+                MainButton: {},
+                HapticFeedback: {},
+                ready: function() {},
+                expand: function() {},
+                close: function() {},
+                enableClosingConfirmation: function() {},
+                disableClosingConfirmation: function() {},
+                setHeaderColor: function() {},
+                setBackgroundColor: function() {}
+            }
+        };
+    </script>
+
+    <!-- Telegram WebApp Script -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- Telegram Service -->
+    <script src="JS/telegram-service.js"></script>
+
+    <script>
+        function updateDisplay() {
+            if (!window.TelegramService) {
+                document.getElementById('connection-status').textContent = 'Telegram Service not loaded';
+                document.getElementById('connection-status').className = 'status error';
+                return;
+            }
+
+            const connectionStatus = window.TelegramService.getConnectionStatus();
+            const profileData = window.TelegramService.getProfileData();
+
+            // Update connection status
+            document.getElementById('connection-status').textContent = connectionStatus.status;
+            document.getElementById('connection-status').className = connectionStatus.connected ? 'status success' : 'status error';
+
+            // Update profile data
+            document.getElementById('profile-data').textContent = JSON.stringify(profileData, null, 2);
+        }
+
+        function loadWithFakeData() {
+            // Simulate Telegram user data
+            window.Telegram.WebApp.initDataUnsafe = {
+                user: {
+                    id: 123456789,
+                    first_name: 'أحمد',
+                    last_name: 'محمد',
+                    username: 'ahmed123',
+                    language_code: 'ar',
+                    is_premium: false,
+                    photo_url: null
+                },
+                query_id: '',
+                auth_date: Math.floor(Date.now() / 1000)
+            };
+
+            // Reinitialize service
+            window.TelegramService.user = window.Telegram.WebApp.initDataUnsafe.user;
+            window.TelegramService.isConnected = true;
+
+            updateDisplay();
+        }
+
+        function loadWithoutTelegram() {
+            // Clear Telegram data
+            window.Telegram.WebApp.initDataUnsafe = null;
+            window.TelegramService.user = null;
+            window.TelegramService.isConnected = false;
+
+            updateDisplay();
+        }
+
+        function showDiagnostics() {
+            if (window.TelegramService) {
+                window.TelegramService.logDiagnostics();
+                document.getElementById('diagnostics').textContent = 
+                    'Telegram WebApp: ' + (window.TelegramService.isTelegram ? 'YES' : 'NO') + '\n' +
+                    'User: ' + (window.TelegramService.user ? 'YES' : 'NO') + '\n' +
+                    'Connected: ' + (window.TelegramService.isConnected ? 'YES' : 'NO') + '\n' +
+                    'Telegram ID: ' + (window.TelegramService.getUserId() || 'N/A') + '\n' +
+                    'Username: ' + (window.TelegramService.getUsername() || 'N/A') + '\n' +
+                    'Display Name: ' + (window.TelegramService.getDisplayName() || 'N/A') + '\n' +
+                    'Photo: ' + (window.TelegramService.hasProfilePhoto() ? 'YES' : 'NO') + '\n' +
+                    'Language: ' + (window.TelegramService.user?.languageCode || 'N/A') + '\n' +
+                    'Profile Sync: ' + (window.TelegramService.isConnected ? 'SUCCESS' : 'FAILED');
+            }
+        }
+
+        // Initial display update
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(updateDisplay, 100);
+        });
+    </script>
+</body>
+</html>

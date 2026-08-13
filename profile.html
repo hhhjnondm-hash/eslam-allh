@@ -6,6 +6,9 @@
     <title>حسابي - الملف الشخصي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Telegram WebApp Script -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
             margin: 0;
@@ -169,6 +172,100 @@
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.8;
             max-width: 600px;
+        }
+
+        .profile-status {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-connected {
+            color: #4ade80;
+        }
+
+        .status-connected::before {
+            content: '✓';
+            display: inline-block;
+        }
+
+        .status-disconnected {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Account Information Section */
+        .account-info {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 1s ease-out;
+            animation-delay: 0.6s;
+        }
+
+        .info-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-label {
+            display: block;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .account-info {
+                padding: 20px;
+                margin-top: 30px;
+            }
+
+            .info-title {
+                font-size: 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .info-item {
+                padding: 12px 15px;
+            }
+
+            .info-value {
+                font-size: 14px;
+            }
         }
 
 
@@ -425,6 +522,30 @@
                     <h1 class="profile-name" id="profile-name">اسم المستخدم</h1>
                     <p class="profile-username" id="profile-username">@username</p>
                     <p class="profile-bio" id="profile-bio">مرحباً بك في صفحتك الشخصية. يمكنك إدارة حسابك والوصول إلى جميع الخدمات من هنا.</p>
+                    <p class="profile-status" id="telegram-status"></p>
+                </div>
+            </div>
+
+            <!-- Account Information -->
+            <div class="account-info" id="account-info" style="display: none;">
+                <h3 class="info-title">معلومات الحساب</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">معرف تيليجرام</span>
+                        <span class="info-value" id="telegram-id">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">اسم المستخدم</span>
+                        <span class="info-value" id="info-username">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">الاسم</span>
+                        <span class="info-value" id="info-name">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">اللغة</span>
+                        <span class="info-value" id="info-language">-</span>
+                    </div>
                 </div>
             </div>
 
@@ -494,6 +615,9 @@
         </div>
     </div>
 
+    <!-- Telegram Service -->
+    <script src="JS/telegram-service.js"></script>
+    
     <script>
         // Particle Animation
         const canvas = document.getElementById('particles-canvas');
@@ -578,26 +702,25 @@
             window.history.back();
         }
 
-        // Get User Info from Telegram
-        function getTelegramUserInfo() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const firstName = urlParams.get('first_name');
-            const lastName = urlParams.get('last_name');
-            const username = urlParams.get('username');
-            const photoUrl = urlParams.get('photo_url');
-
-            if (firstName) {
-                document.getElementById('profile-name').textContent = `${firstName} ${lastName || ''}`;
+        // Telegram Profile Integration
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update profile using Telegram Service
+            if (window.TelegramService) {
+                const profileData = window.TelegramService.updateProfileUI();
+                console.log('Profile updated:', profileData);
+                
+                // Show account info if connected to Telegram
+                const accountInfo = document.getElementById('account-info');
+                if (accountInfo && profileData.connected) {
+                    accountInfo.style.display = 'block';
+                }
+                
+                // Haptic feedback on load (if in Telegram)
+                if (window.TelegramService.isTelegram) {
+                    window.TelegramService.hapticFeedback('light');
+                }
             }
-            if (username) {
-                document.getElementById('profile-username').textContent = `@${username}`;
-            }
-            if (photoUrl) {
-                document.getElementById('profile-avatar').src = photoUrl;
-            }
-        }
-
-        getTelegramUserInfo();
+        });
     </script>
 </body>
 </html>
