@@ -187,6 +187,60 @@
 }
 
 /* ============================================================
+   PROFILE PAGE RESPONSIVE
+   ============================================================ */
+
+body {
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-name {
+        font-size: 28px;
+    }
+    
+    .profile-username {
+        font-size: 16px;
+    }
+    
+    .profile-bio {
+        font-size: 14px;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .back-button {
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+    }
+    
+    .container {
+        padding: 12px;
+    }
+    
+    .profile-card {
+        padding: 20px 15px;
+    }
+    
+    .avatar-container {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* ============================================================
    FOOTER RESPONSIVE
    ============================================================ */
 
