@@ -411,19 +411,20 @@ nav .nav-item {
 
 .main-section .txt-main-section {
     position: absolute;
-    top: 0;
-    right: 0;
-    -webkit-transform: translate(-40%, -50%);
-    -moz-transform: translate(-40%, -50%);
-    -ms-transform: translate(-40%, -50%);
-    -o-transform: translate(-40%, -50%);
-    transform: translate(-40%, -50%);
+    top: 50%;
+    right: 50%;
+    -webkit-transform: translate(50%, -50%);
+    -moz-transform: translate(50%, -50%);
+    -ms-transform: translate(50%, -50%);
+    -o-transform: translate(50%, -50%);
+    transform: translate(50%, -50%);
     color: white;
 }
 
 .main-section .txt-main-section p {
     font-size: 40px;
     color: var(--main-color);
+    font-family: 'thuluth-decorated', sans-serif;
 }
 
 .readers-section {
