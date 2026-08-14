@@ -119,8 +119,11 @@
   
   <!-- Intro Check Script -->
   <script>
-    // Always show intro on every visit
-    window.location.href = 'intro.html';
+    // Check URL parameter to skip intro
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('skip') !== 'true') {
+      window.location.href = 'intro.html';
+    }
   </script>
 </head>
 
