@@ -13,6 +13,212 @@ body {
   display: none;
 }
 
+/* ============================================================
+   HORIZONTAL PRAYER GRID WITH ADVANCED EFFECTS
+   ============================================================ */
+
+.prayer-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.prayer-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(5, 18, 63, 0.9), rgba(10, 30, 80, 0.9));
+  border-radius: 20px;
+  padding: 25px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(220, 156, 81, 0.2);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.prayer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.prayer-card:hover::before {
+  left: 100%;
+}
+
+.prayer-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+.prayer-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2));
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.prayer-card:hover .prayer-icon {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.4), rgba(255, 165, 0, 0.4));
+  transform: rotate(360deg);
+}
+
+.prayer-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: #FFD700;
+  transition: all 0.3s ease;
+}
+
+.prayer-card:hover .prayer-icon svg {
+  stroke: #FFA500;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+}
+
+.prayer-info {
+  position: relative;
+  z-index: 2;
+}
+
+.prayer-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+  font-family: 'Cairo', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.prayer-card:hover .prayer-name {
+  color: #FFD700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+.prayer-time {
+  font-size: 22px;
+  font-weight: 800;
+  color: #FFD700;
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.prayer-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.prayer-card:hover .prayer-glow {
+  opacity: 1;
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 1;
+  }
+}
+
+/* Active prayer card styling */
+.prayer-card.active {
+  border-color: #FFD700;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(255, 215, 0, 0.4);
+  transform: scale(1.05);
+}
+
+.prayer-card.active .prayer-icon {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.5), rgba(255, 165, 0, 0.5));
+}
+
+.prayer-card.active .prayer-name {
+  color: #FFD700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .prayer-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px 15px;
+  }
+  
+  .prayer-card {
+    padding: 20px 15px;
+  }
+  
+  .prayer-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .prayer-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .prayer-name {
+    font-size: 16px;
+  }
+  
+  .prayer-time {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .prayer-grid-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .prayer-card {
+    padding: 18px 15px;
+  }
+}
+
 .pray .cards {
   display: flex;
   flex-wrap: wrap;
