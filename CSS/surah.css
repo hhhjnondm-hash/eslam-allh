@@ -168,6 +168,11 @@
   max-height: 80vh;
   overflow-y: auto;
   display: block;
+  font-family: 'Cairo', 'Changa', 'Tajawal', sans-serif;
+  font-variant-ligatures: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 .surah-popup .ayat .Quran-ayah {
   line-height: 2;
