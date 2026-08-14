@@ -173,7 +173,7 @@ function getSurahs() {
             showLoader();
           }
 
-          fetch(`https://api.alquran.cloud/v1/surah/${index + 1}`)
+          fetch(`https://api.alquran.cloud/v1/surah/${index + 1}/quran-simple`)
             .then((response) => response.json())
             .then((data) => {
               AyatContainer.innerHTML = "";
@@ -192,7 +192,7 @@ function getSurahs() {
               Ayat.forEach((aya) => {
                 let cleanedAyaText = aya.text
                   .trim()
-                  .replace(/^بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ\s*/, "");
+                  .replace(/^بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\s*/, "");
 
                 combinedAyat += `${cleanedAyaText} ﴿${aya.numberInSurah}﴾ `;
               });
