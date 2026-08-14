@@ -179,27 +179,25 @@ function getSurahs() {
               AyatContainer.innerHTML = "";
               let Ayat = data.data.ayahs;
 
-              // Wait for fonts to load before displaying
-              document.fonts.ready().then(() => {
-                popup.classList.add("active");
+              popup.classList.add("active");
 
-                let nameSurah = document.querySelector("#nameSurah");
-                document.getElementById(
-                  "linkSurah"
-                ).href = `https://quran.com/ar/${index + 1}`;
-                nameSurah.innerHTML = surahs[index].name;
+              let nameSurah = document.querySelector("#nameSurah");
+              document.getElementById(
+                "linkSurah"
+              ).href = `https://quran.com/ar/${index + 1}`;
+              nameSurah.innerHTML = surahs[index].name;
 
-                let combinedAyat = "";
+              let combinedAyat = "";
 
-                Ayat.forEach((aya) => {
-                  let cleanedAyaText = aya.text
-                    .trim()
-                    .replace(/^بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ\s*/, "");
+              Ayat.forEach((aya) => {
+                let cleanedAyaText = aya.text
+                  .trim()
+                  .replace(/^بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ\s*/, "");
 
-                  combinedAyat += `${cleanedAyaText} ﴿${aya.numberInSurah}﴾ `;
-                });
+                combinedAyat += `${cleanedAyaText} ﴿${aya.numberInSurah}﴾ `;
+              });
 
-                AyatContainer.innerHTML = `
+              AyatContainer.innerHTML = `
 
 بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
 
@@ -207,10 +205,9 @@ ${combinedAyat}
 
 `;
 
-                if (loader && typeof loader.classList !== 'undefined' && loader.classList) {
-                  hideLoader();
-                }
-              });
+              if (loader && typeof loader.classList !== 'undefined' && loader.classList) {
+                hideLoader();
+              }
             })
             .catch(() => {
               if (loader && typeof loader.classList !== 'undefined' && loader.classList) {
