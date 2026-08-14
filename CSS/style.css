@@ -446,7 +446,7 @@ nav .nav-item {
 .prayer-overlay {
     position: absolute;
     top: calc(28% + 10px);
-    left: calc(60% + 25px);
+    left: 85%;
     transform: translate(-50%, -50%);
     z-index: 5;
     max-width: 280px;
