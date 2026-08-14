@@ -99,24 +99,69 @@
         }
 
         .back-btn {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 215, 0, 0.5);
             color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
+            padding: 12px 25px;
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             text-decoration: none;
             font-family: 'Cairo', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .back-btn:hover {
             background: rgba(255, 215, 0, 0.3);
+            border-color: #FFD700;
             transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Telegram Contact Button */
+        .telegram-contact-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, rgba(0, 136, 204, 0.9), rgba(0, 160, 220, 0.9));
+            border: 2px solid rgba(0, 136, 204, 0.5);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+            text-decoration: none;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+        }
+
+        .telegram-contact-btn:hover {
+            background: linear-gradient(135deg, rgba(0, 160, 220, 0.95), rgba(34, 158, 217, 0.95));
+            border-color: #0088cc;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.6);
+        }
+
+        .telegram-contact-btn svg {
+            width: 20px;
+            height: 20px;
         }
 
         .tasbeeh-title {
@@ -439,6 +484,14 @@
     <button onclick="window.location.href='profile.html'" class="back-btn">
         <i class="fas fa-arrow-right"></i> العودة
     </button>
+
+    <!-- Telegram Contact Button -->
+    <a href="https://t.me/o_w_i" target="_blank" class="telegram-contact-btn">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 9.09 15.12 11.86 15.12 11.86C15.12 11.86 16.53 10.65 16.64 8.8ZM8.53 15.2L7.73 10.2C7.73 10.2 7.68 9.95 7.93 9.88C8.18 9.81 8.32 10.05 8.32 10.05L10.4 13.88L12.4 12.88L16.48 8.8C16.48 8.8 16.5 8.77 16.54 8.79C16.58 8.81 16.56 8.85 16.56 8.85L8.53 15.2Z" fill="white"/>
+        </svg>
+        تواصل
+    </a>
 
     <!-- Main Content -->
     <div class="tasbeeh-container">

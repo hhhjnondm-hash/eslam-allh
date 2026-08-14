@@ -453,6 +453,24 @@
   <script src="JS/ramadan.js"></script>
   <script src="JS/dark-mode.js"></script>
   <script src="JS/global-effects.js"></script>
+  
+  <script>
+    // Add particle effects to prayer cards
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.prayer-card').forEach(card => {
+        for (let i = 0; i < 8; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.cssText = `
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation-delay: ${Math.random() * 2}s;
+          `;
+          card.appendChild(particle);
+        }
+      });
+    });
+  </script>
 </body>
 
 
