@@ -116,6 +116,15 @@
 
   <!-- Telegram WebApp Script (for Mini App support) -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  
+  <!-- Intro Check Script -->
+  <script>
+    // Check if intro has been shown
+    if (!localStorage.getItem('introShown')) {
+      localStorage.setItem('introShown', 'true');
+      window.location.href = 'intro.html';
+    }
+  </script>
 </head>
 
 <body>

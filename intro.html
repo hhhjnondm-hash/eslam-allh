@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Rafiq - رفيق</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #0a0a0a;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        /* ============================================
+           INTRO SCREEN STYLES
+           ============================================ */
+
+        .intro-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .intro-container.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Door Animation */
+        .door-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .door-left,
+        .door-right {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e, #0a0a0a);
+            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 2;
+        }
+
+        .door-left {
+            left: 0;
+            transform-origin: left;
+            border-right: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .door-right {
+            right: 0;
+            transform-origin: right;
+            border-left: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .door-container.open .door-left {
+            transform: translateX(-100%);
+        }
+
+        .door-container.open .door-right {
+            transform: translateX(100%);
+        }
+
+        /* Door Patterns */
+        .door-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 215, 0, 0.03) 2px,
+                    rgba(255, 215, 0, 0.03) 4px
+                );
+        }
+
+        /* ============================================
+           MAIN CONTENT
+           ============================================ */
+
+        .intro-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 40px;
+        }
+
+        /* Logo */
+        .logo-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 40px;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-15px) scale(1.05);
+            }
+        }
+
+        .logo-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            border: 3px solid rgba(255, 215, 0, 0.4);
+            border-radius: 50%;
+            animation: ringRotate 8s linear infinite;
+        }
+
+        .logo-ring::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid rgba(255, 165, 0, 0.3);
+            border-radius: 50%;
+            animation: ringRotate 12s linear infinite reverse;
+        }
+
+        @keyframes ringRotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .logo-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
+        }
+
+        /* Brand Name */
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700, #FF8C00, #FFD700);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            margin-bottom: 15px;
+            text-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            letter-spacing: 8px;
+        }
+
+        @keyframes shimmer {
+            to {
+                background-position: 300% center;
+            }
+        }
+
+        .brand-tagline {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        /* Developer Section */
+        .developer-section {
+            margin-top: 60px;
+            padding: 30px 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            animation: fadeInUp 1s ease-out 1s both;
+            backdrop-filter: blur(10px);
+        }
+
+        .developer-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .developer-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #FFD700;
+            background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 2s linear infinite;
+            margin-bottom: 10px;
+        }
+
+        .developer-welcome {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: particleFloat 6s linear infinite;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                transform: translateY(-100vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Glow Effect */
+        .glow-orb {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: orbPulse 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes orbPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 1;
+            }
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            z-index: 10;
+        }
+
+        .progress-bar {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
+            background-size: 200% auto;
+            animation: shimmer 2s linear infinite, progressFill 5s linear forwards;
+            width: 0%;
+        }
+
+        @keyframes progressFill {
+            to {
+                width: 100%;
+            }
+        }
+
+        .progress-text {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .brand-name {
+                font-size: 48px;
+                letter-spacing: 4px;
+            }
+
+            .brand-tagline {
+                font-size: 18px;
+                letter-spacing: 4px;
+            }
+
+            .logo-container {
+                width: 120px;
+                height: 120px;
+            }
+
+            .logo-ring {
+                width: 140px;
+                height: 140px;
+            }
+
+            .developer-section {
+                padding: 20px 30px;
+            }
+
+            .developer-name {
+                font-size: 22px;
+            }
+
+            .developer-welcome {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-container" id="introContainer">
+        <!-- Door Animation -->
+        <div class="door-container" id="doorContainer">
+            <div class="door-left">
+                <div class="door-pattern"></div>
+            </div>
+            <div class="door-right">
+                <div class="door-pattern"></div>
+            </div>
+        </div>
+
+        <!-- Particles -->
+        <div class="particles" id="particles"></div>
+
+        <!-- Glow Orb -->
+        <div class="glow-orb"></div>
+
+        <!-- Main Content -->
+        <div class="intro-content">
+            <!-- Logo -->
+            <div class="logo-container">
+                <div class="logo-ring"></div>
+                <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FFD700"/>
+                            <stop offset="50%" style="stop-color:#FFA500"/>
+                            <stop offset="100%" style="stop-color:#FF8C00"/>
+                        </linearGradient>
+                        <filter id="logoGlow">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <!-- Crescent -->
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="url(#logoGold)" stroke-width="3" filter="url(#logoGlow)"/>
+                    <circle cx="50" cy="50" r="28" fill="url(#logoGold)" filter="url(#logoGlow)"/>
+                    <circle cx="45" cy="48" r="22" fill="#0a0a0a"/>
+                    <!-- Star -->
+                    <path d="M50 35L53 45H63L55 52L60 55L55 58L63 61L53 68L50 78L47 68L37 61L45 58L40 55L45 52L37 45H47Z" fill="url(#logoGold)" filter="url(#logoGlow)"/>
+                </svg>
+            </div>
+
+            <!-- Brand Name -->
+            <h1 class="brand-name">RAFIQ</h1>
+            <p class="brand-tagline">كل مسلم</p>
+
+            <!-- Developer Section -->
+            <div class="developer-section">
+                <div class="developer-label">Developed by</div>
+                <div class="developer-name">Eng Ahmed Zaki</div>
+                <div class="developer-welcome">يرحب بكم</div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="progress-text">LOADING</div>
+        </div>
+    </div>
+
+    <script>
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.cssText = `
+                    left: ${Math.random() * 100}%;
+                    animation-duration: ${Math.random() * 5 + 3}s;
+                    animation-delay: ${Math.random() * 3}s;
+                    width: ${Math.random() * 4 + 2}px;
+                    height: ${Math.random() * 4 + 2}px;
+                `;
+                container.appendChild(particle);
+            }
+        }
+
+        // Intro animation
+        function initIntro() {
+            createParticles();
+
+            // After 5 seconds, open doors and hide intro
+            setTimeout(() => {
+                const doorContainer = document.getElementById('doorContainer');
+                const introContainer = document.getElementById('introContainer');
+                
+                // Open doors
+                doorContainer.classList.add('open');
+                
+                // Hide intro after doors open
+                setTimeout(() => {
+                    introContainer.classList.add('hidden');
+                    
+                    // Redirect to main page
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 800);
+                }, 1500);
+            }, 5000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', initIntro);
+    </script>
+</body>
+</html>
