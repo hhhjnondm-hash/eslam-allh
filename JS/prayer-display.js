@@ -6,7 +6,7 @@ class PrayerDisplay {
         this.countdownEl = document.getElementById('prayerCountdown');
         this.currentTimeEl = document.getElementById('currentTime');
         this.dateDisplayEl = document.getElementById('dateDisplay');
-        this.particlesContainer = document.getElementById('prayerParticles');
+        this.particlesContainer = document.getElementById('mosqueParticles');
         
         this.init();
     }
@@ -20,12 +20,14 @@ class PrayerDisplay {
     }
     
     createParticles() {
-        for (let i = 0; i < 25; i++) {
+        if (!this.particlesContainer) return;
+        
+        for (let i = 0; i < 15; i++) {
             const particle = document.createElement('div');
-            particle.className = 'prayer-particle';
+            particle.className = 'mosque-particle';
             
-            const size = Math.random() * 4 + 2;
-            const colors = ['#FFD700', '#FFA500', '#FF8C00', '#FF6B00'];
+            const size = Math.random() * 3 + 2;
+            const colors = ['#FFD700', '#FFA500', '#FF8C00'];
             const color = colors[Math.floor(Math.random() * colors.length)];
             
             particle.style.cssText = `
@@ -35,10 +37,10 @@ class PrayerDisplay {
                 background: ${color};
                 border-radius: 50%;
                 pointer-events: none;
-                box-shadow: 0 0 ${Math.random() * 15 + 5}px ${color};
+                box-shadow: 0 0 ${Math.random() * 10 + 5}px ${color};
                 left: ${Math.random() * 100}%;
-                animation-duration: ${Math.random() * 8 + 4}s;
-                animation-delay: ${Math.random() * 5}s;
+                animation-duration: ${Math.random() * 5 + 2}s;
+                animation-delay: ${Math.random() * 3}s;
             `;
             
             this.particlesContainer.appendChild(particle);
