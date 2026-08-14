@@ -266,18 +266,7 @@
         getProfileData() {
             const connectionStatus = this.getConnectionStatus();
             
-            if (connectionStatus.type === 'guest') {
-                return {
-                    displayName: 'Guest',
-                    username: null,
-                    bio: 'Not connected to Telegram',
-                    photoUrl: null,
-                    telegramId: null,
-                    connected: false,
-                    status: connectionStatus.status
-                };
-            }
-
+            // TELEGRAM MODE: Real Telegram user data
             if (connectionStatus.type === 'telegram' && this.user) {
                 return {
                     displayName: this.getDisplayName(),
@@ -286,32 +275,21 @@
                     photoUrl: this.getUserPhotoUrl(),
                     telegramId: this.getUserId(),
                     connected: true,
-                    status: connectionStatus.status
+                    status: connectionStatus.status,
+                    mode: 'telegram'
                 };
             }
 
-            // Fallback to stored profile
-            const storedProfile = this.loadProfile();
-            if (storedProfile) {
-                return {
-                    displayName: storedProfile.displayName || 'Guest',
-                    username: storedProfile.username ? `@${storedProfile.username}` : null,
-                    bio: 'مرحباً بك في صفحتك الشخصية. يمكنك إدارة حسابك والوصول إلى جميع الخدمات من هنا.',
-                    photoUrl: null,
-                    telegramId: storedProfile.telegramId,
-                    connected: false,
-                    status: 'Offline Profile'
-                };
-            }
-
+            // WEB/GITHUB MODE: Default profile with provided image
             return {
-                displayName: 'اسم المستخدم',
+                displayName: 'أهلاً بك في رفيق',
                 username: null,
-                bio: 'مرحباً بك في صفحتك الشخصية. يمكنك إدارة حسابك والوصول إلى جميع الخدمات من هنا.',
-                photoUrl: null,
+                bio: '',
+                photoUrl: 'Images/Cat%20girl.jfif',
                 telegramId: null,
                 connected: false,
-                status: 'Unknown'
+                status: '',
+                mode: 'web'
             };
         }
 
@@ -327,10 +305,10 @@
                 nameElement.textContent = profileData.displayName;
             }
 
-            // Update username
+            // Update username - only show in Telegram mode
             const usernameElement = document.getElementById('profile-username');
             if (usernameElement) {
-                if (profileData.username) {
+                if (profileData.mode === 'telegram' && profileData.username) {
                     usernameElement.textContent = profileData.username;
                     usernameElement.style.display = 'block';
                 } else {
@@ -338,13 +316,14 @@
                 }
             }
 
-            // Update bio
+            // Update bio - only show in Telegram mode
             const bioElement = document.getElementById('profile-bio');
             if (bioElement) {
-                if (profileData.connected) {
+                if (profileData.mode === 'telegram') {
                     bioElement.textContent = profileData.bio;
+                    bioElement.style.display = 'block';
                 } else {
-                    bioElement.textContent = profileData.status;
+                    bioElement.style.display = 'none';
                 }
             }
 
@@ -354,28 +333,44 @@
                 if (profileData.photoUrl) {
                     avatarElement.src = profileData.photoUrl;
                     avatarElement.onerror = () => {
-                        // Fallback to default avatar
-                        avatarElement.src = 'https://via.placeholder.com/200/667eea/ffffff?text=' + 
-                                             encodeURIComponent(profileData.displayName.charAt(0));
+                        // Fallback to CSS-based avatar if image fails
+                        avatarElement.style.display = 'none';
+                        const avatarContainer = avatarElement.parentElement;
+                        if (avatarContainer && !avatarContainer.querySelector('.avatar-fallback')) {
+                            const fallback = document.createElement('div');
+                            fallback.className = 'avatar-fallback';
+                            fallback.innerHTML = '<i class="fas fa-user"></i>';
+                            avatarContainer.appendChild(fallback);
+                        }
                     };
                 } else {
-                    // Generate avatar with initial
-                    const initial = profileData.displayName.charAt(0);
-                    avatarElement.src = `https://via.placeholder.com/200/667eea/ffffff?text=${encodeURIComponent(initial)}`;
+                    // Generate avatar with initial for Telegram mode
+                    if (profileData.mode === 'telegram') {
+                        const initial = profileData.displayName.charAt(0);
+                        avatarElement.src = `https://via.placeholder.com/200/667eea/ffffff?text=${encodeURIComponent(initial)}`;
+                    } else {
+                        // Hide avatar in web mode if no image
+                        avatarElement.style.display = 'none';
+                    }
                 }
             }
 
-            // Update connection status indicator if exists
+            // Update connection status indicator - only show in Telegram mode
             const statusElement = document.getElementById('telegram-status');
             if (statusElement) {
-                statusElement.textContent = profileData.status;
-                statusElement.className = profileData.connected ? 'status-connected' : 'status-disconnected';
+                if (profileData.mode === 'telegram') {
+                    statusElement.textContent = profileData.status;
+                    statusElement.className = profileData.connected ? 'status-connected' : 'status-disconnected';
+                    statusElement.style.display = 'flex';
+                } else {
+                    statusElement.style.display = 'none';
+                }
             }
 
-            // Update account information section if exists
+            // Update account information section - only show in Telegram mode
             this.updateAccountInfo(profileData);
 
-            // Sync profile for future visits
+            // Sync profile for future visits (only Telegram mode)
             if (profileData.connected) {
                 this.syncProfile();
             }
