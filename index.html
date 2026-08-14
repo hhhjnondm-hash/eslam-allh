@@ -119,11 +119,8 @@
   
   <!-- Intro Check Script -->
   <script>
-    // Check if intro has been shown
-    if (!localStorage.getItem('introShown')) {
-      localStorage.setItem('introShown', 'true');
-      window.location.href = 'intro.html';
-    }
+    // Always show intro on every visit
+    window.location.href = 'intro.html';
   </script>
 </head>
 
