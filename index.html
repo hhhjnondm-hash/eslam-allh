@@ -263,50 +263,40 @@
     <!-- Prayer Display Overlay -->
     <div class="prayer-overlay">
       <div class="prayer-container">
-        <div class="prayer-glow-effect"></div>
-        <div class="mosque-icon">
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="mosqueGold" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#FFD700"/>
-                <stop offset="50%" style="stop-color:#FFA500"/>
-                <stop offset="100%" style="stop-color:#FF8C00"/>
-              </linearGradient>
-              <filter id="mosqueGlow">
-                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            <!-- Dome -->
-            <ellipse cx="50" cy="40" rx="25" ry="18" fill="url(#mosqueGold)" filter="url(#mosqueGlow)"/>
-            <rect x="25" y="40" width="50" height="45" fill="url(#mosqueGold)" filter="url(#mosqueGlow)"/>
-            <!-- Crescent -->
-            <circle cx="50" cy="22" r="6" fill="url(#mosqueGold)" filter="url(#mosqueGlow)"/>
-            <circle cx="48" cy="21" r="5" fill="#1a1a2e"/>
-            <!-- Minarets -->
-            <rect x="15" y="35" width="8" height="50" fill="url(#mosqueGold)" filter="url(#mosqueGlow)"/>
-            <ellipse cx="19" cy="35" rx="5" ry="4" fill="url(#mosqueGold)" filter="url(#mosqueGlow)"/>
-            <circle cx="19" cy="28" r="3" fill="url(#mosqueGold)" filter="url(#mosqueGlow)"/>
-            <circle cx="18" cy="27" r="2.5" fill="#1a1a2e"/>
-            <rect x="77" y="35" width="8" height="50" fill="url(#mosqueGold)" filter="url(#mosqueGlow)"/>
-            <ellipse cx="81" cy="35" rx="5" ry="4" fill="url(#mosqueGold)" filter="url(#mosqueGlow)"/>
-            <circle cx="81" cy="28" r="3" fill="url(#mosqueGold)" filter="url(#mosqueGlow)"/>
-            <circle cx="80" cy="27" r="2.5" fill="#1a1a2e"/>
-            <!-- Door -->
-            <rect x="40" y="55" width="20" height="30" rx="10" fill="#1a1a2e" stroke="url(#mosqueGold)" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <div class="prayer-info">
+        <div class="prayer-bg-animation"></div>
+        <div class="prayer-orb"></div>
+        <div class="prayer-ring-1"></div>
+        <div class="prayer-ring-2"></div>
+        <div class="prayer-ring-3"></div>
+        
+        <div class="prayer-content">
+          <div class="prayer-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L9 9H2L7 14L5 21L12 17L19 21L17 14L22 9H15L12 2Z"/>
+            </svg>
+          </div>
+          
           <div class="prayer-label">الصلاة القادمة</div>
           <div class="prayer-name" id="prayerName">جاري التحميل...</div>
           <div class="prayer-time" id="prayerTime">--:--</div>
-          <div class="prayer-countdown" id="prayerCountdown">00:00:00</div>
-          <div class="current-time" id="currentTime">--:--:--</div>
-          <div class="date-display" id="dateDisplay">--</div>
+          
+          <div class="countdown-container">
+            <div class="countdown-label">الوقت المتبقي</div>
+            <div class="countdown-value" id="prayerCountdown">00:00:00</div>
+          </div>
+          
+          <div class="prayer-details">
+            <div class="detail-item">
+              <span class="detail-icon">🕐</span>
+              <span class="detail-text" id="currentTime">--:--:--</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-icon">📅</span>
+              <span class="detail-text" id="dateDisplay">--</span>
+            </div>
+          </div>
         </div>
+        
         <div class="prayer-particles" id="prayerParticles"></div>
       </div>
     </div>

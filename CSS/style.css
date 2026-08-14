@@ -440,7 +440,7 @@ nav .nav-item {
 }
 
 /* ============================================================
-   PRAYER OVERLAY SECTION
+   PRAYER OVERLAY SECTION - ADVANCED DESIGN
    ============================================================ */
 
 .prayer-overlay {
@@ -449,22 +449,22 @@ nav .nav-item {
     left: 60%;
     transform: translate(-50%, -50%);
     z-index: 5;
-    max-width: 400px;
+    max-width: 420px;
     padding: 20px;
 }
 
 .prayer-container {
     position: relative;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    border-radius: 30px;
-    padding: 40px 30px;
+    background: linear-gradient(145deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+    backdrop-filter: blur(30px);
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    border-radius: 35px;
+    padding: 45px 35px;
     text-align: center;
     box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.3),
-        0 0 100px rgba(255, 215, 0, 0.1),
-        inset 0 0 30px rgba(255, 215, 0, 0.05);
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        0 0 120px rgba(255, 215, 0, 0.15),
+        inset 0 0 40px rgba(255, 215, 0, 0.05);
     animation: containerFloat 6s ease-in-out infinite;
     overflow: hidden;
     width: 100%;
@@ -479,128 +479,243 @@ nav .nav-item {
     }
 }
 
-.prayer-glow-effect {
+.prayer-bg-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 165, 0, 0.1) 0%, transparent 50%);
+    animation: bgShift 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes bgShift {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.prayer-orb {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, rgba(255, 165, 0, 0.2) 50%, transparent 70%);
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(255, 165, 0, 0.1) 50%, transparent 70%);
     border-radius: 50%;
-    animation: glowPulse 3s ease-in-out infinite;
+    animation: orbPulse 4s ease-in-out infinite;
     pointer-events: none;
 }
 
-@keyframes glowPulse {
+@keyframes orbPulse {
     0%, 100% {
         transform: translate(-50%, -50%) scale(1);
         opacity: 0.6;
     }
     50% {
-        transform: translate(-50%, -50%) scale(1.3);
+        transform: translate(-50%, -50%) scale(1.2);
         opacity: 1;
     }
 }
 
-.mosque-icon {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    animation: iconRotate 20s linear infinite;
+.prayer-ring-1,
+.prayer-ring-2,
+.prayer-ring-3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    pointer-events: none;
 }
 
-@keyframes iconRotate {
+.prayer-ring-1 {
+    width: 280px;
+    height: 280px;
+    animation: ringRotate 20s linear infinite;
+}
+
+.prayer-ring-2 {
+    width: 320px;
+    height: 320px;
+    animation: ringRotate 25s linear infinite reverse;
+    border-color: rgba(255, 165, 0, 0.2);
+}
+
+.prayer-ring-3 {
+    width: 360px;
+    height: 360px;
+    animation: ringRotate 30s linear infinite;
+    border-color: rgba(255, 140, 0, 0.15);
+}
+
+@keyframes ringRotate {
     from {
-        transform: rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg);
     }
     to {
-        transform: rotate(360deg);
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }
 
-.mosque-icon svg {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+.prayer-content {
+    position: relative;
+    z-index: 10;
 }
 
-.prayer-info {
-    position: relative;
-    z-index: 5;
+.prayer-badge {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.3));
+    border-radius: 50%;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    animation: badgeFloat 3s ease-in-out infinite;
+}
+
+@keyframes badgeFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(5deg);
+    }
+}
+
+.prayer-badge svg {
+    width: 30px;
+    height: 30px;
+    stroke: #FFD700;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
 }
 
 .prayer-label {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 10px;
-    letter-spacing: 2px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
     text-transform: uppercase;
+    font-weight: 600;
     animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
 .prayer-name {
-    font-size: 28px;
-    font-weight: 800;
+    font-size: 32px;
+    font-weight: 900;
     color: white;
-    margin-bottom: 8px;
-    text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-    font-family: 'thuluth-decorated', sans-serif;
+    margin-bottom: 10px;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+    font-family: 'Cairo', sans-serif;
     animation: fadeInUp 0.8s ease-out 0.4s both;
 }
 
 .prayer-time {
-    font-size: 42px;
+    font-size: 48px;
     font-weight: 900;
     color: #FFD700;
-    margin-bottom: 15px;
-    background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
-    background-size: 200% auto;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700, #FF8C00, #FFD700);
+    background-size: 300% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: 
         shimmer 3s linear infinite,
         fadeInUp 0.8s ease-out 0.6s both;
-    text-shadow: none;
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
 }
 
 @keyframes shimmer {
     to {
-        background-position: 200% center;
+        background-position: 300% center;
     }
 }
 
-.prayer-countdown {
-    font-size: 20px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    font-family: 'Courier New', monospace;
-    padding: 10px 25px;
-    background: rgba(255, 215, 0, 0.15);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 215, 0, 0.4);
-    display: inline-block;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+.countdown-container {
+    margin-bottom: 20px;
     animation: fadeInUp 0.8s ease-out 0.8s both;
-    margin-bottom: 15px;
 }
 
-.current-time {
-    font-size: 16px;
-    font-weight: 500;
+.countdown-label {
+    font-size: 13px;
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.countdown-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFD700;
+    font-family: 'Courier New', monospace;
+    padding: 12px 30px;
+    background: rgba(255, 215, 0, 0.15);
+    border-radius: 25px;
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    display: inline-block;
+    box-shadow: 
+        0 0 30px rgba(255, 215, 0, 0.3),
+        inset 0 0 20px rgba(255, 215, 0, 0.1);
+    animation: countdownPulse 2s ease-in-out infinite;
+}
+
+@keyframes countdownPulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 30px rgba(255, 215, 0, 0.3),
+            inset 0 0 20px rgba(255, 215, 0, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 0 50px rgba(255, 215, 0, 0.5),
+            inset 0 0 30px rgba(255, 215, 0, 0.2);
+    }
+}
+
+.prayer-details {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
     animation: fadeInUp 0.8s ease-out 1s both;
 }
 
-.date-display {
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 215, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.detail-icon {
+    font-size: 18px;
+}
+
+.detail-text {
     font-size: 14px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.6);
-    animation: fadeInUp 0.8s ease-out 1.2s both;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
 }
 
 @keyframes fadeInUp {
@@ -622,7 +737,7 @@ nav .nav-item {
     height: 100%;
     pointer-events: none;
     overflow: hidden;
-    border-radius: 30px;
+    border-radius: 35px;
 }
 
 .prayer-particle {
@@ -678,9 +793,34 @@ nav .nav-item {
         font-size: 32px;
     }
     
-    .prayer-countdown {
-        font-size: 16px;
-        padding: 8px 20px;
+    .countdown-value {
+        font-size: 20px;
+        padding: 10px 25px;
+    }
+    
+    .prayer-details {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .prayer-orb {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .prayer-ring-1 {
+        width: 220px;
+        height: 220px;
+    }
+    
+    .prayer-ring-2 {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .prayer-ring-3 {
+        width: 280px;
+        height: 280px;
     }
 }
 
