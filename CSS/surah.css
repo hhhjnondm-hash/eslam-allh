@@ -173,6 +173,56 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  line-height: 3;
+  padding: 20px 30px;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+  word-spacing: 0.1em;
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styling */
+.surah-popup .ayat::-webkit-scrollbar {
+  width: 8px;
+}
+
+.surah-popup .ayat::-webkit-scrollbar-track {
+  background: rgba(220, 156, 81, 0.1);
+  border-radius: 10px;
+}
+
+.surah-popup .ayat::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--main-color), #FFD700);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(220, 156, 81, 0.5);
+}
+
+.surah-popup .ayat::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FFD700, var(--main-color));
+  box-shadow: 0 0 15px rgba(220, 156, 81, 0.8);
+}
+
+/* Add beautiful spacing between ayahs */
+.surah-popup .ayat::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--main-color), transparent);
+  margin: 30px auto;
+  width: 60%;
+  opacity: 0.3;
+  animation: line-fade 2s ease-in-out infinite;
+}
+
+@keyframes line-fade {
+  0%, 100% {
+    opacity: 0.2;
+    width: 50%;
+  }
+  50% {
+    opacity: 0.5;
+    width: 70%;
+  }
 }
 
 /* Glowing Ayah Number Effect */
@@ -245,6 +295,36 @@
 }
 .name-aya h2 {
   color: var(--main-color);
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 10px rgba(220, 156, 81, 0.3);
+  padding: 15px;
+  background: linear-gradient(135deg, rgba(220, 156, 81, 0.1), rgba(255, 215, 0, 0.05));
+  border-radius: 15px;
+  border: 1px solid rgba(220, 156, 81, 0.2);
+}
+
+/* Bismillah styling */
+.surah-popup .ayat:first-child {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--main-color);
+  margin-bottom: 40px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(220, 156, 81, 0.15), rgba(255, 215, 0, 0.08));
+  border-radius: 20px;
+  border: 2px solid rgba(220, 156, 81, 0.3);
+  box-shadow: 0 4px 20px rgba(220, 156, 81, 0.2);
+  animation: bismillah-glow 3s ease-in-out infinite;
+}
+
+@keyframes bismillah-glow {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(220, 156, 81, 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 30px rgba(220, 156, 81, 0.4), 0 0 40px rgba(255, 215, 0, 0.2);
+  }
 }
 .card-body{
   padding: 0 !important;
@@ -324,4 +404,42 @@
       -moz-border-radius: 0.5rem;
       -ms-border-radius: 0.5rem;
       -o-border-radius: 0.5rem;
+}
+
+/* Responsive adjustments for different screen sizes */
+@media (max-width: 768px) {
+  .surah-popup .ayat {
+    font-size: 1.1rem;
+    line-height: 2.8;
+    padding: 15px 20px;
+  }
+  
+  .name-aya h2 {
+    font-size: 1.5rem;
+  }
+  
+  .surah-popup .ayat:first-child {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .surah-popup .ayat {
+    font-size: 1rem;
+    line-height: 2.6;
+    padding: 12px 15px;
+  }
+  
+  .name-aya h2 {
+    font-size: 1.3rem;
+  }
+  
+  .surah-popup .ayat:first-child {
+    font-size: 1.2rem;
+  }
+  
+  .ayah-number-glow {
+    font-size: 1em;
+    padding: 1px 6px;
+  }
 }
