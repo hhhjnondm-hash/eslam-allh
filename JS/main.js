@@ -194,7 +194,7 @@ function getSurahs() {
                   .trim()
                   .replace(/^بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\s*/, "");
 
-                combinedAyat += `${cleanedAyaText} ﴿${aya.numberInSurah}﴾ `;
+                combinedAyat += `${cleanedAyaText} <span class="ayah-number-glow">﴿${aya.numberInSurah}﴾</span> `;
               });
 
               AyatContainer.innerHTML = `
