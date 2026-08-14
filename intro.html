@@ -36,11 +36,48 @@
             justify-content: center;
             z-index: 10000;
             transition: opacity 0.8s ease, visibility 0.8s ease;
+            overflow: hidden;
         }
 
         .intro-container.hidden {
             opacity: 0;
             visibility: hidden;
+        }
+
+        /* Dynamic Background */
+        .dynamic-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 165, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 140, 0, 0.1) 0%, transparent 70%);
+            animation: bgShift 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes bgShift {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        /* Canvas Effects */
+        #effectsCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
 
         /* Door Animation */
@@ -289,28 +326,72 @@
             }
         }
 
-        /* Glow Effect */
+        /* Glow Effect - Enhanced */
         .glow-orb {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(255, 165, 0, 0.15) 40%, transparent 70%);
             border-radius: 50%;
-            animation: orbPulse 4s ease-in-out infinite;
+            animation: orbPulse 3s ease-in-out infinite;
             pointer-events: none;
+        }
+
+        .glow-orb::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255, 140, 0, 0.4) 0%, transparent 60%);
+            border-radius: 50%;
+            animation: orbPulse 2s ease-in-out infinite reverse;
         }
 
         @keyframes orbPulse {
             0%, 100% {
                 transform: translate(-50%, -50%) scale(1);
-                opacity: 0.5;
+                opacity: 0.6;
             }
             50% {
                 transform: translate(-50%, -50%) scale(1.3);
                 opacity: 1;
+            }
+        }
+
+        /* Light Rays */
+        .light-rays {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            pointer-events: none;
+        }
+
+        .light-ray {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 300px;
+            background: linear-gradient(to top, rgba(255, 215, 0, 0.8), transparent);
+            transform-origin: bottom center;
+            animation: rayRotate 20s linear infinite;
+        }
+
+        @keyframes rayRotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
             }
         }
 
@@ -404,6 +485,15 @@
         <!-- Particles -->
         <div class="particles" id="particles"></div>
 
+        <!-- Dynamic Background -->
+        <div class="dynamic-bg"></div>
+
+        <!-- Canvas Effects -->
+        <canvas id="effectsCanvas"></canvas>
+
+        <!-- Light Rays -->
+        <div class="light-rays" id="lightRays"></div>
+
         <!-- Glow Orb -->
         <div class="glow-orb"></div>
 
@@ -438,7 +528,7 @@
 
             <!-- Brand Name -->
             <h1 class="brand-name">RAFIQ</h1>
-            <p class="brand-tagline">كل مسلم</p>
+            <p class="brand-tagline">رفيق كل مسلم</p>
 
             <!-- Developer Section -->
             <div class="developer-section">
@@ -458,10 +548,69 @@
     </div>
 
     <script>
+        // Create light rays
+        function createLightRays() {
+            const container = document.getElementById('lightRays');
+            for (let i = 0; i < 12; i++) {
+                const ray = document.createElement('div');
+                ray.className = 'light-ray';
+                ray.style.transform = `translate(-50%, -50%) rotate(${i * 30}deg)`;
+                ray.style.animationDelay = `${i * 0.1}s`;
+                container.appendChild(ray);
+            }
+        }
+
+        // Canvas effects
+        function initCanvas() {
+            const canvas = document.getElementById('effectsCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const particles = [];
+            
+            for (let i = 0; i < 100; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2 + 1,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    alpha: Math.random(),
+                    color: ['#FFD700', '#FFA500', '#FF8C00'][Math.floor(Math.random() * 3)]
+                });
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.alpha += (Math.random() - 0.5) * 0.02;
+                    p.alpha = Math.max(0, Math.min(1, p.alpha));
+                    
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                    
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.alpha;
+                    ctx.fill();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+
         // Create particles
         function createParticles() {
             const container = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 80; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.cssText = `
@@ -477,6 +626,8 @@
 
         // Intro animation
         function initIntro() {
+            createLightRays();
+            initCanvas();
             createParticles();
 
             // After 5 seconds, open doors and hide intro
