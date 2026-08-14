@@ -238,151 +238,87 @@
       <p class="date-pray fw-semibold fs-5"><span class="general-color" id="week-day"></span> , <span id="date"></span>
       </p>
 
-      <div class="prayer-showcase">
-        <div class="prayer-showcase-bg"></div>
-        <div class="prayer-showcase-particles" id="showcaseParticles"></div>
-        
-        <div class="prayer-header">
-          <h1 class="prayer-title">مواقيت الصلاة</h1>
-          <p class="prayer-subtitle" id="currentCity">القاهرة، مصر</p>
+      <div class="prayer-grid-container">
+        <div class="prayer-card" data-prayer="fajr">
+          <div class="prayer-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L9 9H2L7 14L5 21L12 17L19 21L17 14L22 9H15L12 2Z"/>
+            </svg>
+          </div>
+          <div class="prayer-info">
+            <div class="prayer-name">الفجر</div>
+            <div class="prayer-time" id="fajr-time">--:--</div>
+          </div>
+          <div class="prayer-glow"></div>
         </div>
-        
-        <div class="prayer-cards-3d">
-          <div class="prayer-card-3d" data-prayer="fajr">
-            <div class="card-inner">
-              <div class="card-front">
-                <div class="prayer-icon-3d">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2L9 9H2L7 14L5 21L12 17L19 21L17 14L22 9H15L12 2Z"/>
-                  </svg>
-                </div>
-                <div class="prayer-name-3d">الفجر</div>
-                <div class="prayer-time-3d" id="fajr-time">--:--</div>
-              </div>
-              <div class="card-back">
-                <div class="prayer-details">
-                  <div class="detail-item">
-                    <span class="detail-label">الوقت المتبقي</span>
-                    <span class="detail-value" id="fajr-remaining">--:--</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="prayer-card-3d" data-prayer="sunrise">
-            <div class="card-inner">
-              <div class="card-front">
-                <div class="prayer-icon-3d">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"/>
-                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-                  </svg>
-                </div>
-                <div class="prayer-name-3d">الشروق</div>
-                <div class="prayer-time-3d" id="sunrise-time">--:--</div>
-              </div>
-              <div class="card-back">
-                <div class="prayer-details">
-                  <div class="detail-item">
-                    <span class="detail-label">الوقت المتبقي</span>
-                    <span class="detail-value" id="sunrise-remaining">--:--</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="prayer-card" data-prayer="sunrise">
+          <div class="prayer-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
           </div>
+          <div class="prayer-info">
+            <div class="prayer-name">الشروق</div>
+            <div class="prayer-time" id="sunrise-time">--:--</div>
+          </div>
+          <div class="prayer-glow"></div>
+        </div>
 
-          <div class="prayer-card-3d" data-prayer="dhuhr">
-            <div class="card-inner">
-              <div class="card-front">
-                <div class="prayer-icon-3d">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M12 6v6l4 2"/>
-                  </svg>
-                </div>
-                <div class="prayer-name-3d">الظهر</div>
-                <div class="prayer-time-3d" id="dhuhr-time">--:--</div>
-              </div>
-              <div class="card-back">
-                <div class="prayer-details">
-                  <div class="detail-item">
-                    <span class="detail-label">الوقت المتبقي</span>
-                    <span class="detail-value" id="dhuhr-remaining">--:--</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="prayer-card" data-prayer="dhuhr">
+          <div class="prayer-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
           </div>
+          <div class="prayer-info">
+            <div class="prayer-name">الظهر</div>
+            <div class="prayer-time" id="dhuhr-time">--:--</div>
+          </div>
+          <div class="prayer-glow"></div>
+        </div>
 
-          <div class="prayer-card-3d" data-prayer="asr">
-            <div class="card-inner">
-              <div class="card-front">
-                <div class="prayer-icon-3d">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 3v1M12 20v1M3 12h1M20 12h1M5.6 5.6l.7.7M17.7 17.7l.7.7M5.6 18.4l.7-.7M17.7 6.3l.7-.7"/>
-                    <circle cx="12" cy="12" r="4"/>
-                  </svg>
-                </div>
-                <div class="prayer-name-3d">العصر</div>
-                <div class="prayer-time-3d" id="asr-time">--:--</div>
-              </div>
-              <div class="card-back">
-                <div class="prayer-details">
-                  <div class="detail-item">
-                    <span class="detail-label">الوقت المتبقي</span>
-                    <span class="detail-value" id="asr-remaining">--:--</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="prayer-card" data-prayer="asr">
+          <div class="prayer-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3v1M12 20v1M3 12h1M20 12h1M5.6 5.6l.7.7M17.7 17.7l.7.7M5.6 18.4l.7-.7M17.7 6.3l.7-.7"/>
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
           </div>
+          <div class="prayer-info">
+            <div class="prayer-name">العصر</div>
+            <div class="prayer-time" id="asr-time">--:--</div>
+          </div>
+          <div class="prayer-glow"></div>
+        </div>
 
-          <div class="prayer-card-3d" data-prayer="maghrib">
-            <div class="card-inner">
-              <div class="card-front">
-                <div class="prayer-icon-3d">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M17 18C17 19.1 16.1 20 15 20C13.9 20 13 19.1 13 18V17H11V18C11 19.1 10.1 20 9 20C7.9 20 7 19.1 7 18"/>
-                    <path d="M12 2C7.58 2 4 5.58 4 10C4 12.21 4.89 14.21 6.34 15.65H17.66C19.11 14.21 20 12.21 20 10C20 5.58 16.42 2 12 2Z"/>
-                  </svg>
-                </div>
-                <div class="prayer-name-3d">المغرب</div>
-                <div class="prayer-time-3d" id="maghrib-time">--:--</div>
-              </div>
-              <div class="card-back">
-                <div class="prayer-details">
-                  <div class="detail-item">
-                    <span class="detail-label">الوقت المتبقي</span>
-                    <span class="detail-value" id="maghrib-remaining">--:--</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="prayer-card" data-prayer="maghrib">
+          <div class="prayer-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 18C17 19.1 16.1 20 15 20C13.9 20 13 19.1 13 18V17H11V18C11 19.1 10.1 20 9 20C7.9 20 7 19.1 7 18"/>
+              <path d="M12 2C7.58 2 4 5.58 4 10C4 12.21 4.89 14.21 6.34 15.65H17.66C19.11 14.21 20 12.21 20 10C20 5.58 16.42 2 12 2Z"/>
+            </svg>
           </div>
+          <div class="prayer-info">
+            <div class="prayer-name">المغرب</div>
+            <div class="prayer-time" id="maghrib-time">--:--</div>
+          </div>
+          <div class="prayer-glow"></div>
+        </div>
 
-          <div class="prayer-card-3d" data-prayer="isha">
-            <div class="card-inner">
-              <div class="card-front">
-                <div class="prayer-icon-3d">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                  </svg>
-                </div>
-                <div class="prayer-name-3d">العشاء</div>
-                <div class="prayer-time-3d" id="isha-time">--:--</div>
-              </div>
-              <div class="card-back">
-                <div class="prayer-details">
-                  <div class="detail-item">
-                    <span class="detail-label">الوقت المتبقي</span>
-                    <span class="detail-value" id="isha-remaining">--:--</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="prayer-card" data-prayer="isha">
+          <div class="prayer-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
           </div>
+          <div class="prayer-info">
+            <div class="prayer-name">العشاء</div>
+            <div class="prayer-time" id="isha-time">--:--</div>
+          </div>
+          <div class="prayer-glow"></div>
         </div>
       </div>
     </div>
@@ -517,44 +453,21 @@
   <script src="JS/ramadan.js"></script>
   <script src="JS/dark-mode.js"></script>
   <script src="JS/global-effects.js"></script>
-  <script src="JS/prayer-3d.js"></script>
   
   <script>
-    // Create floating particles for showcase
+    // Add particle effects to prayer cards
     document.addEventListener('DOMContentLoaded', () => {
-      const particlesContainer = document.getElementById('showcaseParticles');
-      if (particlesContainer) {
-        for (let i = 0; i < 50; i++) {
+      document.querySelectorAll('.prayer-card').forEach(card => {
+        for (let i = 0; i < 8; i++) {
           const particle = document.createElement('div');
-          particle.className = 'showcase-particle';
+          particle.className = 'particle';
           particle.style.cssText = `
             left: ${Math.random() * 100}%;
-            animation-duration: ${Math.random() * 10 + 5}s;
-            animation-delay: ${Math.random() * 5}s;
-            width: ${Math.random() * 4 + 2}px;
-            height: ${Math.random() * 4 + 2}px;
+            top: ${Math.random() * 100}%;
+            animation-delay: ${Math.random() * 2}s;
           `;
-          particlesContainer.appendChild(particle);
+          card.appendChild(particle);
         }
-      }
-      
-      // Add 3D tilt effect to cards
-      document.querySelectorAll('.prayer-card-3d').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotateX = (y - centerY) / 10;
-          const rotateY = (centerX - x) / 10;
-          
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-        });
       });
     });
   </script>
