@@ -149,25 +149,25 @@ fetch("./data/azkar.json")
   });
 // -----------------------------------------------------------------------------
 
-// Function to share content to Facebook
+// Function to share content to Telegram
 function shareToFacebook(content) {
-  const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+  const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(
     window.location.href
-  )}&quote=${encodeURIComponent(content)}`;
+  )}&text=${encodeURIComponent(content)}`;
   window.open(shareUrl, "_blank");
 }
 
-//  Function to share content to Instagram
+//  Function to share content to Telegram
 function shareToInstagram(content) {
-  const shareUrl = `https://www.instagram.com/share?url=${encodeURIComponent(
+  const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(
     window.location.href
-  )}&caption=${encodeURIComponent(content)}`;
+  )}&text=${encodeURIComponent(content)}`;
   window.open(shareUrl, "_blank");
 }
 
-// Function to share content to Twitter
+// Function to share content to Telegram
 function shareToTwitter(content) {
-  const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+  const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(
     window.location.href
   )}&text=${encodeURIComponent(content)}`;
   window.open(shareUrl, "_blank");

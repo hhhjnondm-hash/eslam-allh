@@ -116,14 +116,14 @@ function addEventListeners() {
     });
   });
 
-  // Share to Facebook
+  // Share to Telegram
   document.querySelectorAll(".facebook").forEach((button) => {
     button.addEventListener("click", function () {
       const videoSrc = this.dataset.content;
       navigator.clipboard
         .writeText(videoSrc)
         .then(() => {
-          const url = `https://www.facebook.com/sharer/sharer.php?quote=${encodeURIComponent(
+          const url = `https://t.me/share/url?url=${encodeURIComponent(
             videoSrc
           )}`;
           window.open(url, "_blank");
@@ -134,11 +134,11 @@ function addEventListeners() {
     });
   });
 
-  // Share to WhatsApp
+  // Share to Telegram
   document.querySelectorAll(".whatsapp").forEach((button) => {
     button.addEventListener("click", function () {
       const videoSrc = this.dataset.videoSrc;
-      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(
+      const url = `https://t.me/share/url?url=${encodeURIComponent(
         videoSrc
       )}`;
       window.open(url, "_blank");
@@ -169,25 +169,13 @@ function getVideoId(videoSrc) {
 }
 
 function shareToAllSocialMedia(text) {
-  // Facebook
-  const fbUrl = `https://www.facebook.com/sharer/sharer.php?quote=${encodeURIComponent(
-    text
-  )}`;
-  window.open(fbUrl, "_blank");
-
-  // WhatsApp
-  const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
-    text
-  )}`;
-  window.open(waUrl, "_blank");
+  // Telegram
+  const tgUrl = `https://t.me/share/url?url=${encodeURIComponent(text)}`;
+  window.open(tgUrl, "_blank");
 
   // Twitter
   const twUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     text
   )}`;
   window.open(twUrl, "_blank");
-
-  // Telegram
-  const tgUrl = `https://t.me/share/url?url=${encodeURIComponent(text)}`;
-  window.open(tgUrl, "_blank");
 }
