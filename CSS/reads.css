@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;600;800&amp;display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;600;800&display=swap');
 
 body {
   font-family: 'Vazirmatn', sans-serif;
@@ -31,7 +31,7 @@ body::after {
   display: flex;
   justify-content: center;
   gap: 20px;
-  text-align: center;
+  text-align: right;
   width: 70%;
 
 
@@ -40,30 +40,42 @@ body::after {
 
 .container-Ayah .content {
   width: 100%;
-  height: 500px;
+  min-height: 500px;
   cursor: pointer;
   overflow-y: scroll;
   transition: 1s;
   line-height: 2;
   padding: 10px;
+  letter-spacing: normal;
+  word-spacing: normal;
+  word-break: normal;
+  overflow-wrap: normal;
 
 }
 
 .container-Ayah .content .aya {
-  font-size: 20px;
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-family: 'Vazirmatn', 'Cairo', 'Tajawal', sans-serif;
+  letter-spacing: normal;
+  word-spacing: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  text-align: right;
+  direction: rtl;
+  unicode-bidi: plaintext;
 
 }
 
 @media(max-width:768px) {
 
   .container-Ayah .content .aya {
-    font-size: 15px;
+    font-size: clamp(14px, 3vw, 16px);
   }
 }
 
 .container-Ayah .content .num {
   margin: 0 10px;
-  font-size: 22px;
+  font-size: clamp(18px, 2.5vw, 22px);
   color: #694d39;
 }
 

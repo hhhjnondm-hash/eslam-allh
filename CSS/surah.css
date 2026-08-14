@@ -173,9 +173,15 @@
 
 .surah-popup .ayat .Quran-ayah {
   line-height: 2;
-  /* width: 100%; */
-  text-align: justify ;
+  text-align: right;
   padding-inline: 10px !important;
+  letter-spacing: normal;
+  word-spacing: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  direction: rtl;
+  unicode-bidi: plaintext;
+  font-family: 'Vazirmatn', 'Cairo', 'Tajawal', sans-serif;
 }
 .name-aya h2 {
   color: var(--main-color);
