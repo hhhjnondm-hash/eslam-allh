@@ -481,7 +481,7 @@
     <div class="particles-container" id="particles"></div>
 
     <!-- Back Button -->
-    <button onclick="window.location.href='profile.html'" class="back-btn">
+    <button onclick="goBack()" class="back-btn">
         <i class="fas fa-arrow-right"></i> العودة
     </button>
 
@@ -553,6 +553,15 @@
     </div>
 
     <script>
+        // Back button function
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                window.history.back();
+            } else {
+                window.location.href = 'profile.html';
+            }
+        }
+
         // Particle System
         function createParticles() {
             const container = document.getElementById('particles');
