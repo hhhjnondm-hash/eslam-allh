@@ -194,24 +194,16 @@ function getSurahs() {
                   .trim()
                   .replace(/^بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ\s*/, "");
 
-                combinedAyat += `${cleanedAyaText}
-                  <span class="ayah-number">
-                    ﴿${aya.numberInSurah}﴾
-                  </span> `;
+                combinedAyat += `${cleanedAyaText} ﴿${aya.numberInSurah}﴾ `;
               });
 
               AyatContainer.innerHTML = `
-                <div class="text-center mb-3 bg-light">
-                  <p class="fs-1 words-before-all">
-                    بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-                  </p>
-                  <div class="card-body" style="display:flex;flex-wrap:wrap;justify-content:center;">
-                    <p class="Quran-ayah">
-                      ${combinedAyat}
-                    </p>
-                  </div>
-                </div>
-              `;
+
+بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+
+${combinedAyat}
+
+`;
 
               if (loader && typeof loader.classList !== 'undefined' && loader.classList) {
                 hideLoader();
