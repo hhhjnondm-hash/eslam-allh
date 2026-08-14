@@ -195,7 +195,7 @@ function getSurahs() {
                   .replace(/^بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ\s*/, "");
 
                 combinedAyat += `${cleanedAyaText}
-                  <span style="color:#DC9C51;font-size:1.6rem;">
+                  <span class="ayah-number">
                     ﴿${aya.numberInSurah}﴾
                   </span> `;
               });
@@ -206,7 +206,7 @@ function getSurahs() {
                     بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
                   </p>
                   <div class="card-body" style="display:flex;flex-wrap:wrap;justify-content:center;">
-                    <p class="Quran-ayah" style="font-size:1.7rem;line-height:2;">
+                    <p class="Quran-ayah">
                       ${combinedAyat}
                     </p>
                   </div>
