@@ -14,7 +14,7 @@
 
   <meta name="description" content="أوقات الصلاة في جميع المدن لتتمكن من معرفة مواعيد الصلاة اليومية بدقة وسهولة. تحديثات لحظية لأوقات الصلاة في الوقت المناسب.">
   <meta name="keywords" content="أوقات الصلاة, مواعيد الصلاة, الصلاة في الوقت, صلاة الفجر, الظهر, العصر, المغرب, العشاء, مواقيت الصلاة, توقيت الصلاة">
-  <meta name="author" content="Ahmed Zaki">
+  <meta name="author" content="Mahrous Gamal">
   <link rel="canonical" href="timesprayer" />
 
   <!-- Favicon -->
@@ -238,88 +238,80 @@
       <p class="date-pray fw-semibold fs-5"><span class="general-color" id="week-day"></span> , <span id="date"></span>
       </p>
 
-      <div class="prayer-grid-container">
-        <div class="prayer-card" data-prayer="fajr">
-          <div class="prayer-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2L9 9H2L7 14L5 21L12 17L19 21L17 14L22 9H15L12 2Z"/>
-            </svg>
+      <div class="cards">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12  text-center mt-3 ">
+          <div class="card">
+            <div class="circle">
+              <svg>
+                <Circle cx="100" cy="100" r="100"></Circle>
+              </svg>
+              <div class="praytime " id="fajr-time"></div>
+
+            </div>
           </div>
-          <div class="prayer-info">
-            <div class="prayer-name">الفجر</div>
-            <div class="prayer-time" id="fajr-time">--:--</div>
+          <p class="fs-2 general-color fw-bold mt-5">الفجر</p>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12  text-center mt-3 ">
+          <div class="card">
+            <div class="circle">
+              <svg>
+                <Circle cx="100" cy="100" r="100"></Circle>
+              </svg>
+              <div class="praytime " id="sunrise-time"></div>
+
+            </div>
           </div>
-          <div class="prayer-glow"></div>
+          <p class="fs-2 general-color fw-bold mt-5">الشروق</p>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12  text-center mt-3 ">
+          <div class="card">
+            <div class="circle">
+              <svg>
+                <Circle cx="100" cy="100" r="100"></Circle>
+              </svg>
+              <div class="praytime  " id="dhuhr-time"></div>
+
+            </div>
+          </div>
+          <p class="fs-2 general-color fw-bold mt-5">الظهر</p>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12  text-center mt-3 ">
+          <div class="card">
+            <div class="circle">
+              <svg>
+                <Circle cx="100" cy="100" r="100"></Circle>
+              </svg>
+              <div class="praytime " id="asr-time"></div>
+
+            </div>
+          </div>
+          <p class="fs-2 general-color fw-bold mt-5">العصر</p>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12  text-center mt-3 ">
+          <div class="card">
+            <div class="circle">
+              <svg>
+                <Circle cx="100" cy="100" r="100"></Circle>
+              </svg>
+              <div class="praytime " id="maghrib-time"></div>
+
+            </div>
+          </div>
+          <p class="fs-2 general-color fw-bold mt-5 ">المغرب</p>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12  text-center mt-3 ">
+          <div class="card">
+            <div class="circle">
+              <svg>
+                <Circle cx="100" cy="100" r="100"></Circle>
+              </svg>
+              <div class="praytime  " id="isha-time"></div>
+
+            </div>
+          </div>
+          <p class="fs-2 general-color fw-bold mt-5">العشاء</p>
         </div>
 
-        <div class="prayer-card" data-prayer="sunrise">
-          <div class="prayer-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="5"/>
-              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-            </svg>
-          </div>
-          <div class="prayer-info">
-            <div class="prayer-name">الشروق</div>
-            <div class="prayer-time" id="sunrise-time">--:--</div>
-          </div>
-          <div class="prayer-glow"></div>
-        </div>
-
-        <div class="prayer-card" data-prayer="dhuhr">
-          <div class="prayer-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 6v6l4 2"/>
-            </svg>
-          </div>
-          <div class="prayer-info">
-            <div class="prayer-name">الظهر</div>
-            <div class="prayer-time" id="dhuhr-time">--:--</div>
-          </div>
-          <div class="prayer-glow"></div>
-        </div>
-
-        <div class="prayer-card" data-prayer="asr">
-          <div class="prayer-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 3v1M12 20v1M3 12h1M20 12h1M5.6 5.6l.7.7M17.7 17.7l.7.7M5.6 18.4l.7-.7M17.7 6.3l.7-.7"/>
-              <circle cx="12" cy="12" r="4"/>
-            </svg>
-          </div>
-          <div class="prayer-info">
-            <div class="prayer-name">العصر</div>
-            <div class="prayer-time" id="asr-time">--:--</div>
-          </div>
-          <div class="prayer-glow"></div>
-        </div>
-
-        <div class="prayer-card" data-prayer="maghrib">
-          <div class="prayer-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M17 18C17 19.1 16.1 20 15 20C13.9 20 13 19.1 13 18V17H11V18C11 19.1 10.1 20 9 20C7.9 20 7 19.1 7 18"/>
-              <path d="M12 2C7.58 2 4 5.58 4 10C4 12.21 4.89 14.21 6.34 15.65H17.66C19.11 14.21 20 12.21 20 10C20 5.58 16.42 2 12 2Z"/>
-            </svg>
-          </div>
-          <div class="prayer-info">
-            <div class="prayer-name">المغرب</div>
-            <div class="prayer-time" id="maghrib-time">--:--</div>
-          </div>
-          <div class="prayer-glow"></div>
-        </div>
-
-        <div class="prayer-card" data-prayer="isha">
-          <div class="prayer-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
-          </div>
-          <div class="prayer-info">
-            <div class="prayer-name">العشاء</div>
-            <div class="prayer-time" id="isha-time">--:--</div>
-          </div>
-          <div class="prayer-glow"></div>
-        </div>
       </div>
     </div>
   </div>
@@ -337,10 +329,19 @@
 
       <!-- Right -->
       <div>
-        <a href="https://t.me/o_w_i" class="text-reset magnetic" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" width="28" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 9.09 15.12 11.86 15.12 11.86C15.12 11.86 16.53 10.65 16.64 8.8ZM8.53 15.2L7.73 10.2C7.73 10.2 7.68 9.95 7.93 9.88C8.18 9.81 8.32 10.05 8.32 10.05L10.4 13.88L12.4 12.88L16.48 8.8C16.48 8.8 16.5 8.77 16.54 8.79C16.58 8.81 16.56 8.85 16.56 8.85L8.53 15.2Z" fill="#0088cc"/>
-          </svg>
+        <a href="https://www.facebook.com/profile.php?id=61579602005576" class="text-reset" target="_blank">
+
+          <img src="Images/Icons/facebook.png" alt="" width="26">
+        </a>
+        <a href="https://www.linkedin.com/in/mahrous-gamal/" class="mx-4 text-reset" target="_blank">
+
+          <img src="Images/Icons/business.png" alt="" width="30">
+
+        </a>
+        <a href="https://wa.me/201001449752" class="text-reset" target="_blank">
+
+          <img src="Images/Icons/whatsapp.png" alt="" width="28">
+
         </a>
       </div>
       <!-- Right -->
@@ -437,8 +438,8 @@
     <div dir="rtl" class="text-center p-4 fs-6" style="background-color: rgba(0, 0, 0, 0.05);">
       <span class="text-reset">
         جميع الحقوق محفوظة © 2026 لموقع إسلاميات |
-        <a href="https://t.me/o_w_i" target="_blank" class="general-color fs-6">
-          ENG Ahmed Zaki
+        <a href="https://linktr.ee/MahrousGamal" target="_blank" class="general-color fs-6">
+          Eng. Mahrous Gamal
         </a>
       </span>
     </div>
@@ -453,24 +454,6 @@
   <script src="JS/ramadan.js"></script>
   <script src="JS/dark-mode.js"></script>
   <script src="JS/global-effects.js"></script>
-  
-  <script>
-    // Add particle effects to prayer cards
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.prayer-card').forEach(card => {
-        for (let i = 0; i < 8; i++) {
-          const particle = document.createElement('div');
-          particle.className = 'particle';
-          particle.style.cssText = `
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation-delay: ${Math.random() * 2}s;
-          `;
-          card.appendChild(particle);
-        }
-      });
-    });
-  </script>
 </body>
 
 
