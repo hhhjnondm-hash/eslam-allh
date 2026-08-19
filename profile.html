@@ -12,6 +12,9 @@
     
     <!-- Simple Responsive -->
     <link rel="stylesheet" href="CSS/simple-responsive.css">
+    <link rel="stylesheet" href="CSS/luxury-dark-mode.css" />
+    <link rel="stylesheet" href="CSS/dark-mode-toggle.css" />
+    <link rel="stylesheet" href="CSS/daily-box-pro.css" />
     <style>
         * {
             margin: 0;
@@ -519,6 +522,171 @@
                 transition: none !important;
             }
         }
+
+        /* Developer Card Styles */
+        .developer-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .developer-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                transparent 100%
+            );
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .developer-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .developer-icon {
+            font-size: 2.5rem;
+        }
+
+        .developer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+        }
+
+        .developer-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .developer-text strong {
+            color: #ffd700;
+        }
+
+        .developer-mission {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .developer-suggestions {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .suggestions-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .suggestions-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 15px;
+        }
+
+        .telegram-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0088cc, #00a0dc);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+        }
+
+        .telegram-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.5);
+        }
+
+        .design-inspirations {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .inspirations-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .inspirations-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .inspiration-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .inspiration-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .developer-card {
+                padding: 20px;
+            }
+
+            .developer-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .developer-title {
+                font-size: 1.3rem;
+            }
+
+            .developer-text {
+                font-size: 1rem;
+            }
+
+            .inspirations-links {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -641,11 +809,35 @@
                     <div class="dashboard-desc">صندوق رفيق المسلم</div>
                 </a>
             </div>
+
+            <!-- Developer Card -->
+            <div class="developer-section" style="margin-top: 40px; animation: fadeInUp 1s ease-out; animation-delay: 0.8s;">
+                <div class="developer-card">
+                    <div class="developer-header">
+                        <span class="developer-icon">👨‍💻</span>
+                        <h3 class="developer-title">عن رفيق</h3>
+                    </div>
+                    <p class="developer-text">تم تطوير رفيق بواسطة <strong>Eng Ahmed Zaki</strong></p>
+                    <p class="developer-mission">أسعى دائمًا لتطوير تجربة أفضل وأسهل للمستخدمين.</p>
+                    
+                    <div class="developer-suggestions">
+                        <p class="suggestions-title">💡 عندك اقتراح أو فكرة؟</p>
+                        <p class="suggestions-text">شاركنا اقتراحك</p>
+                        <a href="https://t.me/o_w_i" target="_blank" class="telegram-button">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 9.09 15.12 11.86 15.12 11.86C15.12 11.86 16.53 10.65 16.64 8.8ZM8.53 15.2L7.73 10.2C7.73 10.2 7.68 9.95 7.93 9.88C8.18 9.81 8.32 10.05 8.32 10.05L10.4 13.88L12.4 12.88L16.48 8.8C16.48 8.8 16.5 8.77 16.54 8.79C16.58 8.81 16.56 8.85 16.56 8.85L8.53 15.2Z"/>
+                            </svg>
+                            تواصل معي
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Telegram Service -->
     <script src="JS/telegram-service.js"></script>
+    <script src="JS/luxury-dark-mode.js"></script>
     
     <script>
         // Particle Animation

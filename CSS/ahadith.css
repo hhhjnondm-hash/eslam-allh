@@ -1,9 +1,11 @@
 :root {
-  --main-color: #DC9C51;
-  --text-color: #fff;
-  --other-color: #212121;
-  --second-color: #663311;
-  --bg-color: #111111;
+  --main-color: #2563EB;
+  --text-color: #0B1938;
+  --other-color: #60A5FA;
+  --second-color: #60A5FA;
+  --bg-color: #F5F9FF;
+  --accent-color: #D99A3D;
+  --surface-color: #FFFFFF;
 
   /* fonts */
   --big-font: 4.5rem;
@@ -11,7 +13,7 @@
   --p-font: 1.1rem;
 
   /* borders */
-  --shadow-main: #ff9f0d 0 1px 25px;
+  --shadow-main: #2563EB 0 1px 25px;
 }
 body {
   background-color: white !important;
