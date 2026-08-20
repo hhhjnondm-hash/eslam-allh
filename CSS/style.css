@@ -25,7 +25,7 @@ html {
 
 body {
     direction: rtl;
-    background-color: #e8dac3;
+    background-color: #F5F9FF;
     font-family: 'Changa', sans-serif;
     font-family: 'Tajawal', sans-serif;
     font-family: 'Cairo', sans-serif;
@@ -34,11 +34,13 @@ body {
 }
 
 :root {
-    --main-color: #DC9C51;
-    --text-color: #fff;
-    --other-color: #212121;
-    --second-color: #3F200C;
-    --bg-color: #111111;
+    --main-color: #2563EB;
+    --text-color: #0B1938;
+    --other-color: #60A5FA;
+    --second-color: #60A5FA;
+    --bg-color: #F5F9FF;
+    --accent-color: #D99A3D;
+    --surface-color: #FFFFFF;
 
     /* fonts */
     --big-font: 4.5rem;
@@ -46,7 +48,7 @@ body {
     --p-font: 1.1rem;
 
     /* borders */
-    --shadow-main: #ff9f0d 0 1px 25px;
+    --shadow-main: #2563EB 0 1px 25px;
 }
 
 .icon-color-surah {
@@ -83,7 +85,7 @@ body {
 /* Firefox */
 /* {
     scrollbar-width: thin;
-    scrollbar-color: #DC9C51 rgba(245, 241, 241, 0.981);
+    scrollbar-color: #FFD700 rgba(245, 241, 241, 0.981);
 } */
 
 /* Chrome, Edge, Safari */
@@ -97,7 +99,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #DC9C51;
+    background-color: #FFD700;
     border-radius: 10px;
     border: 2px solid rgba(245, 241, 241, 0.981);
 }
@@ -124,8 +126,8 @@ body {
 .spinner {
     width: 55px;
     height: 55px;
-    border: 5px solid rgba(220, 156, 81, 0.3);
-    border-top-color: #DC9C51;
+    border: 5px solid rgba(255, 215, 0, 0.3);
+    border-top-color: #FFD700;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     
@@ -182,7 +184,7 @@ a {
     align-items: center;
     justify-content: space-between;
     transition: all 0.5s ease;
-    background-color: #3F200C;
+    background-color: #FFFFFF;
     direction: rtl;
     /* padding: 6px 6.5rem 6px 2rem; */
     padding: 4px .2rem;
@@ -293,7 +295,8 @@ body.no-scroll {
 }
 
 .dropdown-menu {
-    background-color: #2c2925;
+    background-color: #FFFFFF;
+    border: 1px solid #60A5FA;
 }
 
 #menu-icon {
@@ -331,7 +334,7 @@ body.no-scroll {
 
 @media only screen and (min-width:1500px) {
     .dropdown-menu li {
-        background-color: #2c2925;
+        background-color: #F5F9FF;
         width: 100%;
         margin: auto;
     }
@@ -354,7 +357,7 @@ body.no-scroll {
         right: 0;
         width: 300px;
         height: calc(100vh - 60px);
-        background: #2f1b05;
+        background: #FFFFFF;
         overflow-y: auto;
         /* الإخفاء من اليمين */
         transform: translateX(100%);
@@ -455,13 +458,13 @@ nav .nav-item {
 
 .prayer-container {
     position: relative;
-    background: linear-gradient(145deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+    background: linear-gradient(145deg, rgba(62, 39, 35, 0.95), rgba(139, 69, 19, 0.95));
     backdrop-filter: blur(25px);
     border: 2px solid rgba(255, 215, 0, 0.5);
     border-radius: 25px;
     padding: 25px 20px;
     text-align: center;
-    box-shadow: 
+    box-shadow:
         0 20px 40px rgba(0, 0, 0, 0.4),
         0 0 80px rgba(255, 215, 0, 0.2),
         inset 0 0 30px rgba(255, 215, 0, 0.1);
@@ -696,8 +699,8 @@ nav .nav-item {
 
 .readers-section .card {
     padding-bottom: 2px;
-    background: linear-gradient(0deg, #3F200C, #3F200C),
-        linear-gradient(0deg, #EFAC5A, #EFAC5A);
+    background: linear-gradient(0deg, #3E2723, #3E2723),
+        linear-gradient(0deg, #8B4513, #8B4513);
     transition: all .3s ease;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
@@ -743,7 +746,7 @@ nav .nav-item {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-color: #e8dac3;
+    background-color: #F5F9FF;
 }
 
 .imag-q {
@@ -889,7 +892,7 @@ nav .nav-item {
     margin-top: 30px;
     background-image: url(../Images/Apps/background.png);
     background-size: contain;
-    background-color: #e8dac3;
+    background-color: #F5F9FF;
 }
 
 .web-link {
@@ -964,7 +967,7 @@ nav .nav-item {
 }
 
 footer {
-    background-color: rgb(82, 49, 28) !important;
+    background-color: #2563EB !important;
     color: white !important;
 }
 

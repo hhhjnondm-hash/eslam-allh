@@ -14,11 +14,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Changa:wght@200;300;400;500;600&amp;family=Tajawal:wght@400;500;700;800;900&amp;display=swap');
 
 :root {
-  --main-color: #DC9C51;
-  --text-color: #fff;
-  --other-color: #212121;
-  --second-color: #3F200C;
-  --bg-color: #111111;
+  --main-color: #2563EB;
+  --text-color: #0B1938;
+  --other-color: #60A5FA;
+  --second-color: #60A5FA;
+  --bg-color: #F5F9FF;
+  --accent-color: #D99A3D;
+  --surface-color: #FFFFFF;
 
   /* fonts */
   --big-font: 4.5rem;
@@ -26,7 +28,7 @@
   --p-font: 1.1rem;
 
   /* borders */
-  --shadow-main: #ff9f0d 0 1px 25px;
+  --shadow-main: #2563EB 0 1px 25px;
 }
 
 .quran {
@@ -192,13 +194,13 @@
 }
 
 .surah-popup .ayat::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--main-color), #FFD700);
+  background: linear-gradient(180deg, #FFD700, #FFA500);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(220, 156, 81, 0.5);
 }
 
 .surah-popup .ayat::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #FFD700, var(--main-color));
+  background: linear-gradient(180deg, #FFA500, #FFD700);
   box-shadow: 0 0 15px rgba(220, 156, 81, 0.8);
 }
 
@@ -228,7 +230,7 @@
 /* Glowing Ayah Number Effect */
 .ayah-number-glow {
   display: inline-block;
-  background: linear-gradient(135deg, #DC9C51 0%, #FFD700 50%, #DC9C51 100%);
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -251,7 +253,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(135deg, #DC9C51, #FFD700, #DC9C51);
+  background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
   background-size: 200% 200%;
   border-radius: 10px;
   z-index: -1;

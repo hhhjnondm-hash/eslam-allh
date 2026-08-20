@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إسلاميات | تجربة رائدة</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Changa:wght@200;300;400;500;600&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="CSS/ultimate-ui.css">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Canvas positioning */
+        #ultimate-particles, #morph-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        #morph-shapes {
+            z-index: -2;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-ultimate">
+        <div class="loader-ring">
+            <div class="loading-text">إسلاميات</div>
+        </div>
+    </div>
+
+    <!-- Background Effects -->
+    <div class="cosmic-background"></div>
+    <div class="stars-layer"></div>
+    <div class="aurora-effect"></div>
+    <canvas id="ultimate-particles"></canvas>
+    <canvas id="morph-shapes"></canvas>
+
+    <!-- Navigation -->
+    <nav class="nav-ultimate">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#" class="navbar-brand" style="font-family: 'thuluth-decorated', sans-serif; font-size: 2rem; color: var(--neon-gold); text-decoration: none;">
+                إسلاميات
+            </a>
+            
+            <div class="d-flex gap-3 align-items-center">
+                <a href="#" class="nav-link-ultimate">القرآن الكريم</a>
+                <a href="#" class="nav-link-ultimate">مواقيت الصلاة</a>
+                <a href="#" class="nav-link-ultimate">المصاحف</a>
+                <a href="#" class="nav-link-ultimate">الأذكار</a>
+                <a href="#" class="nav-link-ultimate">حسابي</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="ultimate-hero">
+        <div class="hero-hologram"></div>
+        <div class="hero-content-ultimate">
+            <h1 class="hero-title-ultimate">إسلاميات</h1>
+            <p class="hero-subtitle-ultimate">تجربة روحانية رقمية متطورة</p>
+            <div class="mt-5">
+                <button class="button-ultimate magnetic">
+                    <span class="button-particles"></span>
+                    ابدأ الرحلة
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quran Section -->
+    <section class="section-ultimate">
+        <div class="section-header-ultimate">
+            <h2 class="section-title-ultimate">القرآن الكريم</h2>
+            <p class="section-subtitle-ultimate">تلاوات خاشعة من أشهر القراء</p>
+        </div>
+        
+        <div class="grid-ultimate">
+            <div class="grid-item-ultimate">
+                <div class="card-ultimate" data-gyro>
+                    <div class="card-hologram"></div>
+                    <div class="card-ultimate-content">
+                        <div style="font-size: 3rem; color: var(--neon-gold); margin-bottom: 1rem;">
+                            <i class="fa-solid fa-book-quran"></i>
+                        </div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">القرآن الكريم</h3>
+                        <p style="color: rgba(255,255,255,0.7);">114 سورة كاملة</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-item-ultimate">
+                <div class="card-ultimate" data-gyro>
+                    <div class="card-hologram"></div>
+                    <div class="card-ultimate-content">
+                        <div style="font-size: 3rem; color: var(--neon-orange); margin-bottom: 1rem;">
+                            <i class="fa-solid fa-headphones"></i>
+                        </div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">المصاحف الصوتية</h3>
+                        <p style="color: rgba(255,255,255,0.7);">تلاوات عالية الجودة</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-item-ultimate">
+                <div class="card-ultimate" data-gyro>
+                    <div class="card-hologram"></div>
+                    <div class="card-ultimate-content">
+                        <div style="font-size: 3rem; color: var(--neon-purple); margin-bottom: 1rem;">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">مواقيت الصلاة</h3>
+                        <p style="color: rgba(255,255,255,0.7);">توقيت دقيق لأوقات الصلاة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Azkar Section -->
+    <section class="section-ultimate">
+        <div class="section-header-ultimate">
+            <h2 class="section-title-ultimate">الأذكار</h2>
+            <p class="section-subtitle-ultimate">أذكار الصباح والمساء والمناسبات</p>
+        </div>
+        
+        <div class="grid-ultimate">
+            <div class="grid-item-ultimate">
+                <div class="card-ultimate" data-gyro>
+                    <div class="card-hologram"></div>
+                    <div class="card-ultimate-content">
+                        <div style="font-size: 3rem; color: #FFD700; margin-bottom: 1rem;">
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">أذكار الصباح</h3>
+                        <p style="color: rgba(255,255,255,0.7);">ابدأ يومك بالذكر</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-item-ultimate">
+                <div class="card-ultimate" data-gyro>
+                    <div class="card-hologram"></div>
+                    <div class="card-ultimate-content">
+                        <div style="font-size: 3rem; color: #C0C0C0; margin-bottom: 1rem;">
+                            <i class="fa-solid fa-moon"></i>
+                        </div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">أذكار المساء</h3>
+                        <p style="color: rgba(255,255,255,0.7);">أنهِ يومك بالذكر</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-item-ultimate">
+                <div class="card-ultimate" data-gyro>
+                    <div class="card-hologram"></div>
+                    <div class="card-ultimate-content">
+                        <div style="font-size: 3rem; color: #4169E1; margin-bottom: 1rem;">
+                            <i class="fa-solid fa-pray"></i>
+                        </div>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">أذكار الصلاة</h3>
+                        <p style="color: rgba(255,255,255,0.7);">أذكار بعد الصلاة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sheikhs Section -->
+    <section class="section-ultimate">
+        <div class="section-header-ultimate">
+            <h2 class="section-title-ultimate">القراء</h2>
+            <p class="section-subtitle-ultimate">أشهر قراء القرآن الكريم</p>
+        </div>
+        
+        <div class="grid-ultimate" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+            <div class="grid-item-ultimate">
+                <div class="card-ultimate" data-gyro>
+                    <div class="card-hologram"></div>
+                    <div class="card-ultimate-content">
+                        <h3 style="font-size: 1.2rem;">ماهر المعيقلي</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-item-ultimate">
+                <div class="card-ultimate" data-gyro>
+                    <div class="card-hologram"></div>
+                    <div class="card-ultimate-content">
+                        <h3 style="font-size: 1.2rem;">خالد الجليل</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-item-ultimate">
+                <div class="card-ultimate" data-gyro>
+                    <div class="card-hologram"></div>
+                    <div class="card-ultimate-content">
+                        <h3 style="font-size: 1.2rem;">ياسر الدوسري</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid-item-ultimate">
+                <div class="card-ultimate" data-gyro>
+                    <div class="card-hologram"></div>
+                    <div class="card-ultimate-content">
+                        <h3 style="font-size: 1.2rem;">مشاري العفاسي</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-ultimate">
+        <div class="footer-particles"></div>
+        <div class="text-center" style="position: relative; z-index: 1;">
+            <h3 style="font-family: 'thuluth-decorated', sans-serif; font-size: 2rem; color: var(--neon-gold); margin-bottom: 1rem;">
+                إسلاميات
+            </h3>
+            <p style="color: rgba(255,255,255,0.7);">
+                جميع الحقوق محفوظة © 2026
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="JS/ultimate-effects.js"></script>
+</body>
+</html>

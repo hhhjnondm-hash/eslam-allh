@@ -1,0 +1,444 @@
+/* ============================================================
+   LUXURY DARK MODE TOGGLE BUTTON
+   زر تبديل Dark Mode أنيق ومتحرك من Motion UI و Magic UI
+   ============================================================ */
+
+/* حاوية زر التبديل */
+.dark-mode-toggle-container {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    z-index: 99999;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* الزر الرئيسي */
+.dark-mode-toggle {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #B8860B 100%);
+    box-shadow: 
+        0 10px 30px rgba(255, 215, 0, 0.4),
+        0 0 20px rgba(255, 215, 0, 0.2),
+        inset 0 2px 10px rgba(255, 255, 255, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* تأثير الحركة عند التحويم */
+.dark-mode-toggle:hover {
+    transform: scale(1.1) rotate(180deg);
+    box-shadow: 
+        0 15px 40px rgba(255, 215, 0, 0.6),
+        0 0 30px rgba(255, 215, 0, 0.4),
+        inset 0 2px 10px rgba(255, 255, 255, 0.4);
+}
+
+/* تأثير النقر */
+.dark-mode-toggle:active {
+    transform: scale(0.95) rotate(180deg);
+    box-shadow: 
+        0 5px 20px rgba(255, 215, 0, 0.3),
+        0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+/* تأثير التوهج المتحرك */
+.dark-mode-toggle::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+}
+
+.dark-mode-toggle:hover::before {
+    opacity: 0.8;
+}
+
+/* الأيقونات داخل الزر */
+.dark-mode-toggle .icon-sun,
+.dark-mode-toggle .icon-moon {
+    position: absolute;
+    font-size: 28px;
+    color: #fff;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode-toggle .icon-sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.dark-mode-toggle .icon-moon {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0);
+}
+
+/* حالة Dark Mode */
+body.dark-mode .dark-mode-toggle {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0f 50%, #141421 100%);
+    border: 2px solid #FFD700;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(255, 215, 0, 0.3),
+        inset 0 2px 10px rgba(255, 215, 0, 0.1);
+}
+
+body.dark-mode .dark-mode-toggle:hover {
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.7),
+        0 0 30px rgba(255, 215, 0, 0.5),
+        inset 0 2px 10px rgba(255, 215, 0, 0.2);
+}
+
+body.dark-mode .dark-mode-toggle .icon-sun {
+    opacity: 0;
+    transform: rotate(180deg) scale(0);
+}
+
+body.dark-mode .dark-mode-toggle .icon-moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+    color: #FFD700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+/* تأثير الجسيمات المحيطة */
+.dark-mode-toggle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    filter: blur(15px);
+    opacity: 0.3;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    animation: particlePulse 2s ease-in-out infinite;
+}
+
+@keyframes particlePulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.5;
+    }
+}
+
+/* تأثير التوهج الدائري */
+.glow-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px;
+    height: 90px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+    animation: ringPulse 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes ringPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+        border-color: rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 0.6;
+        border-color: rgba(255, 215, 0, 0.6);
+    }
+}
+
+/* جسيمات ذهبية متحركة */
+.gold-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    pointer-events: none;
+}
+
+.gold-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: particleFloat 3s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.gold-particle:nth-child(1) {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.gold-particle:nth-child(2) {
+    top: 30%;
+    left: 80%;
+    animation-delay: 0.5s;
+}
+
+.gold-particle:nth-child(3) {
+    top: 70%;
+    left: 10%;
+    animation-delay: 1s;
+}
+
+.gold-particle:nth-child(4) {
+    top: 80%;
+    left: 70%;
+    animation-delay: 1.5s;
+}
+
+.gold-particle:nth-child(5) {
+    top: 50%;
+    left: 50%;
+    animation-delay: 2s;
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(-15px) scale(1.5);
+        opacity: 1;
+    }
+}
+
+/* تأثير التمرير الموجي */
+.wave-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    animation: waveExpand 1.5s ease-out infinite;
+    pointer-events: none;
+}
+
+@keyframes waveExpand {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+/* الوسم التوضيحي */
+.toggle-label {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 4px 10px;
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+.dark-mode-toggle-container:hover .toggle-label {
+    opacity: 1;
+    bottom: -35px;
+}
+
+body.dark-mode .toggle-label {
+    color: #FFD700;
+    background: rgba(26, 26, 46, 0.9);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* تأثير الماوس Magnet */
+.dark-mode-toggle-container {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark-mode-toggle-container:hover {
+    transform: scale(1.05);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .dark-mode-toggle-container {
+        top: auto;
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    .dark-mode-toggle {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .dark-mode-toggle .icon-sun,
+    .dark-mode-toggle .icon-moon {
+        font-size: 24px;
+    }
+    
+    .glow-ring {
+        width: 75px;
+        height: 75px;
+    }
+    
+    .gold-particles {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .toggle-label {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .dark-mode-toggle-container {
+        bottom: 15px;
+        left: 15px;
+    }
+    
+    .dark-mode-toggle {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .dark-mode-toggle .icon-sun,
+    .dark-mode-toggle .icon-moon {
+        font-size: 22px;
+    }
+}
+
+/* ============================================================
+   SPECIAL EFFECTS
+   ============================================================ */
+
+/* تأثير اللمعان الشمسي */
+.sun-rays {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body:not(.dark-mode) .dark-mode-toggle:hover .sun-rays {
+    opacity: 1;
+}
+
+.sun-ray {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.8), transparent);
+    transform-origin: center 25px;
+    animation: rayRotate 10s linear infinite;
+}
+
+.sun-ray:nth-child(1) { transform: rotate(0deg); }
+.sun-ray:nth-child(2) { transform: rotate(45deg); }
+.sun-ray:nth-child(3) { transform: rotate(90deg); }
+.sun-ray:nth-child(4) { transform: rotate(135deg); }
+.sun-ray:nth-child(5) { transform: rotate(180deg); }
+.sun-ray:nth-child(6) { transform: rotate(225deg); }
+.sun-ray:nth-child(7) { transform: rotate(270deg); }
+.sun-ray:nth-child(8) { transform: rotate(315deg); }
+
+@keyframes rayRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* تأثير النجوم للوضع الداكن */
+.stars-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.dark-mode .dark-mode-toggle:hover .stars-container {
+    opacity: 1;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: starTwinkle 2s ease-in-out infinite;
+}
+
+.star:nth-child(1) { top: 20%; left: 30%; animation-delay: 0s; }
+.star:nth-child(2) { top: 40%; left: 70%; animation-delay: 0.3s; }
+.star:nth-child(3) { top: 60%; left: 20%; animation-delay: 0.6s; }
+.star:nth-child(4) { top: 80%; left: 60%; animation-delay: 0.9s; }
+.star:nth-child(5) { top: 30%; left: 80%; animation-delay: 1.2s; }
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}

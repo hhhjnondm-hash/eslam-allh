@@ -1,0 +1,562 @@
+/* ============================================================
+   PREMIUM EFFECTS - تأثيرات متقدمة من Codrops و Shaders
+   مدمجة مع نظام Rafeeq Design System
+   ============================================================ */
+
+/* ============================================================
+   ON-SCROLL SHAPE MORPH ANIMATIONS (Codrops style)
+   ============================================================ */
+
+.rafeeq-morph-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.rafeeq-morph-shape {
+    position: absolute;
+    transition: clip-path 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rafeeq-morph-circle {
+    clip-path: circle(0% at 50% 50%);
+}
+
+.rafeeq-morph-circle.visible {
+    clip-path: circle(100% at 50% 50%);
+}
+
+.rafeeq-morph-polygon {
+    clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%);
+}
+
+.rafeeq-morph-polygon.visible {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+/* ============================================================
+   3D IMAGE ROTATIONS ON SCROLL (Codrops style)
+   ============================================================ */
+
+.rafeeq-3d-rotate-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.rafeeq-3d-rotate-element {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rafeeq-3d-rotate-element:hover {
+    transform: rotateY(15deg) rotateX(5deg) scale(1.05);
+}
+
+.rafeeq-3d-rotate-layer {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rafeeq-3d-rotate-layer:nth-child(1) {
+    transform: translateZ(0px);
+}
+
+.rafeeq-3d-rotate-layer:nth-child(2) {
+    transform: translateZ(20px);
+}
+
+.rafeeq-3d-rotate-layer:nth-child(3) {
+    transform: translateZ(40px);
+}
+
+/* ============================================================
+   INTERACTIVE GLASS EFFECT (Codrops Glass Xylophone style)
+   ============================================================ */
+
+.rafeeq-glass-panel {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--rafeeq-radius-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.rafeeq-glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.6s ease;
+}
+
+.rafeeq-glass-panel:hover::before {
+    left: 100%;
+}
+
+.rafeeq-glass-reflection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    pointer-events: none;
+}
+
+/* ============================================================
+   SCROLL-DRIVEN ANIMATIONS (Codrops style)
+   ============================================================ */
+
+.rafeeq-scroll-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rafeeq-scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.rafeeq-scroll-animate-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rafeeq-scroll-animate-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.rafeeq-scroll-animate-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rafeeq-scroll-animate-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.rafeeq-scroll-animate-scale {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rafeeq-scroll-animate-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ============================================================
+   WEBGL SHADER TECHNIQUES (Shaders.com style)
+   ============================================================ */
+
+.rafeeq-shader-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.rafeeq-shader-overlay {
+    position: relative;
+    z-index: 1;
+}
+
+/* Noise effect */
+.rafeeq-noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   ADVANCED PARTICLE SYSTEM (CSSScript style)
+   ============================================================ */
+
+.rafeeq-particle-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.rafeeq-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particleFloat 6s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translateY(-20px) translateX(10px);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-10px) translateX(-10px);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateY(-30px) translateX(5px);
+        opacity: 0.9;
+    }
+}
+
+/* ============================================================
+   SHADCN-STYLE COMPONENTS
+   ============================================================ */
+
+/* Shadcn Card */
+.rafeeq-shadcn-card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: var(--rafeeq-radius-xl);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.rafeeq-shadcn-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+/* Shadcn Button */
+.rafeeq-shadcn-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--rafeeq-radius-md);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.rafeeq-shadcn-btn-primary {
+    background: var(--rafeeq-primary-500);
+    color: white;
+}
+
+.rafeeq-shadcn-btn-primary:hover {
+    background: var(--rafeeq-primary-600);
+}
+
+.rafeeq-shadcn-btn-outline {
+    background: transparent;
+    border-color: var(--rafeeq-secondary-300);
+    color: var(--rafeeq-secondary-700);
+}
+
+.rafeeq-shadcn-btn-outline:hover {
+    background: var(--rafeeq-secondary-100);
+}
+
+/* Shadcn Input */
+.rafeeq-shadcn-input {
+    display: flex;
+    height: 2.5rem;
+    width: 100%;
+    border-radius: var(--rafeeq-radius-md);
+    border: 1px solid var(--rafeeq-secondary-200);
+    background: transparent;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.rafeeq-shadcn-input:focus {
+    outline: none;
+    border-color: var(--rafeeq-primary-500);
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.1);
+}
+
+/* ============================================================
+   ELASTIC GRID SCROLL (Codrops style)
+   ============================================================ */
+
+.rafeeq-elastic-grid {
+    display: grid;
+    gap: var(--rafeeq-space-6);
+    transition: gap 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rafeeq-elastic-grid:hover {
+    gap: var(--rafeeq-space-8);
+}
+
+.rafeeq-elastic-item {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rafeeq-elastic-grid:hover .rafeeq-elastic-item {
+    transform: scale(0.98);
+}
+
+.rafeeq-elastic-grid:hover .rafeeq-elastic-item:hover {
+    transform: scale(1.02);
+}
+
+/* ============================================================
+   TEXT WAVE ANIMATION (Codrops style)
+   ============================================================ */
+
+.rafeeq-text-wave {
+    display: inline-block;
+}
+
+.rafeeq-text-wave span {
+    display: inline-block;
+    animation: textWave 2s ease-in-out infinite;
+}
+
+.rafeeq-text-wave span:nth-child(1) { animation-delay: 0s; }
+.rafeeq-text-wave span:nth-child(2) { animation-delay: 0.1s; }
+.rafeeq-text-wave span:nth-child(3) { animation-delay: 0.2s; }
+.rafeeq-text-wave span:nth-child(4) { animation-delay: 0.3s; }
+.rafeeq-text-wave span:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes textWave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ============================================================
+   DUAL WAVE TEXT ANIMATION (Codrops style)
+   ============================================================ */
+
+.rafeeq-dual-wave {
+    position: relative;
+    overflow: hidden;
+}
+
+.rafeeq-dual-wave-text {
+    position: relative;
+    z-index: 1;
+}
+
+.rafeeq-dual-wave-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--rafeeq-gradient-primary);
+    clip-path: polygon(0 100%, 0 100%, 0 100%);
+    transition: clip-path 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+}
+
+.rafeeq-dual-wave:hover .rafeeq-dual-wave-bg {
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+/* ============================================================
+   MAGNETIC EFFECT (Shadcn style)
+   ============================================================ */
+
+.rafeeq-magnetic {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rafeeq-magnetic:hover {
+    transform: scale(1.05);
+}
+
+/* ============================================================
+   SPOTLIGHT EFFECT (Shadcn style)
+   ============================================================ */
+
+.rafeeq-spotlight {
+    position: relative;
+    overflow: hidden;
+}
+
+.rafeeq-spotlight::before {
+    content: '';
+    position: absolute;
+    top: var(--spotlight-y, 50%);
+    left: var(--spotlight-x, 50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(
+        circle,
+        rgba(245, 158, 11, 0.15),
+        transparent 70%
+    );
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.rafeeq-spotlight:hover::before {
+    opacity: 1;
+}
+
+/* ============================================================
+   GLITCH EFFECT (Codrops style)
+   ============================================================ */
+
+.rafeeq-glitch {
+    position: relative;
+}
+
+.rafeeq-glitch::before,
+.rafeeq-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.rafeeq-glitch::before {
+    animation: glitch-1 0.3s infinite linear alternate-reverse;
+    color: var(--rafeeq-primary-500);
+    z-index: -1;
+}
+
+.rafeeq-glitch::after {
+    animation: glitch-2 0.3s infinite linear alternate-reverse;
+    color: var(--rafeeq-accent-500);
+    z-index: -2;
+}
+
+@keyframes glitch-1 {
+    0% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
+    20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); }
+    40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+    60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+    80% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 2px); }
+    100% { clip-path: inset(30% 0 20% 0); transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-2 {
+    0% { clip-path: inset(10% 0 80% 0); transform: translate(2px, -2px); }
+    20% { clip-path: inset(30% 0 20% 0); transform: translate(-2px, 2px); }
+    40% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -2px); }
+    60% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
+    80% { clip-path: inset(50% 0 30% 0); transform: translate(2px, -2px); }
+    100% { clip-path: inset(0% 0 90% 0); transform: translate(-2px, 2px); }
+}
+
+/* ============================================================
+   SKEW EFFECT (Codrops style)
+   ============================================================ */
+
+.rafeeq-skew {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rafeeq-skew:hover {
+    transform: skewX(-5deg) scale(1.02);
+}
+
+/* ============================================================
+   CUSTOM CURSOR (Codrops style)
+   ============================================================ */
+
+.rafeeq-custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--rafeeq-primary-500);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
+    mix-blend-mode: difference;
+}
+
+.rafeeq-custom-cursor.hover {
+    width: 50px;
+    height: 50px;
+    background: rgba(245, 158, 11, 0.2);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .rafeeq-3d-rotate-element:hover {
+        transform: rotateY(5deg) rotateX(2deg) scale(1.02);
+    }
+    
+    .rafeeq-custom-cursor {
+        display: none;
+    }
+    
+    .rafeek-elastic-grid:hover {
+        gap: var(--rafeeq-space-6);
+    }
+}
+
+/* ============================================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .rafeeq-scroll-animate,
+    .rafeeq-scroll-animate-left,
+    .rafeeq-scroll-animate-right,
+    .rafeeq-scroll-animate-scale,
+    .rafeeq-morph-shape,
+    .rafeeq-3d-rotate-element,
+    .rafeek-elastic-item {
+        transition: none;
+        animation: none;
+    }
+    
+    .rafeek-particle {
+        animation: none;
+    }
+    
+    .rafeek-glitch::before,
+    .rafeek-glitch::after {
+        animation: none;
+    }
+}
+
+/* GPU Acceleration */
+.rafeeq-gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+}

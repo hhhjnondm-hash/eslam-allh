@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إسلاميات | الصفحة الرئيسية</title>
+    <meta name="description" content="موقع إسلاميات - القرآن الكريم، الأذكار، مواقيت الصلاة، المصاحف الصوتية">
+    <link rel="shortcut icon" href="Images/Home/fav1.png" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    
+    <!-- Islamic Design System -->
+    <link rel="stylesheet" href="CSS/islamic-design.css">
+    
+    <style>
+        /* Hero with Mosque Image */
+        .islamic-hero {
+            background: linear-gradient(135deg, #1a5f5f 0%, #134e4e 100%);
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .islamic-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1564121211835-e88c852648ab?w=1920&q=80') center/cover;
+            opacity: 0.2;
+        }
+        
+        .islamic-hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .islamic-hero-title {
+            font-family: 'Cairo', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .islamic-hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+        
+        /* Prayer Time Card */
+        .prayer-time-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        [data-theme="dark"] .prayer-time-card {
+            background: #1a1a1a;
+        }
+        
+        .prayer-time-display {
+            text-align: center;
+        }
+        
+        .prayer-time-label {
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+        
+        [data-theme="dark"] .prayer-time-label {
+            color: #9ca3af;
+        }
+        
+        .prayer-time-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1a5f5f;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        [data-theme="dark"] .prayer-time-value {
+            color: #d4af37;
+        }
+        
+        .prayer-countdown {
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-top: 1rem;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-family: 'Cairo', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a5f5f;
+            margin-bottom: 0.5rem;
+        }
+        
+        [data-theme="dark"] .section-title {
+            color: #d4af37;
+        }
+        
+        .section-subtitle {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+        
+        [data-theme="dark"] .section-subtitle {
+            color: #9ca3af;
+        }
+        
+        /* Feature Cards */
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        [data-theme="dark"] .feature-card {
+            background: #1a1a1a;
+            border-color: rgba(255,255,255,0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+            border-color: #d4af37;
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #1a5f5f, #134e4e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a5f5f;
+        }
+        
+        [data-theme="dark"] .feature-title {
+            color: #d4af37;
+        }
+        
+        .feature-description {
+            color: #6b7280;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        [data-theme="dark"] .feature-description {
+            color: #9ca3af;
+        }
+        
+        /* Reciter Cards */
+        .reciter-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        [data-theme="dark"] .reciter-card {
+            background: #1a1a1a;
+            border-color: rgba(255,255,255,0.1);
+        }
+        
+        .reciter-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: #d4af37;
+        }
+        
+        .reciter-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            border: 3px solid #d4af37;
+        }
+        
+        .reciter-name {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a5f5f;
+        }
+        
+        [data-theme="dark"] .reciter-name {
+            color: #d4af37;
+        }
+        
+        /* Footer */
+        .islamic-footer {
+            background: #1a5f5f;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Cairo', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+        
+        .footer-description {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #d4af37;
+        }
+        
+        .footer-copyright {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="islamic-pattern-bg">
+    <!-- Navigation -->
+    <nav class="islamic-nav">
+        <div class="islamic-nav-container">
+            <a href="index.html" class="islamic-nav-brand">
+                <i class="fas fa-quran"></i>
+                إسلاميات
+            </a>
+            <ul class="islamic-nav-links">
+                <li><a href="index.html" class="islamic-nav-link active">الصفحة الرئيسية</a></li>
+                <li><a href="surah.html" class="islamic-nav-link">القرآن الكريم</a></li>
+                <li><a href="timesprayer.html" class="islamic-nav-link">مواقيت الصلاة</a></li>
+                <li><a href="astmaa.html" class="islamic-nav-link">المصاحف</a></li>
+                <li><a href="radio.html" class="islamic-nav-link">الراديو</a></li>
+                <li><a href="reads.html" class="islamic-nav-link">اقرأ</a></li>
+                <li><a href="morning-azkar.html" class="islamic-nav-link">الأذكار</a></li>
+                <li><a href="ahadith.html" class="islamic-nav-link">الأحاديث</a></li>
+                <li><a href="ask-answer.html" class="islamic-nav-link">اسئلة وأجوبة</a></li>
+                <li><a href="aya.html" class="islamic-nav-link">آيه</a></li>
+                <li><a href="status.html" class="islamic-nav-link">ستوريات قرآن</a></li>
+                <li><a href="profile.html" class="islamic-nav-link">حسابي</a></li>
+            </ul>
+            <button class="islamic-mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="islamic-mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="islamic-mobile-menu" id="mobileMenu">
+        <button class="islamic-mobile-menu-close" id="mobileMenuClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="islamic-mobile-menu-links">
+            <li><a href="index.html" class="islamic-mobile-menu-link"><i class="fas fa-home"></i> الصفحة الرئيسية</a></li>
+            <li><a href="surah.html" class="islamic-mobile-menu-link"><i class="fas fa-quran"></i> القرآن الكريم</a></li>
+            <li><a href="timesprayer.html" class="islamic-mobile-menu-link"><i class="fas fa-mosque"></i> مواقيت الصلاة</a></li>
+            <li><a href="astmaa.html" class="islamic-mobile-menu-link"><i class="fas fa-headphones"></i> المصاحف</a></li>
+            <li><a href="radio.html" class="islamic-mobile-menu-link"><i class="fas fa-radio"></i> الراديو</a></li>
+            <li><a href="reads.html" class="islamic-mobile-menu-link"><i class="fas fa-book-open"></i> اقرأ</a></li>
+            <li><a href="morning-azkar.html" class="islamic-mobile-menu-link"><i class="fas fa-sun"></i> الأذكار</a></li>
+            <li><a href="ahadith.html" class="islamic-mobile-menu-link"><i class="fas fa-book"></i> الأحاديث</a></li>
+            <li><a href="ask-answer.html" class="islamic-mobile-menu-link"><i class="fas fa-question-circle"></i> اسئلة وأجوبة</a></li>
+            <li><a href="aya.html" class="islamic-mobile-menu-link"><i class="fas fa-heart"></i> آيه</a></li>
+            <li><a href="status.html" class="islamic-mobile-menu-link"><i class="fas fa-gift"></i> ستوريات قرآن</a></li>
+            <li><a href="profile.html" class="islamic-mobile-menu-link"><i class="fas fa-user"></i> حسابي</a></li>
+        </ul>
+    </div>
+    
+    <!-- Theme Toggle -->
+    <button class="islamic-theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <!-- Hero Section -->
+    <section class="islamic-hero">
+        <div class="islamic-hero-content">
+            <h1 class="islamic-hero-title">إسلاميات</h1>
+            <p class="islamic-hero-subtitle">القرآن الكريم • الأذكار • مواقيت الصلاة</p>
+            
+            <div class="prayer-time-card">
+                <div class="prayer-time-display">
+                    <div class="prayer-time-label">الصلاة القادمة</div>
+                    <div class="prayer-time-value" id="nextPrayer">--:--</div>
+                    <div class="prayer-countdown" id="countdown">00:00:00</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="islamic-section">
+        <div class="islamic-container">
+            <div class="section-header">
+                <h2 class="section-title">خدماتنا</h2>
+                <p class="section-subtitle">كل ما تحتاجه لرحلتك الروحانية في مكان واحد</p>
+            </div>
+            
+            <div class="islamic-grid">
+                <a href="surah.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-quran"></i>
+                    </div>
+                    <h3 class="feature-title">القرآن الكريم</h3>
+                    <p class="feature-description">تصفح القرآن الكريم بتجربة قراءة مريحة مع تلاوات صوتية خاشعة</p>
+                </a>
+                
+                <a href="timesprayer.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mosque"></i>
+                    </div>
+                    <h3 class="feature-title">مواقيت الصلاة</h3>
+                    <p class="feature-description">مواقيت الصلاة الدقيقة لمدينتك مع تنبيهات الصلاة</p>
+                </a>
+                
+                <a href="astmaa.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headphones"></i>
+                    </div>
+                    <h3 class="feature-title">المصاحف الصوتية</h3>
+                    <p class="feature-description">استمع إلى تلاوات القرآن من أشهر القراء في العالم الإسلامي</p>
+                </a>
+                
+                <a href="morning-azkar.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3 class="feature-title">الأذكار</h3>
+                    <p class="feature-description">أذكار الصباح والمساء والمناسبات المختلفة من السنة النبوية</p>
+                </a>
+                
+                <a href="radio.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-radio"></i>
+                    </div>
+                    <h3 class="feature-title">الراديو الإسلامي</h3>
+                    <p class="feature-description">استمع إلى إذاعات القرآن الكريم على مدار الساعة</p>
+                </a>
+                
+                <a href="ahadith.html" class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="feature-title">الأحاديث الشريفة</h3>
+                    <p class="feature-description">مجموعة مختارة من الأحاديث النبوية الصحيحة مع الشرح</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Reciters Section -->
+    <section class="islamic-section" style="background: var(--islamic-cream);">
+        <div class="islamic-container">
+            <div class="section-header">
+                <h2 class="section-title">القراء المشهورون</h2>
+                <p class="section-subtitle">استمع إلى تلاوات خاشعة من أشهر قراء القرآن الكريم</p>
+            </div>
+            
+            <div class="islamic-grid">
+                <a href="https://mp3quran.net/ar/maher" target="_blank" class="reciter-card">
+                    <img src="https://ui-avatars.com/api/?name=ماهر+المعيقلي&background=1a5f5f&color=fff&size=80" alt="ماهر المعيقلي" class="reciter-avatar">
+                    <h3 class="reciter-name">ماهر المعيقلي</h3>
+                </a>
+                
+                <a href="https://mp3quran.net/ar/jleel" target="_blank" class="reciter-card">
+                    <img src="https://ui-avatars.com/api/?name=خالد+الجليل&background=1a5f5f&color=fff&size=80" alt="خالد الجليل" class="reciter-avatar">
+                    <h3 class="reciter-name">خالد الجليل</h3>
+                </a>
+                
+                <a href="https://mp3quran.net/ar/yasser" target="_blank" class="reciter-card">
+                    <img src="https://ui-avatars.com/api/?name=ياسر+الدوسري&background=1a5f5f&color=fff&size=80" alt="ياسر الدوسري" class="reciter-avatar">
+                    <h3 class="reciter-name">ياسر الدوسري</h3>
+                </a>
+                
+                <a href="https://mp3quran.net/ar/qtm" target="_blank" class="reciter-card">
+                    <img src="https://ui-avatars.com/api/?name=ناصر+القطامي&background=1a5f5f&color=fff&size=80" alt="ناصر القطامي" class="reciter-avatar">
+                    <h3 class="reciter-name">ناصر القطامي</h3>
+                </a>
+                
+                <a href="https://mp3quran.net/ar/hazza" target="_blank" class="reciter-card">
+                    <img src="https://ui-avatars.com/api/?name=هزاع+البلوشي&background=1a5f5f&color=fff&size=80" alt="هزاع البلوشي" class="reciter-avatar">
+                    <h3 class="reciter-name">هزاع البلوشي</h3>
+                </a>
+                
+                <a href="https://mp3quran.net/ar/afs" target="_blank" class="reciter-card">
+                    <img src="https://ui-avatars.com/api/?name=مشاري+العفاسي&background=1a5f5f&color=fff&size=80" alt="مشاري العفاسي" class="reciter-avatar">
+                    <h3 class="reciter-name">مشاري العفاسي</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="islamic-footer">
+        <div class="islamic-container">
+            <div class="footer-logo">إسلاميات</div>
+            <p class="footer-description">
+                موقع إسلاميات هو صدقة جارية. نأمل أن نسهل على الجميع قراءة القرآن الكريم ودراسته وتعلمه.
+            </p>
+            <div class="footer-links">
+                <a href="timesprayer.html">مواقيت الصلاة</a>
+                <a href="astmaa.html">المصاحف الصوتية</a>
+                <a href="ahadith.html">الأحاديث النبوية</a>
+                <a href="ask-answer.html">اسئلة وأجوبة</a>
+            </div>
+            <p class="footer-copyright">جميع الحقوق محفوظة © 2026 لموقع إسلاميات</p>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="JS/bootstrap.bundle.min.js"></script>
+    <script src="JS/prayer-display.js"></script>
+    <script>
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+        });
+        
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+        });
+        
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+        });
+        
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const icon = themeToggle.querySelector('i');
+            icon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        });
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        const icon = themeToggle.querySelector('i');
+        icon.className = savedTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+    </script>
+</body>
+</html>

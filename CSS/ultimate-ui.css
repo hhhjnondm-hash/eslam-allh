@@ -1,0 +1,574 @@
+/* ============================================================
+   ULTIMATE UI DESIGN - تصميم رائد ومذهل
+   من Shadcn UI, Codrops, Shaders.com, و UI-UX-Pro-Max
+   ============================================================ */
+
+:root {
+    /* Neon Cyberpunk Colors */
+    --neon-gold: #FFD700;
+    --neon-orange: #FF6B35;
+    --neon-purple: #9B59B6;
+    --neon-blue: #3498DB;
+    --neon-pink: #E91E63;
+    
+    /* Deep Space Background */
+    --deep-space: #0a0a0f;
+    --space-purple: #1a1a2e;
+    --cosmic-blue: #16213e;
+    --nebula-pink: #2d1b3d;
+    
+    /* Advanced Gradients */
+    --cosmic-gradient: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 25%, #2d1b3d 50%, #16213e 75%, #0a0a0f 100%);
+    --neon-gradient: linear-gradient(90deg, #FFD700, #FF6B35, #9B59B6, #3498DB, #E91E63, #FFD700);
+    --aurora-gradient: linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 107, 53, 0.3), rgba(155, 89, 182, 0.3));
+    
+    /* Advanced Effects */
+    --glow-intensity: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.4);
+    --text-glow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6);
+    --card-glow: 0 0 30px rgba(255, 215, 0, 0.3), inset 0 0 30px rgba(255, 215, 0, 0.1);
+    
+    /* Glassmorphism Advanced */
+    --glass-surface: rgba(26, 26, 46, 0.6);
+    --glass-border: rgba(255, 215, 0, 0.2);
+    --glass-blur: blur(40px);
+    
+    /* Animations */
+    --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    background: var(--deep-space);
+    color: #ffffff;
+    overflow-x: hidden;
+    direction: rtl;
+    min-height: 100vh;
+}
+
+/* ============================================================
+   ADVANCED COSMIC BACKGROUND
+   ============================================================ */
+
+.cosmic-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--cosmic-gradient);
+    background-size: 400% 400%;
+    animation: cosmicShift 20s ease infinite;
+    z-index: -2;
+}
+
+@keyframes cosmicShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Stars Layer */
+.stars-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0));
+    background-size: 200px 200px;
+    animation: starsTwinkle 5s ease infinite;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+@keyframes starsTwinkle {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.4; }
+}
+
+/* Aurora Effect */
+.aurora-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--aurora-gradient);
+    filter: blur(100px);
+    opacity: 0.3;
+    animation: auroraMove 15s ease infinite;
+    z-index: -1;
+}
+
+@keyframes auroraMove {
+    0%, 100% { transform: translateX(-10%) translateY(-10%); }
+    50% { transform: translateX(10%) translateY(10%); }
+}
+
+/* ============================================================
+   ADVANCED HERO SECTION
+   ============================================================ */
+
+.ultimate-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-hologram {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+    animation: hologramShift 10s ease infinite;
+}
+
+@keyframes hologramShift {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(2deg); }
+}
+
+.hero-content-ultimate {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-title-ultimate {
+    font-family: 'thuluth-decorated', sans-serif;
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-weight: 900;
+    background: var(--neon-gradient);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: neonGlow 3s ease infinite, titleFloat 4s ease-in-out infinite;
+    text-shadow: var(--text-glow);
+    letter-spacing: 0.1em;
+}
+
+@keyframes neonGlow {
+    0%, 100% { background-position: 0% center; filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8)); }
+    50% { background-position: 100% center; filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.8)); }
+}
+
+@keyframes titleFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.02); }
+}
+
+.hero-subtitle-ultimate {
+    font-size: clamp(1rem, 3vw, 2rem);
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   ADVANCED 3D CARDS
+   ============================================================ */
+
+.card-ultimate {
+    position: relative;
+    background: var(--glass-surface);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2rem;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: all 0.6s var(--transition-elastic);
+    cursor: pointer;
+}
+
+.card-ultimate::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--neon-gradient);
+    background-size: 400% 400%;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: -1;
+    animation: gradientRotate 8s linear infinite;
+}
+
+.card-ultimate:hover::before {
+    opacity: 0.15;
+}
+
+.card-ultimate:hover {
+    transform: translateY(-20px) rotateX(5deg) rotateY(-5deg) scale(1.05);
+    box-shadow: var(--glow-intensity), var(--card-glow);
+    border-color: var(--neon-gold);
+}
+
+.card-ultimate-content {
+    position: relative;
+    z-index: 1;
+    transform: translateZ(50px);
+}
+
+.card-hologram {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(255, 215, 0, 0.1) 0%, 
+        rgba(255, 107, 53, 0.1) 50%, 
+        rgba(155, 89, 182, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.card-ultimate:hover .card-hologram {
+    opacity: 1;
+}
+
+/* ============================================================
+   ADVANCED BUTTONS
+   ============================================================ */
+
+.button-ultimate {
+    position: relative;
+    padding: 1.2rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: transparent;
+    border: 2px solid var(--neon-gold);
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s var(--transition-elastic);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 1;
+}
+
+.button-ultimate::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--neon-gradient);
+    background-size: 200% auto;
+    transition: left 0.6s var(--transition-bounce);
+    z-index: -1;
+}
+
+.button-ultimate:hover::before {
+    left: 0;
+}
+
+.button-ultimate:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: var(--glow-intensity);
+    border-color: transparent;
+}
+
+.button-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.8) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+.button-ultimate:hover .button-particles {
+    width: 300px;
+    height: 300px;
+    opacity: 1;
+}
+
+/* ============================================================
+   ADVANCED NAVIGATION
+   ============================================================ */
+
+.nav-ultimate {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    padding: 1.5rem 3rem;
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(30px);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    transition: all 0.6s ease;
+}
+
+.nav-ultimate.scrolled {
+    padding: 1rem 3rem;
+    background: rgba(10, 10, 15, 0.95);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.nav-link-ultimate {
+    position: relative;
+    padding: 0.8rem 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.nav-link-ultimate::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--neon-gradient);
+    background-size: 200% auto;
+    transition: all 0.4s var(--transition-elastic);
+    transform: translateX(-50%);
+}
+
+.nav-link-ultimate:hover::before {
+    width: 100%;
+}
+
+.nav-link-ultimate:hover {
+    color: var(--neon-gold);
+    text-shadow: var(--text-glow);
+}
+
+/* ============================================================
+   ADVANCED GRID SYSTEM
+   ============================================================ */
+
+.grid-ultimate {
+    display: grid;
+    gap: 2rem;
+    padding: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-ultimate.masonry {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-auto-rows: 10px;
+}
+
+.grid-item-ultimate {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    transform-style: preserve-3d;
+    transition: all 0.6s var(--transition-elastic);
+}
+
+.grid-item-ultimate:hover {
+    transform: translateY(-15px) scale(1.03);
+    z-index: 10;
+}
+
+/* ============================================================
+   ADVANCED SECTIONS
+   ============================================================ */
+
+.section-ultimate {
+    position: relative;
+    padding: 6rem 2rem;
+    overflow: hidden;
+}
+
+.section-header-ultimate {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title-ultimate {
+    font-family: 'thuluth-decorated', sans-serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    background: var(--neon-gradient);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: neonGlow 3s ease infinite;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle-ultimate {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   ADVANCED FOOTER
+   ============================================================ */
+
+.footer-ultimate {
+    position: relative;
+    background: linear-gradient(180deg, rgba(10, 10, 15, 0.9) 0%, rgba(10, 10, 15, 1) 100%);
+    padding: 4rem 2rem 2rem;
+    border-top: 1px solid rgba(255, 215, 0, 0.2);
+    overflow: hidden;
+}
+
+.footer-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* ============================================================
+   ADVANCED LOADING SCREEN
+   ============================================================ */
+
+.loading-ultimate {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--deep-space);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.loading-ultimate.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-ring {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.loader-ring::before,
+.loader-ring::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid transparent;
+}
+
+.loader-ring::before {
+    border-top-color: var(--neon-gold);
+    animation: spin 1.5s linear infinite;
+}
+
+.loader-ring::after {
+    border-bottom-color: var(--neon-orange);
+    animation: spin 1.5s linear infinite reverse;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'thuluth-decorated', sans-serif;
+    font-size: 1.5rem;
+    color: var(--neon-gold);
+    animation: pulse 1.5s ease infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .nav-ultimate {
+        padding: 1rem 1.5rem;
+    }
+    
+    .hero-title-ultimate {
+        font-size: clamp(2rem, 6vw, 4rem);
+    }
+    
+    .grid-ultimate {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .card-ultimate {
+        padding: 1.5rem;
+    }
+    
+    .button-ultimate {
+        padding: 1rem 2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ============================================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+}

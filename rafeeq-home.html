@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>رفيق | رفيق كل مسلم في رحلته الروحانية</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="Images/Home/fav1.png" type="image/x-icon">
+    <link rel="icon" href="Images/Home/fav1.png" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Changa:wght@200;300;400;500;600&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="CSS/all.min.css">
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    
+    <!-- Rafeeq Design System -->
+    <link rel="stylesheet" href="CSS/rafeeq-design-system.css">
+    <link rel="stylesheet" href="CSS/premium-effects.css">
+    <link rel="stylesheet" href="CSS/mind-blowing-effects.css">
+    
+    <style>
+        /* ============================================================
+           PAGE-SPECIFIC STYLES
+           ============================================================ */
+        
+        body {
+            background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+            min-height: 100vh;
+        }
+        
+        [data-theme="dark"] body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        
+        /* Hero Section */
+        .rafeeq-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--rafeeq-primary-100), var(--rafeeq-accent-100));
+        }
+        
+        [data-theme="dark"] .rafeeq-hero {
+            background: linear-gradient(135deg, var(--rafeeq-secondary-900), var(--rafeeq-secondary-800));
+        }
+        
+        .rafeeq-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: var(--rafeeq-space-8);
+        }
+        
+        .rafeeq-hero-title {
+            font-family: var(--rafeeq-font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: var(--rafeeq-space-4);
+            background: var(--rafeeq-gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .rafeeq-hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--rafeeq-secondary-700);
+            margin-bottom: var(--rafeeq-space-8);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        [data-theme="dark"] .rafeeq-hero-subtitle {
+            color: var(--rafeeq-secondary-300);
+        }
+        
+        /* Navigation */
+        .rafeeq-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: var(--rafeeq-z-sticky);
+            background: var(--rafeeq-surface-1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--rafeeq-secondary-100);
+            padding: var(--rafeeq-space-4) var(--rafeeq-space-6);
+            transition: all var(--rafeeq-transition-base);
+        }
+        
+        .rafeeq-nav.scrolled {
+            box-shadow: var(--rafeeq-shadow-md);
+        }
+        
+        .rafeeq-nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        .rafeeq-nav-brand {
+            font-family: var(--rafeeq-font-display);
+            font-size: var(--rafeeq-text-2xl);
+            font-weight: 700;
+            color: var(--rafeeq-primary-600);
+            text-decoration: none;
+            transition: color var(--rafeeq-transition-base);
+        }
+        
+        .rafeeq-nav-brand:hover {
+            color: var(--rafeeq-primary-700);
+        }
+        
+        .rafeeq-nav-links {
+            display: flex;
+            gap: var(--rafeeq-space-6);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .rafeeq-nav-link {
+            color: var(--rafeeq-secondary-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--rafeeq-transition-base);
+            position: relative;
+        }
+        
+        .rafeeq-nav-link:hover {
+            color: var(--rafeeq-primary-600);
+        }
+        
+        .rafeeq-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--rafeeq-primary-500);
+            transition: width var(--rafeeq-transition-base);
+        }
+        
+        .rafeeq-nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Prayer Widget */
+        .rafeeq-prayer-widget {
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            z-index: var(--rafeeq-z-sticky);
+            background: var(--rafeeq-surface-1);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--rafeeq-secondary-100);
+            border-radius: var(--rafeeq-radius-2xl);
+            padding: var(--rafeeq-space-4);
+            box-shadow: var(--rafeeq-shadow-lg);
+            min-width: 200px;
+        }
+        
+        .rafeeq-prayer-time {
+            font-family: var(--rafeeq-font-display);
+            font-size: var(--rafeeq-text-2xl);
+            font-weight: 700;
+            color: var(--rafeeq-primary-600);
+        }
+        
+        .rafeeq-prayer-name {
+            font-size: var(--rafeeq-text-sm);
+            color: var(--rafeeq-secondary-600);
+            margin-bottom: var(--rafeeq-space-2);
+        }
+        
+        /* Theme Toggle */
+        .rafeeq-theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: var(--rafeeq-z-sticky);
+            background: var(--rafeeq-surface-1);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--rafeeq-secondary-100);
+            border-radius: var(--rafeeq-radius-full);
+            padding: var(--rafeeq-space-3);
+            cursor: pointer;
+            transition: all var(--rafeeq-transition-base);
+        }
+        
+        .rafeeq-theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--rafeeq-shadow-md);
+        }
+        
+        /* Feature Cards */
+        .rafeeq-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--rafeeq-space-8);
+            padding: var(--rafeeq-space-16) var(--rafeeq-space-6);
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        .rafeeq-feature-card {
+            background: var(--rafeeq-surface-1);
+            border-radius: var(--rafeeq-radius-2xl);
+            padding: var(--rafeeq-space-8);
+            border: 1px solid var(--rafeeq-secondary-100);
+            backdrop-filter: blur(20px);
+            transition: all var(--rafeeq-transition-base);
+            cursor: pointer;
+        }
+        
+        .rafeeq-feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--rafeeq-shadow-xl);
+            border-color: var(--rafeeq-primary-300);
+        }
+        
+        .rafeeq-feature-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--rafeeq-primary-100);
+            border-radius: var(--rafeeq-radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--rafeeq-text-2xl);
+            color: var(--rafeeq-primary-600);
+            margin-bottom: var(--rafeeq-space-4);
+        }
+        
+        .rafeeq-feature-title {
+            font-family: var(--rafeeq-font-display);
+            font-size: var(--rafeeq-text-xl);
+            font-weight: 600;
+            color: var(--rafeeq-secondary-900);
+            margin-bottom: var(--rafeeq-space-2);
+        }
+        
+        [data-theme="dark"] .rafeeq-feature-title {
+            color: var(--rafeeq-secondary-100);
+        }
+        
+        .rafeeq-feature-description {
+            color: var(--rafeeq-secondary-600);
+            line-height: 1.6;
+        }
+        
+        [data-theme="dark"] .rafeeq-feature-description {
+            color: var(--rafeeq-secondary-400);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .rafeeq-nav-links {
+                display: none;
+            }
+            
+            .rafeeq-prayer-widget {
+                top: auto;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+            }
+            
+            .rafeeq-feature-grid {
+                grid-template-columns: 1fr;
+                padding: var(--rafeeq-space-8) var(--rafeeq-space-4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Shader Canvas -->
+    <canvas class="rafeeq-shader-canvas" id="shaderCanvas"></canvas>
+    
+    <!-- Mind-Blowing Background Effects -->
+    <div class="rafeeq-morph-bg">
+        <div class="rafeeq-morph-shape"></div>
+        <div class="rafeeq-morph-shape"></div>
+        <div class="rafeeq-morph-shape"></div>
+    </div>
+    
+    <div class="rafeeq-wave-bg">
+        <div class="rafeeq-wave"></div>
+        <div class="rafeeq-wave"></div>
+        <div class="rafeeq-wave"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="rafeeq-nav">
+        <div class="rafeeq-nav-container">
+            <a href="#" class="rafeeq-nav-brand">رفيق</a>
+            <ul class="rafeeq-nav-links">
+                <li><a href="#" class="rafeeq-nav-link">القرآن الكريم</a></li>
+                <li><a href="#" class="rafeeq-nav-link">مواقيت الصلاة</a></li>
+                <li><a href="#" class="rafeeq-nav-link">الأذكار</a></li>
+                <li><a href="#" class="rafeeq-nav-link">المصاحف</a></li>
+                <li><a href="#" class="rafeeq-nav-link">حسابي</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Theme Toggle -->
+    <button class="rafeeq-theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+    
+    <!-- Prayer Widget -->
+    <div class="rafeeq-prayer-widget rafeeq-glass-panel">
+        <div class="rafeeq-prayer-name">الصلاة القادمة</div>
+        <div class="rafeeq-prayer-time" id="prayerTime">--:--</div>
+        <div class="rafeeq-caption" id="prayerName">جاري التحميل...</div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="rafeeq-hero rafeeq-liquid-distortion">
+        <div class="rafeeq-hero-content rafeeq-scroll-animate">
+            <h1 class="rafeeq-hero-title rafeeq-holographic" data-text="رفيق">رفيق</h1>
+            <p class="rafeeq-hero-subtitle">رفيق كل مسلم في رحلته الروحانية</p>
+            <div style="display: flex; gap: var(--rafeeq-space-4); justify-content: center; flex-wrap: wrap;">
+                <a href="#" class="rafeeq-btn rafeeq-btn-primary rafeeq-btn-lg rafeeq-magnetic rafeeq-neon-border">
+                    <i class="fa-solid fa-book-quran"></i>
+                    القرآن الكريم
+                </a>
+                <a href="#" class="rafeeq-btn rafeeq-btn-secondary rafeeq-btn-lg rafeeq-magnetic rafeeq-rotating-border">
+                    <i class="fa-solid fa-clock"></i>
+                    مواقيت الصلاة
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="rafeeq-section">
+        <div class="rafeeq-container">
+            <div class="rafeeq-section-header" style="text-align: center; margin-bottom: var(--rafeeq-space-12);">
+                <h2 class="rafeeq-h2 rafeeq-scroll-animate">اكتشف رفيق</h2>
+                <p class="rafeeq-body-large rafeeq-scroll-animate" style="color: var(--rafeeq-secondary-600); max-width: 600px; margin: var(--rafeeq-space-4) auto 0;">
+                    تجربة روحانية رقمية متكاملة تجمع بين القرآن الكريم، مواقيت الصلاة، الأذكار، والمزيد
+                </p>
+            </div>
+            
+            <div class="rafeeq-feature-grid">
+                <div class="rafeeq-magnetic-3d">
+                    <div class="rafeeq-feature-card rafeeq-magnetic-3d-card rafeeq-spotlight rafeeq-scroll-animate">
+                        <div class="rafeeq-magnetic-3d-layer rafeeq-magnetic-3d-layer-front">
+                            <div class="rafeeq-feature-icon">
+                                <i class="fa-solid fa-book-quran"></i>
+                            </div>
+                            <h3 class="rafeeq-feature-title">القرآن الكريم</h3>
+                            <p class="rafeeq-feature-description">114 سورة كاملة مع تلاوات خاشعة من أشهر القراء</p>
+                        </div>
+                        <div class="rafeeq-magnetic-3d-layer rafeeq-magnetic-3d-layer-glow"></div>
+                    </div>
+                </div>
+                
+                <div class="rafeeq-magnetic-3d">
+                    <div class="rafeeq-feature-card rafeeq-magnetic-3d-card rafeeq-spotlight rafeeq-scroll-animate">
+                        <div class="rafeeq-magnetic-3d-layer rafeeq-magnetic-3d-layer-front">
+                            <div class="rafeeq-feature-icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <h3 class="rafeeq-feature-title">مواقيت الصلاة</h3>
+                            <p class="rafeeq-feature-description">أوقات الصلاة الدقيقة لمدينتك مع تنبيهات ذكية</p>
+                        </div>
+                        <div class="rafeeq-magnetic-3d-layer rafeeq-magnetic-3d-layer-glow"></div>
+                    </div>
+                </div>
+                
+                <div class="rafeeq-magnetic-3d">
+                    <div class="rafeeq-feature-card rafeeq-magnetic-3d-card rafeeq-spotlight rafeeq-scroll-animate">
+                        <div class="rafeeq-magnetic-3d-layer rafeeq-magnetic-3d-layer-front">
+                            <div class="rafeeq-feature-icon">
+                                <i class="fa-solid fa-sun"></i>
+                            </div>
+                            <h3 class="rafeeq-feature-title">الأذكار</h3>
+                            <p class="rafeeq-feature-description">أذكار الصباح والمساء والمناسبات المختلفة</p>
+                        </div>
+                        <div class="rafeeq-magnetic-3d-layer rafeeq-magnetic-3d-layer-glow"></div>
+                    </div>
+                </div>
+                
+                <div class="rafeeq-magnetic-3d">
+                    <div class="rafeeq-feature-card rafeeq-magnetic-3d-card rafeeq-spotlight rafeeq-scroll-animate">
+                        <div class="rafeeq-magnetic-3d-layer rafeeq-magnetic-3d-layer-front">
+                            <div class="rafeeq-feature-icon">
+                                <i class="fa-solid fa-headphones"></i>
+                            </div>
+                            <h3 class="rafeeq-feature-title">المصاحف الصوتية</h3>
+                            <p class="rafeeq-feature-description">مكتبة صوتية ضخمة من تلاوات كبار القراء</p>
+                        </div>
+                        <div class="rafeeq-magnetic-3d-layer rafeeq-magnetic-3d-layer-glow"></div>
+                    </div>
+                </div>
+                
+                <div class="rafeeq-magnetic-3d">
+                    <div class="rafeeq-feature-card rafeeq-magnetic-3d-card rafeeq-spotlight rafeeq-scroll-animate">
+                        <div class="rafeeq-magnetic-3d-layer rafeeq-magnetic-3d-layer-front">
+                            <div class="rafeeq-feature-icon">
+                                <i class="fa-solid fa-book"></i>
+                            </div>
+                            <h3 class="rafeeq-feature-title">المكتبة</h3>
+                            <p class="rafeeq-feature-description">مجموعة من الكتب الإسلامية القيمة</p>
+                        </div>
+                        <div class="rafeeq-magnetic-3d-layer rafeeq-magnetic-3d-layer-glow"></div>
+                    </div>
+                </div>
+                
+                <div class="rafeeq-magnetic-3d">
+                    <div class="rafeeq-feature-card rafeeq-magnetic-3d-card rafeeq-spotlight rafeeq-scroll-animate">
+                        <div class="rafeeq-magnetic-3d-layer rafeeq-magnetic-3d-layer-front">
+                            <div class="rafeeq-feature-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <h3 class="rafeeq-feature-title">حسابي</h3>
+                            <p class="rafeeq-feature-description">تخصيص تجربتك الروحانية الشخصية</p>
+                        </div>
+                        <div class="rafeeq-magnetic-3d-layer rafeeq-magnetic-3d-layer-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Scripts -->
+    <script src="JS/all.min.js"></script>
+    <script src="JS/bootstrap.bundle.min.js"></script>
+    <script src="JS/main.js"></script>
+    <script src="JS/premium-effects.js"></script>
+    <script src="JS/mind-blowing-effects.js"></script>
+    <script src="JS/rafeeq-theme-manager.js"></script>
+    <script src="JS/prayer-display.js"></script>
+    
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+        
+        let isDark = false;
+        
+        themeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            themeIcon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        });
+        
+        // Nav scroll effect
+        const nav = document.querySelector('.rafeeq-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

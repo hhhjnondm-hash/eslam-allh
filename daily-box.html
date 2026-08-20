@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صندوق رفيق - الإسلاميات</title>
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap">
+    <style>
+        /* Particle Animation Background */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        /* Main Container */
+        .daily-box-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        /* Header */
+        .daily-header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .daily-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .daily-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Box Styles */
+        .gift-box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .gift-box:hover {
+            transform: scale(1.05);
+        }
+        
+        .gift-box-shaking {
+            animation: shake 0.5s ease-in-out infinite;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        .box-body {
+            position: absolute;
+            bottom: 0;
+            width: 200px;
+            height: 150px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .box-lid {
+            position: absolute;
+            top: 30px;
+            width: 220px;
+            height: 60px;
+            background: linear-gradient(135deg, #FF8E53 0%, #FFB347 100%);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            left: 50%;
+            transform: translateX(-50%);
+            transition: transform 0.5s ease;
+            z-index: 2;
+        }
+        
+        .box-lid.open {
+            transform: translateX(-50%) translateY(-80px) rotate(-30deg);
+        }
+        
+        .box-ribbon {
+            position: absolute;
+            width: 30px;
+            height: 200px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        
+        .box-ribbon-vertical {
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        
+        .box-bow {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            z-index: 3;
+        }
+        
+        /* Streak Counter */
+        .streak-counter {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 15px 30px;
+            margin-top: 30px;
+            color: white;
+            text-align: center;
+        }
+        
+        .streak-counter h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .streak-counter p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Content Reveal */
+        .content-reveal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .content-reveal.active {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            animation: slideUp 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #FF6B6B, #FF8E53);
+            background-size: 300% 100%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .content-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .content-type {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .content-text {
+            font-size: 1.5rem;
+            line-height: 2;
+            color: #333;
+            margin-bottom: 20px;
+            font-family: 'Amiri', serif;
+        }
+        
+        .content-source {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        
+        .action-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+        
+        .close-button:hover {
+            color: #333;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .daily-header h1 {
+                font-size: 2rem;
+            }
+            
+            .gift-box {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .box-body {
+                width: 160px;
+                height: 120px;
+            }
+            
+            .box-lid {
+                width: 180px;
+                height: 50px;
+            }
+            
+            .content-card {
+                padding: 30px 20px;
+            }
+            
+            .content-text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particles-container" id="particles"></div>
+    
+    <!-- Main Container -->
+    <div class="daily-box-container">
+        <!-- Header -->
+        <div class="daily-header">
+            <h1>🎁 صندوق رفيق</h1>
+            <p>في حاجة مستنياك النهارده…</p>
+        </div>
+        
+        <!-- Gift Box -->
+        <div class="gift-box" id="giftBox">
+            <div class="box-lid" id="boxLid"></div>
+            <div class="box-body">
+                <div class="box-ribbon"></div>
+                <div class="box-ribbon-vertical"></div>
+            </div>
+            <div class="box-bow">🎀</div>
+        </div>
+        
+        <!-- Open Button -->
+        <button class="action-button" id="openBtn" style="margin-top: 30px;">
+            🔓 افتح صندوقك
+        </button>
+        
+        <!-- Streak Counter -->
+        <div class="streak-counter">
+            <h3>🔥 سلسلة الفتح</h3>
+            <p>فتحت الصندوق <span id="streakCount">0</span> أيام متتالية</p>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+            </div>
+            <p id="nextMilestone" style="margin-top: 10px; font-size: 0.9rem;"></p>
+        </div>
+    </div>
+    
+    <!-- Content Reveal Modal -->
+    <div class="content-reveal" id="contentReveal">
+        <div class="content-card">
+            <button class="close-button" id="closeBtn">&times;</button>
+            <div class="content-icon" id="contentIcon">🎁</div>
+            <div class="content-type" id="contentType">مفاجأة</div>
+            <div class="content-text" id="contentText">محتوى الصندوق</div>
+            <div class="content-source" id="contentSource"></div>
+            <a href="#" class="action-button" id="actionBtn" style="display: none;">اكتشف المزيد</a>
+        </div>
+    </div>
+    
+    <script src="JS/daily-box.js"></script>
+</body>
+</html>
