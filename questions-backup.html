@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>الأسئلة الدينية - Islamic Questions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/radio-pro-max.css">
+</head>
+<body>
+    <!-- Background -->
+    <div class="radio-background"></div>
+    <div class="radio-particles" id="radio-particles"></div>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn" title="رجوع">
+        <i class="fas fa-arrow-right"></i>
+    </a>
+
+    <!-- Main Container -->
+    <div class="radio-main-container">
+        <!-- Header -->
+        <div class="radio-header">
+            <h1 class="radio-title">الأسئلة الدينية</h1>
+            <p class="radio-subtitle">مكتبة شاملة من 100 سؤال ديني مهم من مختلف المجالات الإسلامية</p>
+        </div>
+
+        <!-- Questions Card -->
+        <div class="radio-player-card">
+            <!-- Search Section -->
+            <div class="station-section">
+                <div class="station-header">
+                    <i class="fas fa-search"></i>
+                    <span>البحث في الأسئلة</span>
+                </div>
+                <div class="search-box">
+                    <input type="text" class="search-input" id="search-input" placeholder="ابحث عن سؤال ديني...">
+                </div>
+            </div>
+
+            <!-- Questions Grid -->
+            <div class="station-section">
+                <div class="station-header">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>جميع الأسئلة</span>
+                </div>
+                <div class="station-grid" id="questions-grid">
+                    <!-- Questions will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="error-message"></div>
+    </div>
+
+    <script>
+        <!-- Welcome Message -->
+        <div class="welcome-message">
+            <div class="welcome-icon">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <h2 class="welcome-title">مكتبة الأسئلة الدينية</h2>
+            <p class="welcome-text">
+                تصفح 100 سؤال ديني مهم من مختلف المجالات الإسلامية. اضغط على أي سؤال لعرض الإجابة.
+            </p>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-box">
+            <input type="text" class="search-input" id="search-input" placeholder="🔍 ابحث عن سؤال ديني...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <!-- Questions Section -->
+        <div class="questions-section">
+            <h3 class="questions-title">
+                <i class="fas fa-list"></i>
+                جميع الأسئلة
+            </h3>
+            <div class="questions-grid" id="questions-grid">
+                <!-- Questions will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="error-message"></div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const questionsGrid = document.getElementById('questions-grid');
+        const searchInput = document.getElementById('search-input');
+        const errorMessage = document.getElementById('error-message');
+
+        // Islamic Questions Data
+        let islamicQuestions = [];
+        let filteredQuestions = [];
+
+        // Icons for categories
+        const categoryIcons = {
+            'الصلاة والعبادات': 'fas fa-pray',
+            'الأخلاق والمعاملات': 'fas fa-hand-holding-heart',
+            'المعاملات الإسلامية': 'fas fa-coins',
+            'الأخلاق': 'fas fa-heart',
+            'الطعام والشراب': 'fas fa-utensils',
+            'الفقه والعقيدة': 'fas fa-book-quran',
+            'الأخلاق اللباس': 'fas fa-tshirt',
+            'المعاملات الزوجية': 'fas fa-users',
+            'المعتقدات التربوية': 'fas fa-child',
+            'أخبار السيرة النبوية': 'fas fa-scroll',
+            'القيم والأخلاق': 'fas fa-star'
+        };
+
+        // Generate particles
+        function generateParticles() {
+            const particlesContainer = document.getElementById('radio-particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'radio-particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Load questions from JSON
+        async function loadQuestions() {
+            try {
+                const response = await fetch('data/islamic-questions.json');
+                const data = await response.json();
+                islamicQuestions = data.questions;
+                filteredQuestions = [...islamicQuestions];
+                renderQuestions();
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                showError('حدث خطأ في تحميل الأسئلة');
+            }
+        }
+
+        // Render questions
+        function renderQuestions() {
+            questionsGrid.innerHTML = '';
+            
+            if (filteredQuestions.length === 0) {
+                questionsGrid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <h3>لا توجد نتائج</h3>
+                        <p>جرب البحث بكلمات مختلفة</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredQuestions.forEach((question, index) => {
+                const card = document.createElement('div');
+                card.className = 'station-card';
+                
+                const icon = categoryIcons[question.category] || 'fas fa-question-circle';
+                
+                card.innerHTML = `
+                    <div class="question-icon">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="question-category">${question.category}</div>
+                `;
+                
+                card.addEventListener('click', () => selectQuestion(question, card));
+                questionsGrid.appendChild(card);
+            });
+        }
+
+        // Select question and redirect to chat
+        function selectQuestion(question, card) {
+            // Mark card as active
+            document.querySelectorAll('.station-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            
+            // Store selected question in localStorage
+            localStorage.setItem('selectedQuestion', JSON.stringify(question));
+            
+            // Redirect to chat page
+            setTimeout(() => {
+                window.location.href = 'chat.html';
+            }, 500);
+        }
+
+        // Search questions
+        function searchQuestions(query) {
+            const searchTerm = query.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                filteredQuestions = [...islamicQuestions];
+            } else {
+                filteredQuestions = islamicQuestions.filter(q => 
+                    q.question.toLowerCase().includes(searchTerm) ||
+                    q.category.toLowerCase().includes(searchTerm) ||
+                    q.answer.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            renderQuestions();
+        }
+
+        // Show error
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            setTimeout(() => {
+                errorMessage.classList.remove('show');
+            }, 5000);
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', (e) => {
+            searchQuestions(e.target.value);
+        });
+
+        // Load on page load
+        window.addEventListener('load', () => {
+            generateParticles();
+            loadQuestions();
+        });
+    </script>
+</body>
+</html>

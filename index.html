@@ -119,15 +119,6 @@
 
   <!-- Telegram WebApp Script (for Mini App support) -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  
-  <!-- Intro Check Script -->
-  <script>
-    // Check URL parameter to skip intro
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('skip') !== 'true') {
-      window.location.href = 'intro.html';
-    }
-  </script>
 </head>
 
 <body>
@@ -230,7 +221,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link magnetic" href="ask-answer.html">
+        <a class="nav-link magnetic" href="questions.html">
           <i class="fa-solid fa-circle-question general-color d-xl-none d-lg-none"></i>
           اسئلة وأجوبة
         </a>
@@ -722,7 +713,7 @@
               <a href="ahadith.html" class="text-reset">أحاديث نبوية</a>
             </p>
             <p>
-              <a href="ask-answer.html" class="text-reset">اسئلة وأجوبة</a>
+              <a href="questions.html" class="text-reset">اسئلة وأجوبة</a>
             </p>
             <p>
               <a href="aya.html" class="text-reset">آيه</a>

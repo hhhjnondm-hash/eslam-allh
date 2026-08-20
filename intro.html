@@ -628,9 +628,21 @@
 
         // Intro animation
         function initIntro() {
+            // Check if user has already seen the intro
+            const hasSeenIntro = localStorage.getItem('hasSeenIntro');
+            
+            if (hasSeenIntro) {
+                // Skip intro and redirect directly
+                window.location.href = 'index.html?skip=true';
+                return;
+            }
+            
             createLightRays();
             initCanvas();
             createParticles();
+
+            // Mark that user has seen the intro
+            localStorage.setItem('hasSeenIntro', 'true');
 
             // After 5 seconds, open doors and hide intro
             setTimeout(() => {
@@ -647,14 +659,13 @@
                     // Redirect to main page
                     setTimeout(() => {
                         window.location.href = 'index.html?skip=true';
-                    }, 800);
+                    }, 500);
                 }, 1500);
             }, 5000);
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', initIntro);
+        // Initialize intro on page load
+        window.addEventListener('load', initIntro);
     </script>
-    <script src="JS/luxury-dark-mode.js"></script>
 </body>
 </html>
