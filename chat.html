@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>المساعد الإسلامي - Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/questions-pro-max.css">
+</head>
+<body>
+    <!-- Background -->
+    <div class="radio-background"></div>
+    <div class="radio-particles" id="radio-particles"></div>
+    <div class="gradient-overlay"></div>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn" title="رجوع">
+        <i class="fas fa-arrow-right"></i>
+    </a>
+
+    <!-- Main Container -->
+    <div class="radio-main-container">
+        <!-- Header -->
+        <div class="radio-header">
+            <div class="header-icon">
+                <i class="fas fa-mosque"></i>
+            </div>
+            <h1 class="radio-title">المساعد الإسلامي</h1>
+            <p class="radio-subtitle">مساعد ذكي يجيب على أسئلتك الدينية بناءً على مصادر موثوقة</p>
+        </div>
+
+        <!-- Chat Player Card -->
+        <div class="radio-player-card">
+            <!-- Chat Container -->
+            <div class="chat-container" id="chat-container">
+                <!-- Welcome Message -->
+                <div class="welcome-message" id="welcome-message">
+                    <div class="welcome-icon">
+                        <i class="fas fa-mosque"></i>
+                    </div>
+                    <h2 class="welcome-title">المساعد الإسلامي الذكي</h2>
+                    <p class="welcome-text">
+                        اختر سؤالاً من صفحة الأسئلة أو انتظر حتى يأتي السؤال المختار
+                    </p>
+                </div>
+
+                <!-- Error Message -->
+                <div class="error-message" id="error-message"></div>
+
+                <!-- Success Message -->
+                <div class="success-message" id="success-message"></div>
+
+                <!-- Messages will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const chatContainer = document.getElementById('chat-container');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const errorMessage = document.getElementById('error-message');
+        const successMessage = document.getElementById('success-message');
+
+        // Generate particles
+        function generateParticles() {
+            const particlesContainer = document.getElementById('radio-particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'radio-particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Format time
+        function formatTime() {
+            const now = new Date();
+            return now.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Scroll to bottom
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // Show error
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            setTimeout(() => {
+                errorMessage.classList.remove('show');
+            }, 5000);
+        }
+
+        // Show success
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.classList.add('show');
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 3000);
+        }
+
+        // Add message to chat
+        function addMessage(content, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'assistant'}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.innerHTML = isUser ? '<i class="fas fa-user"></i>' : '<i class="fas fa-mosque"></i>';
+            
+            const messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            
+            messageContent.innerHTML = content;
+            
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.textContent = formatTime();
+            
+            messageContent.appendChild(timeDiv);
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(messageContent);
+            
+            chatContainer.appendChild(messageDiv);
+            scrollToBottom();
+            
+            return messageDiv;
+        }
+
+        // Show thinking indicator
+        function showThinkingIndicator() {
+            const thinkingDiv = document.createElement('div');
+            thinkingDiv.className = 'typing-indicator';
+            thinkingDiv.id = 'thinking-indicator';
+            thinkingDiv.innerHTML = `
+                <i class="fas fa-brain thinking-icon"></i>
+                <div>
+                    <div class="thinking-text">جاري التفكير</div>
+                    <div class="thinking-dots">
+                        <div class="thinking-dot"></div>
+                        <div class="thinking-dot"></div>
+                        <div class="thinking-dot"></div>
+                    </div>
+                </div>
+            `;
+            chatContainer.appendChild(thinkingDiv);
+            scrollToBottom();
+        }
+
+        // Remove thinking indicator
+        function removeThinkingIndicator() {
+            const thinkingIndicator = document.getElementById('thinking-indicator');
+            if (thinkingIndicator) {
+                thinkingIndicator.remove();
+            }
+        }
+
+        // Process selected question from localStorage
+        function processSelectedQuestion() {
+            const selectedQuestion = localStorage.getItem('selectedQuestion');
+            
+            if (selectedQuestion) {
+                // Remove welcome message
+                welcomeMessage.style.display = 'none';
+                
+                // Parse question
+                const question = JSON.parse(selectedQuestion);
+                
+                // Add user message
+                addMessage(question.question, true);
+                
+                // Show thinking indicator
+                showThinkingIndicator();
+                
+                // Simulate AI thinking
+                setTimeout(() => {
+                    removeThinkingIndicator();
+                    
+                    // Add assistant response with stored answer
+                    const response = `
+                        <div class="hadith">
+                            ${question.answer}
+                        </div>
+                        <div class="hadith-source">المصدر: ${question.source}</div>
+                    `;
+                    
+                    addMessage(response, false);
+                    
+                    // Clear localStorage
+                    localStorage.removeItem('selectedQuestion');
+                    
+                }, 2000); // 2 seconds thinking time
+            }
+        }
+
+        // Load on page load
+        window.addEventListener('load', () => {
+            generateParticles();
+            processSelectedQuestion();
+        });
+    </script>
+</body>
+</html>
