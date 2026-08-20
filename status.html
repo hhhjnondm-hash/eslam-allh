@@ -26,9 +26,11 @@
   <link rel="stylesheet" href="CSS/simple-responsive.css">
   <link rel="stylesheet" href="CSS/ramadan.css">
   <link rel="stylesheet" href="CSS/surah.css">
-  <link rel="stylesheet" href="CSS/daily-box.css">
+  <link rel="stylesheet" href="CSS/daily-box-pro.css">
   <link rel="stylesheet" href="CSS/dark-mode.css">
   <link rel="stylesheet" href="CSS/global-effects.css">
+  <link rel="stylesheet" href="CSS/luxury-dark-mode.css" />
+  <link rel="stylesheet" href="CSS/dark-mode-toggle.css" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -56,6 +58,9 @@
 </head>
 
 <body>
+  <div class="aurora-background"></div>
+  <div class="particles-container" id="particles"></div>
+
   <div class="scrolling-up"><i class="fa-regular fa-circle-up"></i></div>
   <div class="header">
     <a class="navbar-brand logo fw-medium general-color" href="index.html">
@@ -176,73 +181,75 @@
     </ul>
 
     <div class="nav-icons">
-      <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" title="تبديل الوضع الليلي"></button>
       <div class="bx bx-menu" id="menu-icon"></div>
     </div>
   </div>
 
-  <div class="quran">
-   <div id="page-loader">
-        <div class="spinner"></div>
-    </div>
-
-    <div class="container">
-      <h2 class="text-center mb-4 fw-bold fs-1 general-header text-reveal" data-text="🎁 صندوق رفيق">🎁 صندوق رفيق</h2>
-      <p class="text-center mb-5 text-muted reveal-on-scroll reveal-delay-1">في حاجة مستنياك النهارده…</p>
-      
-      <!-- تأثيرات توضيحية -->
-      <div class="row mb-5 reveal-on-scroll reveal-delay-2">
-        <div class="col-12 text-center">
-          <p class="mb-3">✨ جرب التأثيرات التالية:</p>
-          <button class="btn btn-primary mx-2 magnetic ripple-button reveal-on-scroll reveal-delay-3">زر مغناطيسي + موجي</button>
-          <button class="btn btn-secondary mx-2 card-hover-effect reveal-on-scroll reveal-delay-4">بطاقة hover</button>
-          <button class="btn btn-success mx-2 pulse-effect reveal-on-scroll reveal-delay-5">نبض</button>
+  <div class="hero-section">
+    <h1 class="hero-title">🎁 صندوق رفيق</h1>
+    <p class="hero-subtitle">في حاجة مستنياك النهارده…</p>
+    
+    <div class="bento-grid">
+      <!-- Gift Box Card -->
+      <div class="bento-card">
+        <div class="bento-card-glow"></div>
+        <div class="gift-box-wrapper">
+          <div class="gift-box-3d" id="giftBox">
+            <div class="box-3d-body">
+              <div class="box-3d-ribbon-h"></div>
+              <div class="box-3d-ribbon-v"></div>
+            </div>
+            <div class="box-3d-lid" id="boxLid"></div>
+            <div class="box-3d-bow">🎀</div>
+          </div>
         </div>
+        <button class="magnetic-button" id="openBtn" style="margin-top: 30px;">
+          🔓 افتح صندوقك
+        </button>
       </div>
       
-      <!-- Daily Gift Box Section -->
-      <div class="daily-gift-section reveal-on-scroll reveal-delay-1">
-        <!-- Gift Box Container -->
-        <div class="gift-box-container">
-          <div class="gift-box magnetic tilt-3d" id="giftBox">
-            <div class="box-lid" id="boxLid"></div>
-            <div class="box-body">
-              <div class="box-ribbon"></div>
-              <div class="box-ribbon-vertical"></div>
-            </div>
-            <div class="box-bow">🎀</div>
-          </div>
-          
-          <button class="open-button ripple-button magnetic" id="openBtn">
-            🔓 افتح صندوقك
-          </button>
+      <!-- Streak Counter Card -->
+      <div class="bento-card streak-card">
+        <div class="bento-card-glow"></div>
+        <h3>🔥 سلسلة الفتح</h3>
+        <div class="streak-number" id="streakCount">0</div>
+        <p>أيام متتالية</p>
+        <div class="streak-progress">
+          <div class="streak-progress-bar" id="progressFill" style="width: 0%"></div>
         </div>
+        <p id="nextMilestone" style="margin-top: 15px; font-size: 0.9rem; opacity: 0.7;"></p>
+      </div>
+      
+      <!-- Developer Card -->
+      <div class="bento-card developer-card">
+        <div class="bento-card-glow"></div>
+        <h3>👨‍💻 عن رفيق</h3>
+        <p class="developer-text">تم تطوير رفيق بواسطة <strong>Eng Ahmed Zaki</strong></p>
+        <p class="developer-mission">أسعى دائمًا لتطوير تجربة أفضل وأسهل للمستخدمين.</p>
         
-        <!-- Streak Counter -->
-        <div class="streak-counter glass-card reveal-on-scroll reveal-delay-1">
-          <h3>🔥 سلسلة الفتح</h3>
-          <p>فتحت الصندوق <span id="streakCount">0</span> أيام متتالية</p>
-          <div class="progress-container">
-            <div class="progress-bar">
-              <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-            </div>
-          </div>
-          <p id="nextMilestone" style="margin-top: 10px; font-size: 0.9rem;"></p>
+        <div class="developer-suggestions">
+          <p class="suggestions-title">💡 عندك اقتراح أو فكرة؟</p>
+          <p class="suggestions-text">شاركنا اقتراحك</p>
+          <a href="https://t.me/o_w_i" target="_blank" class="telegram-button">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 9.09 15.12 11.86 15.12 11.86C15.12 11.86 16.53 10.65 16.64 8.8ZM8.53 15.2L7.73 10.2C7.73 10.2 7.68 9.95 7.93 9.88C8.18 9.81 8.32 10.05 8.32 10.05L10.4 13.88L12.4 12.88L16.48 8.8C16.48 8.8 16.5 8.77 16.54 8.79C16.58 8.81 16.56 8.85 16.56 8.85L8.53 15.2Z"/>
+            </svg>
+            تواصل معي
+          </a>
         </div>
       </div>
-      
-      <!-- Content Reveal Modal -->
-      <div class="content-reveal" id="contentReveal">
-        <div class="content-card glass-card card-hover-effect">
-          <button class="close-button" id="closeBtn">&times;</button>
-          <div class="content-icon" id="contentIcon">🎁</div>
-          <div class="content-type" id="contentType">مفاجأة</div>
-          <div class="content-text" id="contentText">محتوى الصندوق</div>
-          <div class="content-source" id="contentSource"></div>
-          <a href="#" class="action-button ripple-button magnetic" id="actionBtn" style="display: none;">اكتشف المزيد</a>
-        </div>
-      </div>
+    </div>
+  </div>
 
+  <!-- Content Reveal Modal -->
+  <div class="content-modal" id="contentModal">
+    <div class="content-modal-card">
+      <button class="modal-close" id="closeBtn">&times;</button>
+      <div class="content-modal-icon" id="contentIcon">🎁</div>
+      <div class="content-modal-type" id="contentType">مفاجأة</div>
+      <div class="content-modal-text" id="contentText">محتوى الصندوق</div>
+      <div class="content-modal-source" id="contentSource"></div>
+      <a href="#" class="magnetic-button" id="actionBtn" style="display: none;">اكتشف المزيد</a>
     </div>
   </div>
 
@@ -364,55 +371,15 @@
 
 
   </footer>
-  <!-- Footer -->
-  
-  <!-- Particle Background Container -->
-  <div class="particles-container" id="particles"></div>
   
   <script src="JS/all.min.js"></script>
   <script src="JS/bootstrap.bundle.min.js"></script>
   <script src="JS/main.js"></script>
   <script src="JS/dark-mode.js"></script>
   <script src="JS/global-effects.js"></script>
-  <script src="JS/daily-box.js"></script>
+  <script src="JS/daily-box-pro.js"></script>
   <script src="JS/ramadan.js"></script>
-  
-  <!-- Particle Background Script -->
-  <script>
-    // Create enhanced particles for background animation
-    document.addEventListener('DOMContentLoaded', function() {
-      const particlesContainer = document.getElementById('particles');
-      if (particlesContainer) {
-        const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F', '#BB8FCE'];
-        const shapes = ['circle', 'square', 'triangle'];
-        
-        for (let i = 0; i < 60; i++) {
-          const particle = document.createElement('div');
-          particle.className = 'particle';
-          
-          // Random properties
-          const size = Math.random() * 15 + 5;
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          const shape = shapes[Math.floor(Math.random() * shapes.length)];
-          
-          particle.style.cssText = `
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            width: ${size}px;
-            height: ${size}px;
-            background: ${color};
-            animation-delay: ${Math.random() * 20}s;
-            animation-duration: ${15 + Math.random() * 15}s;
-            border-radius: ${shape === 'circle' ? '50%' : shape === 'square' ? '2px' : '0'};
-            opacity: ${0.3 + Math.random() * 0.4};
-            box-shadow: 0 0 ${size}px ${color};
-          `;
-          
-          particlesContainer.appendChild(particle);
-        }
-      }
-    });
-  </script>
+  <script src="JS/luxury-dark-mode.js"></script>
 
 </body>
 

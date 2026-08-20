@@ -2,579 +2,116 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <title>المسبحة - رفيق</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/simple-responsive.css">
-    <link rel="stylesheet" href="CSS/ramadan.css">
-    <link rel="stylesheet" href="CSS/dark-mode.css">
-    <link rel="stylesheet" href="CSS/global-effects.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
-            min-height: 100dvh;
-            overflow-x: hidden;
-            color: white;
-        }
-
-        .tasbeeh-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
-        }
-
-        /* Aurora Background */
-        .aurora-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .aurora-layer {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            opacity: 0.2;
-            filter: blur(80px);
-            animation: auroraMove 30s ease-in-out infinite;
-        }
-
-        .aurora-layer.layer-1 {
-            background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2), rgba(255, 99, 0, 0.2));
-            animation-delay: 0s;
-        }
-
-        .aurora-layer.layer-2 {
-            background: linear-gradient(135deg, rgba(255, 100, 0, 0.2), rgba(255, 215, 0, 0.2), rgba(255, 69, 0, 0.2));
-            animation-delay: -10s;
-        }
-
-        .aurora-layer.layer-3 {
-            background: linear-gradient(225deg, rgba(255, 140, 0, 0.2), rgba(255, 200, 0, 0.2), rgba(255, 50, 0, 0.2));
-            animation-delay: -20s;
-        }
-
-        @keyframes auroraMove {
-            0%, 100% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-                transform: translate(10%, 10%) rotate(90deg);
-            }
-            50% {
-                transform: translate(0, 20%) rotate(180deg);
-            }
-            75% {
-                transform: translate(-10%, 10%) rotate(270deg);
-            }
-        }
-
-        /* Main Content */
-        .tasbeeh-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 600px;
-            width: 100%;
-        }
-
-        .back-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 215, 0, 0.5);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(15px);
-            text-decoration: none;
-            font-family: 'Cairo', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .back-btn:hover {
-            background: rgba(255, 215, 0, 0.3);
-            border-color: #FFD700;
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
-        }
-
-        /* Telegram Contact Button */
-        .telegram-contact-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: linear-gradient(135deg, rgba(0, 136, 204, 0.9), rgba(0, 160, 220, 0.9));
-            border: 2px solid rgba(0, 136, 204, 0.5);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(15px);
-            text-decoration: none;
-            font-family: 'Cairo', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
-        }
-
-        .telegram-contact-btn:hover {
-            background: linear-gradient(135deg, rgba(0, 160, 220, 0.95), rgba(34, 158, 217, 0.95));
-            border-color: #0088cc;
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.6);
-        }
-
-        .telegram-contact-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .tasbeeh-title {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 30px;
-            background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 3s linear infinite;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-        }
-
-        @keyframes shimmer {
-            to {
-                background-position: 200% center;
-            }
-        }
-
-        /* Bead Circle */
-        .bead-circle {
-            position: relative;
-            width: 350px;
-            height: 350px;
-            margin: 0 auto 40px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .bead-circle::before {
-            content: '';
-            position: absolute;
-            top: -30px;
-            left: -30px;
-            right: -30px;
-            bottom: -30px;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 50%;
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.3;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.6;
-            }
-        }
-
-        .bead-ring {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 215, 0, 0.5);
-            animation: spin 20s linear infinite;
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .bead-counter {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.8), rgba(255, 165, 0, 0.8));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            font-weight: 900;
-            color: #1a1a2e;
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            user-select: none;
-        }
-
-        .bead-counter:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-            box-shadow: 0 0 60px rgba(255, 215, 0, 1);
-        }
-
-        .bead-counter:active {
-            transform: translate(-50%, -50%) scale(0.95);
-        }
-
-        /* Current Phrase */
-        .current-phrase {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #FFD700;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-
-        .phrase-translation {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 30px;
-        }
-
-        /* Phrase Buttons */
-        .phrase-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .phrase-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            font-size: 16px;
-        }
-
-        .phrase-btn:hover,
-        .phrase-btn.active {
-            background: rgba(255, 215, 0, 0.3);
-            border-color: #FFD700;
-            transform: scale(1.05);
-        }
-
-        .phrase-btn.active {
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-        }
-
-        /* Stats */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 20px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-        }
-
-        .stat-value {
-            font-size: 28px;
-            font-weight: 800;
-            color: #FFD700;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            width: 100%;
-            margin-bottom: 30px;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #FFD700, #FFA500);
-            border-radius: 4px;
-            transition: width 0.5s ease;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        .progress-text {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Reset Button */
-        .reset-btn {
-            background: linear-gradient(135deg, rgba(255, 100, 0, 0.8), rgba(255, 50, 0, 0.8));
-            border: none;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .reset-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 100, 0, 0.5);
-        }
-
-        /* Particles */
-        .particles-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #FFD700;
-            border-radius: 50%;
-            animation: particleFloat 10s linear infinite;
-        }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .bead-circle {
-                width: 280px;
-                height: 280px;
-            }
-
-            .bead-counter {
-                width: 100px;
-                height: 100px;
-                font-size: 28px;
-            }
-
-            .tasbeeh-title {
-                font-size: 32px;
-            }
-
-            .current-phrase {
-                font-size: 24px;
-            }
-
-            .stats-container {
-                grid-template-columns: 1fr;
-            }
-
-            .phrase-buttons {
-                flex-direction: column;
-            }
-        }
-    </style>
+    
+    <!-- Tasbeeh Pro Max Reimagined CSS -->
+    <link rel="stylesheet" href="CSS/tasbeeh-pro-reimagined.css">
+    <link rel="stylesheet" href="CSS/luxury-dark-mode.css" />
+    <link rel="stylesheet" href="CSS/dark-mode-toggle.css" />
 </head>
 <body>
-    <!-- Aurora Background -->
-    <div class="aurora-bg">
-        <div class="aurora-layer layer-1"></div>
-        <div class="aurora-layer layer-2"></div>
-        <div class="aurora-layer layer-3"></div>
+    <!-- Fluid Background -->
+    <div class="fluid-background">
+        <div class="fluid-shape fluid-shape-1"></div>
+        <div class="fluid-shape fluid-shape-2"></div>
+        <div class="fluid-shape fluid-shape-3"></div>
     </div>
 
-    <!-- Particles -->
-    <div class="particles-container" id="particles"></div>
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
 
     <!-- Back Button -->
-    <button onclick="goBack()" class="back-btn">
-        <i class="fas fa-arrow-right"></i> العودة
-    </button>
-
-    <!-- Telegram Contact Button -->
-    <a href="https://t.me/o_w_i" target="_blank" class="telegram-contact-btn">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 9.09 15.12 11.86 15.12 11.86C15.12 11.86 16.53 10.65 16.64 8.8ZM8.53 15.2L7.73 10.2C7.73 10.2 7.68 9.95 7.93 9.88C8.18 9.81 8.32 10.05 8.32 10.05L10.4 13.88L12.4 12.88L16.48 8.8C16.48 8.8 16.5 8.77 16.54 8.79C16.58 8.81 16.56 8.85 16.56 8.85L8.53 15.2Z" fill="white"/>
-        </svg>
-        تواصل
+    <a href="profile.html" class="back-btn" title="رجوع">
+        <i class="fas fa-arrow-right"></i>
     </a>
 
-    <!-- Main Content -->
-    <div class="tasbeeh-container">
-        <div class="tasbeeh-content">
-            <h1 class="tasbeeh-title">المسبحة</h1>
+    <!-- Tasbeeh Wrapper -->
+    <div class="tasbeeh-wrapper">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="hero-title">المسبحة</h1>
+            <p class="hero-subtitle">ذِكْرُوا اللَّهَ ذِكْرًا كَثِيرًا</p>
+        </div>
 
-            <!-- Current Phrase -->
-            <div class="current-phrase" id="current-phrase">سبحان الله</div>
-            <div class="phrase-translation" id="phrase-translation">Subhan Allah</div>
+        <!-- 3D Bead Container -->
+        <div class="magnetic-container">
+            <button class="power-bead-btn" id="power-bead-btn">
+                <div class="pulse-ring"></div>
+                <div class="wave"></div>
+                <div class="inner-glow"></div>
+                <div class="press-layer"></div>
+                <div class="counter" id="counter-display">0</div>
+                <div class="counter-text">اضغط للذكر</div>
+            </button>
+        </div>
 
-            <!-- Bead Circle -->
-            <div class="bead-circle">
-                <div class="bead-ring"></div>
-                <div class="bead-counter" id="bead-counter">0</div>
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <!-- Phrase Selector -->
+            <div class="phrase-selector">
+                <button class="phrase-pill active" data-phrase="سبحان الله">سبحان الله</button>
+                <button class="phrase-pill" data-phrase="الحمد لله">الحمد لله</button>
+                <button class="phrase-pill" data-phrase="الله أكبر">الله أكبر</button>
+                <button class="phrase-pill" data-phrase="لا إله إلا الله">لا إله إلا الله</button>
+                <button class="phrase-pill" data-phrase="استغفر الله">استغفر الله</button>
             </div>
 
-            <!-- Progress -->
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            <!-- Progress Ring -->
+            <div class="progress-ring-container">
+                <div class="progress-ring">
+                    <svg class="progress-ring-svg" viewBox="0 0 200 200">
+                        <defs>
+                            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffd700" />
+                                <stop offset="50%" style="stop-color:#ff8c00" />
+                                <stop offset="100%" style="stop-color:#ff6347" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="progress-ring-bg" cx="100" cy="100" r="90"></circle>
+                        <circle class="progress-ring-fill" id="progress-ring-fill" cx="100" cy="100" r="90" 
+                                stroke-dasharray="565.48" stroke-dashoffset="565.48"></circle>
+                    </svg>
+                    <div class="progress-center">
+                        <div class="progress-number" id="progress-number">0</div>
+                        <div class="progress-label">من 33</div>
+                    </div>
                 </div>
-                <div class="progress-text">
-                    <span id="progress-current">0</span>
-                    <span>/</span>
-                    <span id="progress-target">33</span>
-                </div>
             </div>
 
-            <!-- Phrase Buttons -->
-            <div class="phrase-buttons">
-                <button class="phrase-btn active" data-phrase="سبحان الله" data-translation="Subhan Allah">سبحان الله</button>
-                <button class="phrase-btn" data-phrase="الحمد لله" data-translation="Alhamdulillah">الحمد لله</button>
-                <button class="phrase-btn" data-phrase="الله أكبر" data-translation="Allahu Akbar">الله أكبر</button>
-                <button class="phrase-btn" data-phrase="لا إله إلا الله" data-translation="La ilaha illa Allah">لا إله إلا الله</button>
-                <button class="phrase-btn" data-phrase="استغفر الله" data-translation="Astaghfirullah">استغفر الله</button>
-            </div>
-
-            <!-- Stats -->
-            <div class="stats-container">
-                <div class="stat-card">
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-box">
                     <div class="stat-value" id="today-count">0</div>
                     <div class="stat-label">اليوم</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-box">
                     <div class="stat-value" id="week-count">0</div>
                     <div class="stat-label">الأسبوع</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-box">
                     <div class="stat-value" id="total-count">0</div>
                     <div class="stat-label">الإجمالي</div>
                 </div>
             </div>
 
-            <!-- Reset Button -->
-            <button class="reset-btn" id="reset-btn">
-                <i class="fas fa-redo"></i> إعادة العداد
-            </button>
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-btn" id="reset-btn">
+                    <i class="fas fa-redo"></i>
+                    إعادة العداد
+                </button>
+                <button class="action-btn danger" id="reset-all-btn">
+                    <i class="fas fa-trash-alt"></i>
+                    إعادة الكل
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Back button function
-        function goBack() {
-            if (document.referrer && document.referrer !== window.location.href) {
-                window.history.back();
-            } else {
-                window.location.href = 'profile.html';
-            }
-        }
-
-        // Particle System
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 10 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                container.appendChild(particle);
-            }
-        }
-
         // Tasbeeh Logic
         let count = 0;
         let target = 33;
@@ -583,42 +120,95 @@
         let weekCount = parseInt(localStorage.getItem('tasbeeh-week') || 0);
         let totalCount = parseInt(localStorage.getItem('tasbeeh-total') || 0);
 
-        const beadCounter = document.getElementById('bead-counter');
-        const progressFill = document.getElementById('progress-fill');
-        const progressCurrent = document.getElementById('progress-current');
-        const progressTarget = document.getElementById('progress-target');
-        const currentPhraseEl = document.getElementById('current-phrase');
-        const phraseTranslationEl = document.getElementById('phrase-translation');
+        const powerBeadBtn = document.getElementById('power-bead-btn');
+        const counterDisplay = document.getElementById('counter-display');
+        const progressRingFill = document.getElementById('progress-ring-fill');
+        const progressNumber = document.getElementById('progress-number');
         const todayCountEl = document.getElementById('today-count');
         const weekCountEl = document.getElementById('week-count');
         const totalCountEl = document.getElementById('total-count');
         const resetBtn = document.getElementById('reset-btn');
-        const phraseBtns = document.querySelectorAll('.phrase-btn');
+        const resetAllBtn = document.getElementById('reset-all-btn');
+        const phrasePills = document.querySelectorAll('.phrase-pill');
 
         // Initialize
-        beadCounter.textContent = count;
+        counterDisplay.textContent = count;
         todayCountEl.textContent = todayCount;
         weekCountEl.textContent = weekCount;
         totalCountEl.textContent = totalCount;
-        progressTarget.textContent = target;
 
-        // Update progress
+        // Progress ring calculation
+        const circumference = 2 * Math.PI * 90; // 2πr where r=90
+
         function updateProgress() {
-            const percentage = (count / target) * 100;
-            progressFill.style.width = percentage + '%';
-            progressCurrent.textContent = count;
+            const percentage = count / target;
+            const offset = circumference - (percentage * circumference);
+            progressRingFill.style.strokeDashoffset = offset;
+            progressNumber.textContent = count;
+        }
+
+        // Haptic feedback
+        function triggerHaptic() {
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
+        }
+
+        // Create ripple effect
+        function createRipple(event) {
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            
+            const rect = powerBeadBtn.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = event.clientX - rect.left - size / 2 + 'px';
+            ripple.style.top = event.clientY - rect.top - size / 2 + 'px';
+            
+            powerBeadBtn.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 800);
+        }
+
+        // Create sparkle particles
+        function createSparkles(x, y) {
+            for (let i = 0; i < 12; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                const angle = (Math.random() * 360) * (Math.PI / 180);
+                const distance = 50 + Math.random() * 100;
+                const tx = Math.cos(angle) * distance + 'px';
+                const ty = Math.sin(angle) * distance + 'px';
+                
+                sparkle.style.setProperty('--tx', tx);
+                sparkle.style.setProperty('--ty', ty);
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                
+                powerBeadBtn.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 1000);
+            }
         }
 
         // Bead click
-        beadCounter.addEventListener('click', () => {
+        powerBeadBtn.addEventListener('click', (e) => {
             count++;
-            beadCounter.textContent = count;
+            counterDisplay.textContent = count;
             
-            // Add animation
-            beadCounter.style.transform = 'translate(-50%, -50%) scale(0.9)';
-            setTimeout(() => {
-                beadCounter.style.transform = 'translate(-50%, -50%) scale(1)';
-            }, 100);
+            // Trigger haptic
+            triggerHaptic();
+            
+            // Create ripple
+            createRipple(e);
+            
+            // Create sparkles
+            const rect = powerBeadBtn.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            createSparkles(centerX, centerY);
             
             // Update stats
             todayCount++;
@@ -638,37 +228,129 @@
             // Check if target reached
             if (count >= target) {
                 count = 0;
-                beadCounter.textContent = count;
+                counterDisplay.textContent = count;
                 updateProgress();
+                
+                // Celebration
+                celebrateCompletion();
             }
         });
 
+        // Celebration effect
+        function celebrateCompletion() {
+            const colors = ['#ffd700', '#ff8c00', '#ff6347', '#ffa500', '#ff1493'];
+            
+            for (let i = 0; i < 60; i++) {
+                const particle = document.createElement('div');
+                const size = Math.random() * 15 + 8;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const angle = (Math.random() * 360) * (Math.PI / 180);
+                const distance = 250 + Math.random() * 250;
+                const duration = 1200 + Math.random() * 600;
+                
+                particle.style.cssText = `
+                    position: fixed;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: ${color};
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 1000;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    box-shadow: 0 0 30px ${color}, 0 0 60px ${color};
+                `;
+                
+                document.body.appendChild(particle);
+                
+                const endX = Math.cos(angle) * distance;
+                const endY = Math.sin(angle) * distance;
+                
+                particle.animate([
+                    { 
+                        transform: 'translate(-50%, -50%) scale(0) rotate(0deg)', 
+                        opacity: 1 
+                    },
+                    { 
+                        transform: `translate(calc(-50% + ${endX}px), calc(-50% + ${endY}px)) scale(1) rotate(720deg)`, 
+                        opacity: 0 
+                    }
+                ], {
+                    duration: duration,
+                    easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                });
+                
+                setTimeout(() => particle.remove(), duration);
+            }
+            
+            // Flash effect
+            const flash = document.createElement('div');
+            flash.style.cssText = `
+                position: fixed;
+                inset: 0;
+                background: rgba(255, 215, 0, 0.3);
+                pointer-events: none;
+                z-index: 999;
+                animation: flash-fade 0.5s ease-out forwards;
+            `;
+            document.body.appendChild(flash);
+            setTimeout(() => flash.remove(), 500);
+        }
+
+        // Add flash animation
+        const flashStyle = document.createElement('style');
+        flashStyle.textContent = `
+            @keyframes flash-fade {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(flashStyle);
+
         // Phrase selection
-        phraseBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                phraseBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+        phrasePills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                phrasePills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
                 
-                currentPhrase = btn.dataset.phrase;
-                currentPhraseEl.textContent = currentPhrase;
-                phraseTranslationEl.textContent = btn.dataset.translation;
+                currentPhrase = pill.dataset.phrase;
                 
-                // Reset count when changing phrase
+                // Reset count
                 count = 0;
-                beadCounter.textContent = count;
+                counterDisplay.textContent = count;
                 updateProgress();
             });
         });
 
-        // Reset
+        // Reset current counter
         resetBtn.addEventListener('click', () => {
             count = 0;
-            beadCounter.textContent = count;
+            counterDisplay.textContent = count;
             updateProgress();
         });
 
-        // Initialize particles
-        createParticles();
+        // Reset all stats
+        resetAllBtn.addEventListener('click', () => {
+            if (confirm('هل أنت متأكد من إعادة جميع الإحصائيات؟')) {
+                count = 0;
+                todayCount = 0;
+                weekCount = 0;
+                totalCount = 0;
+                
+                localStorage.setItem('tasbeeh-today', 0);
+                localStorage.setItem('tasbeeh-week', 0);
+                localStorage.setItem('tasbeeh-total', 0);
+                
+                counterDisplay.textContent = count;
+                todayCountEl.textContent = todayCount;
+                weekCountEl.textContent = weekCount;
+                totalCountEl.textContent = totalCount;
+                updateProgress();
+            }
+        });
+
+        // Initialize progress
         updateProgress();
     </script>
 </body>

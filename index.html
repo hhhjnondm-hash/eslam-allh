@@ -57,6 +57,9 @@
   <link rel="stylesheet" href="CSS/ramadan.css" />
   <link rel="stylesheet" href="CSS/dark-mode.css" />
   <link rel="stylesheet" href="CSS/global-effects.css" />
+  <link rel="stylesheet" href="CSS/luxury-dark-mode.css" />
+  <link rel="stylesheet" href="CSS/dark-mode-toggle.css" />
+  <link rel="stylesheet" href="CSS/footer-styles.css" />
   <link
     rel="stylesheet"
     href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
@@ -256,7 +259,6 @@
     </ul>
 
     <div class="nav-icons">
-      <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" title="تبديل الوضع الليلي"></button>
       <div class="bx bx-menu" id="menu-icon"></div>
     </div>
   </div>
@@ -620,7 +622,8 @@
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom border-secondary">
       <!-- Left -->
       <div class="me-5 d-none d-lg-block">
-        <span>للتواصل معنا </span>
+        <span class="footer-brand-name">ISLAMEYAT</span>
+        <span class="d-block mt-2">للتواصل معنا </span>
       </div>
       <!-- Left -->
 
@@ -663,16 +666,22 @@
               روابط سريعة
             </h6>
             <p>
-              <a href="timesprayer.html" class="text-reset">اوقات الصلاة </a>
+              <a href="index.html" class="text-reset">الصفحة الرئيسية</a>
             </p>
             <p>
-              <a href="astmaa.html" class="text-reset"> مصاحف صوتية </a>
+              <a href="surah.html" class="text-reset">القرآن الكريم</a>
             </p>
             <p>
-              <a href="ahadith" class="text-reset">أحاديث نبوية </a>
+              <a href="timesprayer.html" class="text-reset">اوقات الصلاة</a>
             </p>
             <p>
-              <a href="ask-answer" class="text-reset">اسئلة وأجوبة</a>
+              <a href="astmaa.html" class="text-reset">مصاحف صوتية</a>
+            </p>
+            <p>
+              <a href="radio.html" class="text-reset">راديو</a>
+            </p>
+            <p>
+              <a href="reads.html" class="text-reset">اقرأ</a>
             </p>
 
           </div>
@@ -682,8 +691,55 @@
           <div class="col-xl-2 col-lg-4 col-md-4 mx-auto mb-4">
             <!-- Links -->
             <h6 class="fw-bold mb-4 fs-5 general-color">
-              روابط تهمكم
+              الأذكار
             </h6>
+            <p>
+              <a href="morning-azkar.html" class="text-reset">أذكار الصباح</a>
+            </p>
+            <p>
+              <a href="evening-azkar.html" class="text-reset">أذكار المساء</a>
+            </p>
+            <p>
+              <a href="bedtime-azkar.html" class="text-reset">أذكار النوم</a>
+            </p>
+            <p>
+              <a href="wakeup-azkar.html" class="text-reset">أذكار الاستيقاظ</a>
+            </p>
+            <p>
+              <a href="salah-azkar.html" class="text-reset">أذكار الصلاة</a>
+            </p>
+            <p>
+              <a href="after-prayer-azkar.html" class="text-reset">أذكار بعد الصلاة</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-xl-2 col-lg-4 col-md-4 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="fw-bold mb-4 fs-5 general-color">أقسام أخرى</h6>
+            <p>
+              <a href="ahadith.html" class="text-reset">أحاديث نبوية</a>
+            </p>
+            <p>
+              <a href="ask-answer.html" class="text-reset">اسئلة وأجوبة</a>
+            </p>
+            <p>
+              <a href="aya.html" class="text-reset">آيه</a>
+            </p>
+            <p>
+              <a href="status.html" class="text-reset">صندوق رفيق</a>
+            </p>
+            <p>
+              <a href="profile.html" class="text-reset">حسابي</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-xl-3 col-lg-4 col-md-4 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="fw-bold mb-4 fs-5 general-color">روابط تهمكم</h6>
             <p>
               <a href="https://www.equran.org/quran.pdf" class="text-reset magnetic" target="_blank">القرآن الكريم pdf</a>
             </p>
@@ -699,13 +755,6 @@
               <a href="https://drive.google.com/file/d/1uGPUI4_15HpeV18OP_ZE82v3YB0MX9IX/view?usp=share_link"
                 class="text-reset magnetic" target="_blank">التفسير الميسر</a>
             </p>
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-xl-3 col-lg-4 col-md-4 mx-auto mb-md-0 mb-4">
-            <!-- Links -->
-            <h6 class="fw-bold mb-4 fs-5 general-color">روابط إضافية</h6>
             <p><a class="text-light" href="https://guidetomuslimkids.com/ar" target="_blank">دليل الأطفال المسلمين</a>
             </p>
             <p><a class="text-light" href="https://guidetosunnah.com/ar" target="_blank">الدليل الي السنة النبوية</a>
@@ -726,7 +775,7 @@
     <div dir="rtl" class="text-center p-4 fs-6" style="background-color: rgba(0, 0, 0, 0.05);">
       <span class="text-reset">
         جميع الحقوق محفوظة © 2026 لموقع إسلاميات |
-        <a href="https://t.me/o_w_i" target="_blank" class="general-color fs-6">
+        <a href="https://t.me/o_w_i" target="_blank" class="footer-credit fs-6">
           ENG Ahmed Zaki
         </a>
       </span>
@@ -740,6 +789,7 @@
   <script src="JS/bootstrap.bundle.min.js"></script>
   <script src="JS/main.js"></script>
   <script src="JS/dark-mode.js"></script>
+  <script src="JS/luxury-dark-mode.js"></script>
   <script src="JS/global-effects.js"></script>
   <script src="JS/ramadan.js"></script>
   <script src="JS/prayer-display.js"></script>

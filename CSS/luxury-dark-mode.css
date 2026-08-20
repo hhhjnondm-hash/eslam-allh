@@ -1,0 +1,451 @@
+/* ============================================================
+   LUXURY DARK MODE - MODE NUIT DE LUXE
+   نظام Dark Mode متطور مع تأثيرات حركية من Motion UI و Magic UI
+   ============================================================ */
+
+/* متغيرات Dark Mode الفاخرة */
+:root {
+    /* ألوان الوضع الداكن الأساسية */
+    --dark-bg-primary: #0a0a0f;
+    --dark-bg-secondary: #141421;
+    --dark-bg-tertiary: #1a1a2e;
+    --dark-bg-card: rgba(26, 26, 46, 0.8);
+    
+    /* ألوان ذهبية للوضع الداكن */
+    --dark-gold-primary: #FFD700;
+    --dark-gold-secondary: #FFA500;
+    --dark-gold-accent: #B8860B;
+    --dark-gold-glow: rgba(255, 215, 0, 0.3);
+    
+    /* تدرجات ذهبية متحركة */
+    --dark-gold-gradient: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #B8860B 100%);
+    --dark-gold-gradient-animated: linear-gradient(45deg, #FFD700, #FFA500, #B8860B, #FFD700);
+    
+    /* ألوان النصوص */
+    --dark-text-primary: #ffffff;
+    --dark-text-secondary: #b8b8b8;
+    --dark-text-muted: #888888;
+    
+    /* تأثيرات الظلال */
+    --dark-shadow-gold: 0 0 30px rgba(255, 215, 0, 0.4);
+    --dark-shadow-glow: 0 0 20px rgba(255, 215, 0, 0.6);
+    --dark-shadow-card: 0 20px 40px rgba(0, 0, 0, 0.6);
+    
+    /* تأثيرات الزجاج */
+    --dark-glass-bg: rgba(26, 26, 46, 0.9);
+    --dark-glass-border: rgba(255, 215, 0, 0.2);
+    --dark-glass-blur: blur(20px);
+}
+
+/* ============================================================
+   DARK MODE BODY STYLES
+   ============================================================ */
+
+body.dark-mode {
+    background-color: var(--dark-bg-primary);
+    color: var(--dark-text-primary);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 165, 0, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(184, 134, 11, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: gradientShift 15s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        transform: translateX(0) translateY(0);
+    }
+    25% {
+        transform: translateX(5%) translateY(-5%);
+    }
+    50% {
+        transform: translateX(-5%) translateY(5%);
+    }
+    75% {
+        transform: translateX(-5%) translateY(-5%);
+    }
+}
+
+/* ============================================================
+   HEADER STYLES - DARK MODE
+   ============================================================ */
+
+body.dark-mode .header {
+    background: linear-gradient(180deg, 
+        rgba(10, 10, 15, 0.98) 0%, 
+        rgba(20, 20, 33, 0.95) 100%);
+    backdrop-filter: var(--dark-glass-blur);
+    border-bottom: 1px solid var(--dark-glass-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .logo,
+body.dark-mode .logo span {
+    color: var(--dark-gold-primary);
+    text-shadow: var(--dark-shadow-glow);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .logo:hover {
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+    transform: scale(1.05);
+}
+
+body.dark-mode .nav-list a {
+    color: var(--dark-text-primary);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .nav-list a:hover {
+    color: var(--dark-gold-primary);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+body.dark-mode .nav-list a.active {
+    color: var(--dark-gold-primary);
+    border-right-color: var(--dark-gold-primary);
+}
+
+body.dark-mode .nav-icons i {
+    color: var(--dark-gold-primary);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .nav-icons i:hover {
+    color: var(--dark-gold-secondary);
+    transform: scale(1.2);
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+}
+
+body.dark-mode .dropdown-menu {
+    background: var(--dark-bg-card);
+    backdrop-filter: var(--dark-glass-blur);
+    border: 1px solid var(--dark-glass-border);
+    box-shadow: var(--dark-shadow-card);
+}
+
+/* ============================================================
+   CARDS STYLES - DARK MODE
+   ============================================================ */
+
+body.dark-mode .readers-section .card {
+    background: linear-gradient(145deg, 
+        rgba(26, 26, 46, 0.9) 0%, 
+        rgba(20, 20, 33, 0.8) 100%);
+    border: 2px solid var(--dark-glass-border);
+    box-shadow: var(--dark-shadow-card);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .readers-section .card:hover {
+    background: linear-gradient(145deg, 
+        rgba(62, 39, 35, 0.9) 0%, 
+        rgba(26, 26, 46, 0.85) 100%);
+    border-color: var(--dark-gold-primary);
+    box-shadow: 
+        var(--dark-shadow-card),
+        var(--dark-shadow-gold);
+    transform: translateY(-10px) scale(1.02);
+}
+
+body.dark-mode .websites .website,
+body.dark-mode .website-1 {
+    background: var(--dark-bg-card);
+    border: 1px solid var(--dark-glass-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .websites .website:hover,
+body.dark-mode .website-1:hover {
+    background: linear-gradient(145deg, 
+        rgba(62, 39, 35, 0.7) 0%, 
+        rgba(26, 26, 46, 0.6) 100%);
+    border-color: var(--dark-gold-primary);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.6),
+        var(--dark-shadow-gold);
+    transform: translateY(-5px) scale(1.03);
+}
+
+/* ============================================================
+   BUTTONS STYLES - DARK MODE
+   ============================================================ */
+
+body.dark-mode .general-btn {
+    background: var(--dark-gold-gradient);
+    box-shadow: var(--dark-shadow-gold);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+body.dark-mode .general-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    transition: left 0.6s ease;
+}
+
+body.dark-mode .general-btn:hover::before {
+    left: 100%;
+}
+
+body.dark-mode .general-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 0 40px rgba(255, 215, 0, 0.6),
+        0 0 80px rgba(255, 215, 0, 0.3);
+}
+
+/* ============================================================
+   PRAYER CONTAINER - DARK MODE
+   ============================================================ */
+
+body.dark-mode .prayer-container {
+    background: linear-gradient(145deg, 
+        rgba(10, 10, 15, 0.95) 0%, 
+        rgba(26, 26, 46, 0.9) 100%);
+    border: 2px solid var(--dark-glass-border);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        var(--dark-shadow-gold);
+}
+
+body.dark-mode .prayer-time {
+    background: var(--dark-gold-gradient-animated);
+    background-size: 300% auto;
+    animation: shimmer 3s linear infinite;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+body.dark-mode .countdown-mini {
+    background: rgba(255, 215, 0, 0.15);
+    border: 1px solid var(--dark-glass-border);
+    color: var(--dark-gold-primary);
+    box-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.3),
+        inset 0 0 15px rgba(255, 215, 0, 0.1);
+}
+
+/* ============================================================
+   FOOTER - DARK MODE
+   ============================================================ */
+
+body.dark-mode footer {
+    background: linear-gradient(180deg, 
+        rgba(10, 10, 15, 0.98) 0%, 
+        rgba(20, 20, 33, 0.95) 100%);
+    border-top: 1px solid var(--dark-glass-border);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode footer .logo-footer {
+    color: var(--dark-gold-primary);
+    text-shadow: var(--dark-shadow-glow);
+}
+
+body.dark-mode footer p a:hover {
+    color: var(--dark-gold-primary);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+/* ============================================================
+   SCROLLBAR - DARK MODE
+   ============================================================ */
+
+body.dark-mode ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+    background: var(--dark-gold-gradient);
+    border-radius: 10px;
+    border: 2px solid var(--dark-bg-secondary);
+    box-shadow: var(--dark-shadow-gold);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-gold-gradient-animated);
+    background-size: 300% auto;
+    animation: shimmer 2s linear infinite;
+}
+
+/* ============================================================
+   TEXT STYLES - DARK MODE
+   ============================================================ */
+
+body.dark-mode .general-header,
+body.dark-mode .general-color {
+    color: var(--dark-gold-primary);
+    text-shadow: var(--dark-shadow-glow);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .general-header:hover {
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+}
+
+/* ============================================================
+   LOADING SPINNER - DARK MODE
+   ============================================================ */
+
+body.dark-mode .spinner {
+    border: 5px solid rgba(255, 215, 0, 0.2);
+    border-top-color: var(--dark-gold-primary);
+    box-shadow: var(--dark-shadow-gold);
+}
+
+/* ============================================================
+   INPUTS AND FORMS - DARK MODE
+   ============================================================ */
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background: var(--dark-bg-card);
+    border: 1px solid var(--dark-glass-border);
+    color: var(--dark-text-primary);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+    border-color: var(--dark-gold-primary);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    outline: none;
+}
+
+/* ============================================================
+   SECTIONS BACKGROUND - DARK MODE
+   ============================================================ */
+
+body.dark-mode .websites {
+    background-color: var(--dark-bg-primary);
+    background-image: radial-gradient(circle at 50% 50%, 
+        rgba(62, 39, 35, 0.1) 0%, 
+        transparent 50%);
+}
+
+body.dark-mode .web1 {
+    background-color: var(--dark-bg-primary);
+    background-image: radial-gradient(circle at 30% 70%, 
+        rgba(255, 215, 0, 0.05) 0%, 
+        transparent 50%);
+}
+
+/* ============================================================
+   ANIMATIONS FROM MOTION UI
+   ============================================================ */
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 300% center;
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+    }
+}
+
+@keyframes floatUp {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* تأثيرات Magic UI للعناصر التفاعلية */
+body.dark-mode .magic-hover {
+    position: relative;
+    overflow: hidden;
+}
+
+body.dark-mode .magic-hover::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+body.dark-mode .magic-hover:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* ============================================================
+   SMOOTH TRANSITIONS
+   ============================================================ */
+
+body.dark-mode *,
+body.dark-mode *::before,
+body.dark-mode *::after {
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 768px) {
+    body.dark-mode .nav-list {
+        background: linear-gradient(180deg, 
+            rgba(10, 10, 15, 0.98) 0%, 
+            rgba(20, 20, 33, 0.95) 100%);
+        border-left: 1px solid var(--dark-glass-border);
+    }
+    
+    body.dark-mode .prayer-overlay {
+        max-width: 200px;
+    }
+    
+    body.dark-mode .prayer-container {
+        padding: 15px 12px;
+    }
+}

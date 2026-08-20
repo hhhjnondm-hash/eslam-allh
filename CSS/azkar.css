@@ -3,11 +3,13 @@ body {
 }
 
 :root {
-    --main-color: #DC9C51;
-    --text-color: #fff;
-    --other-color: #212121;
-    --second-color: #3F200C ;
-    --bg-color: #111111;
+    --main-color: #2563EB;
+    --text-color: #0B1938;
+    --other-color: #60A5FA;
+    --second-color: #60A5FA;
+    --bg-color: #F5F9FF;
+    --accent-color: #D99A3D;
+    --surface-color: #FFFFFF;
 }
 
 .text-color{

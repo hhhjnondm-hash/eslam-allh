@@ -4,756 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <title>حسابي - الملف الشخصي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Telegram WebApp Script -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    
-    <!-- Simple Responsive -->
-    <link rel="stylesheet" href="CSS/simple-responsive.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            min-height: 100dvh;
-            overflow-x: hidden;
-            position: relative;
-            padding-top: max(0px, env(safe-area-inset-top));
-            padding-bottom: max(0px, env(safe-area-inset-bottom));
-        }
-
-        /* Particle Background */
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* Glassmorphism Container */
-        .container {
-            max-width: min(1200px, 95vw);
-            margin: 0 auto;
-            padding: clamp(20px, 5vw, 40px) clamp(15px, 3vw, 20px);
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Main Card */
-        .profile-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 50px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Profile Header */
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            margin-bottom: 50px;
-            animation: slideInRight 1s ease-out;
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Avatar */
-        .avatar-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-        }
-
-        .avatar {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
-            animation: pulse 2s infinite;
-        }
-
-        .avatar-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
-            animation: pulse 2s infinite;
-        }
-
-        .avatar-fallback i {
-            font-size: 60px;
-            color: white;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 60px rgba(102, 126, 234, 0.8);
-            }
-        }
-
-        .avatar-ring {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top-color: #667eea;
-            border-right-color: #764ba2;
-            animation: spin 3s linear infinite;
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Profile Info */
-        .profile-info {
-            flex: 1;
-        }
-
-        .profile-name {
-            font-size: 48px;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
-            }
-            to {
-                text-shadow: 0 0 40px rgba(118, 75, 162, 0.8);
-            }
-        }
-
-        .profile-username {
-            font-size: 24px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .profile-bio {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            max-width: 600px;
-        }
-
-        .profile-status {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .status-connected {
-            color: #4ade80;
-        }
-
-        .status-connected::before {
-            content: '✓';
-            display: inline-block;
-        }
-
-        .status-disconnected {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* Account Information Section */
-        .account-info {
-            margin-top: 40px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: fadeInUp 1s ease-out;
-            animation-delay: 0.6s;
-        }
-
-        .info-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-            gap: 20px;
-        }
-
-        .info-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px 20px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .info-label {
-            display: block;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .info-value {
-            display: block;
-            font-size: 16px;
-            font-weight: 600;
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            .account-info {
-                padding: 20px;
-                margin-top: 30px;
-            }
-
-            .info-title {
-                font-size: 20px;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .info-item {
-                padding: 12px 15px;
-            }
-
-            .info-value {
-                font-size: 14px;
-            }
-        }
-
-
-
-        /* Dashboard Buttons */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-            gap: 25px;
-        }
-
-        .dashboard-btn {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 30px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 1s ease-out;
-            animation-delay: 0.4s;
-        }
-
-        .dashboard-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .dashboard-btn:hover::before {
-            left: 100%;
-        }
-
-        .dashboard-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.5);
-        }
-
-        .dashboard-icon {
-            font-size: 35px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .dashboard-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .dashboard-desc {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* Neon Border Effect */
-        .neon-border {
-            position: relative;
-        }
-
-        .neon-border::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
-            background-size: 400% 400%;
-            border-radius: 32px;
-            z-index: -1;
-            animation: gradient 3s ease infinite;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .neon-border:hover::after {
-            opacity: 1;
-        }
-
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-
-
-        /* Floating Elements */
-        .floating-element {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-            }
-        }
-
-        /* Back Button */
-        .back-button {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .back-button:hover {
-            background: rgba(102, 126, 234, 0.8);
-            transform: scale(1.1);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .profile-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .profile-name {
-                font-size: clamp(20px, 5vw, 32px);
-            }
-
-            .profile-username {
-                font-size: clamp(14px, 3vw, 18px);
-            }
-
-            .profile-bio {
-                font-size: clamp(12px, 2.5vw, 14px);
-            }
-
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .back-button {
-                top: 15px;
-                right: 15px;
-                width: 40px;
-                height: 40px;
-            }
-
-            .container {
-                padding: 15px;
-            }
-        }
-
-        /* Tablet Optimization */
-        @media (min-width: 768px) and (max-width: 1024px) {
-            .dashboard-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
-        }
-
-        /* Mobile Safe Areas */
-        @supports (padding: env(safe-area-inset-top)) {
-            .back-button {
-                top: max(15px, env(safe-area-inset-top));
-                right: max(15px, env(safe-area-inset-right));
-            }
-        }
-
-        /* Touch Devices */
-        @media (hover: none) and (pointer: coarse) {
-            .dashboard-btn:hover {
-                transform: none;
-            }
-
-            .back-button:hover {
-                transform: none;
-            }
-        }
-
-        /* Reduced Motion Support */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
-            .profile-card,
-            .dashboard-btn,
-            .back-button,
-            .avatar {
-                animation: none !important;
-                transition: none !important;
-            }
-        }
-    </style>
+    <!-- Profile Simple Pro CSS -->
+    <link rel="stylesheet" href="CSS/profile-simple-pro.css">
+    <link rel="stylesheet" href="CSS/luxury-dark-mode.css" />
+    <link rel="stylesheet" href="CSS/dark-mode-toggle.css" />
 </head>
 <body>
-    <canvas id="particles-canvas"></canvas>
+    <!-- Background -->
+    <div class="background-gradient"></div>
+    <div class="particles" id="particles"></div>
 
-    <button class="back-button" onclick="goBack()" title="رجوع">
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn" title="رجوع">
         <i class="fas fa-arrow-right"></i>
-    </button>
+    </a>
 
-    <div class="container">
-        <div class="profile-card neon-border">
-            <!-- Floating Elements -->
-            <div class="floating-element" style="top: 10%; left: 10%;"></div>
-            <div class="floating-element" style="top: 20%; right: 15%; animation-delay: 1s;"></div>
-            <div class="floating-element" style="bottom: 30%; left: 20%; animation-delay: 2s;"></div>
-            <div class="floating-element" style="bottom: 20%; right: 10%; animation-delay: 3s;"></div>
-
-            <!-- Profile Header -->
-            <div class="profile-header">
-                <div class="avatar-container">
-                    <div class="avatar-ring"></div>
-                    <img src="" alt="صورة الملف الشخصي" class="avatar" id="profile-avatar">
-                </div>
-                <div class="profile-info">
-                    <h1 class="profile-name" id="profile-name">أهلاً بك في رفيق</h1>
-                    <p class="profile-username" id="profile-username" style="display: none;">@username</p>
-                    <p class="profile-bio" id="profile-bio" style="display: none;">مرحباً بك في صفحتك الشخصية. يمكنك إدارة حسابك والوصول إلى جميع الخدمات من هنا.</p>
-                    <p class="profile-status" id="telegram-status" style="display: none;"></p>
+    <!-- Profile Container -->
+    <div class="profile-container">
+        <div class="profile-card">
+            <!-- Avatar -->
+            <div class="avatar-section">
+                <div class="avatar">
+                    <img src="Images/Cat girl.jfif" alt="صورة الملف الشخصي" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                 </div>
             </div>
 
-            <!-- Account Information -->
-            <div class="account-info" id="account-info" style="display: none;">
-                <h3 class="info-title">معلومات الحساب</h3>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <span class="info-label">معرف تيليجرام</span>
-                        <span class="info-value" id="telegram-id">-</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">اسم المستخدم</span>
-                        <span class="info-value" id="info-username">-</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">الاسم</span>
-                        <span class="info-value" id="info-name">-</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">اللغة</span>
-                        <span class="info-value" id="info-language">-</span>
-                    </div>
+            <!-- Name -->
+            <h1 class="profile-name">مرحباً بك في رفيق</h1>
+
+            <!-- Bio -->
+            <p class="profile-bio">
+                موقع إسلاميات - صدقة جارية. نأمل أن نسهل على الجميع قراءة القرآن الكريم ودراسته وتعلمه.
+            </p>
+
+            <!-- Stats -->
+            <div class="stats-section">
+                <div class="stat-item">
+                    <div class="stat-value">114</div>
+                    <div class="stat-label">سورة قرآنية</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">أوقات صلاة</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">أنواع أذكار</div>
                 </div>
             </div>
 
-            <!-- Dashboard Buttons -->
-            <div class="dashboard-grid">
-                <a href="index.html" class="dashboard-btn">
-                    <i class="fas fa-home dashboard-icon"></i>
-                    <div class="dashboard-title">الصفحة الرئيسية</div>
-                    <div class="dashboard-desc">العودة إلى الصفحة الرئيسية</div>
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <a href="surah.html" class="quick-link">
+                    <i class="fas fa-book-quran"></i>
+                    <span>القرآن</span>
                 </a>
-                <a href="surah.html" class="dashboard-btn">
-                    <i class="fas fa-book-quran dashboard-icon"></i>
-                    <div class="dashboard-title">القرآن الكريم</div>
-                    <div class="dashboard-desc">سور من القرآن الكريم</div>
+                <a href="timesprayer.html" class="quick-link">
+                    <i class="fas fa-mosque"></i>
+                    <span>الصلاة</span>
                 </a>
-                <a href="timesprayer.html" class="dashboard-btn">
-                    <i class="fas fa-mosque dashboard-icon"></i>
-                    <div class="dashboard-title">أوقات الصلاة</div>
-                    <div class="dashboard-desc">مواقيت الصلاة اليومية</div>
+                <a href="tasbeeh.html" class="quick-link">
+                    <i class="fas fa-hands-praying"></i>
+                    <span>السبحة</span>
                 </a>
-                <a href="tasbeeh.html" class="dashboard-btn" style="background: linear-gradient(135deg, #FFD700, #FFA500);">
-                    <i class="fas fa-hands-praying dashboard-icon"></i>
-                    <div class="dashboard-title">السبحة</div>
-                    <div class="dashboard-desc">مسبحة إلكترونية متطورة</div>
+                <a href="morning-azkar.html" class="quick-link">
+                    <i class="fas fa-sun"></i>
+                    <span>أذكار الصباح</span>
                 </a>
-                <a href="astmaa.html" class="dashboard-btn">
-                    <i class="fas fa-play dashboard-icon"></i>
-                    <div class="dashboard-title">مصاحف صوتية</div>
-                    <div class="dashboard-desc">استماع إلى القرآن الكريم</div>
+                <a href="evening-azkar.html" class="quick-link">
+                    <i class="fas fa-moon"></i>
+                    <span>أذكار المساء</span>
                 </a>
-                <a href="radio.html" class="dashboard-btn">
-                    <i class="fas fa-radio dashboard-icon"></i>
-                    <div class="dashboard-title">راديو</div>
-                    <div class="dashboard-desc">إذاعات القرآن الكريم</div>
+                <a href="salah-azkar.html" class="quick-link">
+                    <i class="fas fa-pray"></i>
+                    <span>أذكار الصلاة</span>
                 </a>
-                <a href="reads.html" class="dashboard-btn">
-                    <i class="fas fa-book-open-reader dashboard-icon"></i>
-                    <div class="dashboard-title">اقرأ</div>
-                    <div class="dashboard-desc">مقالات وقراءات مفيدة</div>
+            </div>
+
+            <!-- Featured Links -->
+            <div class="featured-section">
+                <a href="status.html" class="featured-link">
+                    <i class="fas fa-gift icon"></i>
+                    <div class="title">صندوق رفيق</div>
+                    <div class="desc">هدية يومية مذهلة</div>
                 </a>
-                <a href="wakeup-azkar.html" class="dashboard-btn">
-                    <i class="fas fa-sun dashboard-icon"></i>
-                    <div class="dashboard-title">أذكار الصباح</div>
-                    <div class="dashboard-desc">أذكار الصباح والمساء</div>
+                <a href="ahadith.html" class="featured-link">
+                    <i class="fas fa-book icon"></i>
+                    <div class="title">أحاديث نبوية</div>
+                    <div class="desc">أحاديث شريفة مختارة</div>
                 </a>
-                <a href="salah-azkar.html" class="dashboard-btn">
-                    <i class="fas fa-moon dashboard-icon"></i>
-                    <div class="dashboard-title">أذكار الصلاة</div>
-                    <div class="dashboard-desc">أذكار قبل وبعد الصلاة</div>
-                </a>
-                <a href="ahadith.html" class="dashboard-btn">
-                    <i class="fas fa-book dashboard-icon"></i>
-                    <div class="dashboard-title">أحاديث</div>
-                    <div class="dashboard-desc">أحاديث نبوية شريفة</div>
-                </a>
-                <a href="ask-answer.html" class="dashboard-btn">
-                    <i class="fas fa-circle-question dashboard-icon"></i>
-                    <div class="dashboard-title">أسئلة وأجوبة</div>
-                    <div class="dashboard-desc">إجابات على أسئلة دينية</div>
-                </a>
-                <a href="aya.html" class="dashboard-btn">
-                    <i class="fas fa-heart dashboard-icon"></i>
-                    <div class="dashboard-title">آيه</div>
-                    <div class="dashboard-desc">آيات قرآنية مختارة</div>
-                </a>
-                <a href="status.html" class="dashboard-btn">
-                    <i class="fas fa-gift dashboard-icon"></i>
-                    <div class="dashboard-title">صندوق رفيق</div>
-                    <div class="dashboard-desc">صندوق رفيق المسلم</div>
+            </div>
+
+            <!-- Developer Card -->
+            <div class="developer-card">
+                <div class="developer-header">
+                    <span class="developer-icon">👨‍💻</span>
+                    <h3 class="developer-title">عن المطور</h3>
+                </div>
+                <p class="developer-text">
+                    تم تطوير رفيق بواسطة <strong>Eng Ahmed Zaki</strong>
+                </p>
+                <a href="https://t.me/o_w_i" target="_blank" class="telegram-btn">
+                    <i class="fab fa-telegram"></i>
+                    تواصل معي
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Telegram Service -->
-    <script src="JS/telegram-service.js"></script>
+    <script src="JS/luxury-dark-mode.js"></script>
     
     <script>
-        // Particle Animation
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const particles = [];
-        const particleCount = 100;
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 2 - 1;
-                this.speedY = Math.random() * 2 - 1;
-                this.color = `rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2})`;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
             }
         }
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-
-            // Draw connections
-            particles.forEach((a, i) => {
-                particles.slice(i + 1).forEach(b => {
-                    const dx = a.x - b.x;
-                    const dy = a.y - b.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 100) {
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 - distance / 1000})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(a.x, a.y);
-                        ctx.lineTo(b.x, b.y);
-                        ctx.stroke();
-                    }
-                });
-            });
-
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Back Button Function
-        function goBack() {
-            if (document.referrer && document.referrer !== window.location.href) {
-                window.history.back();
-            } else {
-                window.location.href = 'index.html?skip=true';
-            }
-        }
-
-        // Telegram Profile Integration
-        document.addEventListener('DOMContentLoaded', function() {
-            // Update profile using Telegram Service
-            if (window.TelegramService) {
-                const profileData = window.TelegramService.updateProfileUI();
-                console.log('Profile updated:', profileData);
-                
-                // Show account info if connected to Telegram
-                const accountInfo = document.getElementById('account-info');
-                if (accountInfo && profileData.connected) {
-                    accountInfo.style.display = 'block';
-                }
-                
-                // Haptic feedback on load (if in Telegram)
-                if (window.TelegramService.isTelegram) {
-                    window.TelegramService.hapticFeedback('light');
-                }
-            }
-        });
+        
+        // Initialize
+        createParticles();
     </script>
 </body>
 </html>

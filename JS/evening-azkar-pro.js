@@ -1,0 +1,293 @@
+/**
+ * 🌙 Evening Azkar Pro Max - Advanced Evening Azkar System
+ * Interactive progress tracking with celebration effects
+ */
+
+class EveningAzkarPro {
+  constructor() {
+    this.currentIndex = 0;
+    this.azkarData = this.getAzkarData();
+    this.container = null;
+    this.init();
+  }
+
+  getAzkarData() {
+    return [
+      {
+        title: 'آية الكرسي',
+        text: 'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ\n\nاللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ',
+        count: 'مرة واحدة'
+      },
+      {
+        title: 'سورة الإخلاص',
+        text: 'قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ',
+        count: '3 مرات'
+      },
+      {
+        title: 'سورة الفلق',
+        text: 'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِنْ شَرِّ مَا خَلَقَ ۝ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ',
+        count: '3 مرات'
+      },
+      {
+        title: 'سورة الناس',
+        text: 'قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ',
+        count: '3 مرات'
+      },
+      {
+        title: 'أمسينا وأمسى الملك لله',
+        text: 'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ. رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذِهِ اللَّيْلَةِ وَخَيْرَ مَا بَعْدَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذِهِ اللَّيْلَةِ وَشَرِّ مَا بَعْدَهَا. رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ.',
+        count: 'مرة واحدة'
+      },
+      {
+        title: 'اللهم بك أمسينا',
+        text: 'اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ.',
+        count: 'مرة واحدة'
+      },
+      {
+        title: 'سيد الاستغفار',
+        text: 'اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي، فَاغْفِرْ لِي، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ.',
+        count: 'مرة واحدة'
+      },
+      {
+        title: 'اللهم ما أمسى بي من نعمة',
+        text: 'اللَّهُمَّ مَا أَمْسَى بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ، فَمِنْكَ وَحْدَكَ لَا شَرِيكَ لَكَ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ.',
+        count: 'مرة واحدة'
+      },
+      {
+        title: 'اللهم عافني في بدني',
+        text: 'اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَهَ إِلَّا أَنْتَ. اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ وَالْفَقْرِ، وَأَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لَا إِلَهَ إِلَّا أَنْتَ.',
+        count: '3 مرات'
+      },
+      {
+        title: 'اللهم إني أسألك العفو والعافية',
+        text: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ، وَأَهْلِي وَمَالِي، اللَّهُمَّ اسْتُرْ عَوْرَاتِي، وَآمِنْ رَوْعَاتِي، اللَّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ، وَمِنْ خَلْفِي، وَعَنْ يَمِينِي، وَعَنْ شِمَالِي، وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي.',
+        count: 'مرة واحدة'
+      },
+      {
+        title: 'اللهم عالم الغيب والشهادة',
+        text: 'اللَّهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ، فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ، وَأَنْ أَقْتَرِفَ عَلَى نَفْسِي سُوءًا، أَوْ أَجُرَّهُ إِلَى مُسْلِمٍ.',
+        count: 'مرة واحدة'
+      },
+      {
+        title: 'بسم الله الذي لا يضر',
+        text: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ، وَهُوَ السَّمِيعُ الْعَلِيمُ.',
+        count: '3 مرات'
+      },
+      {
+        title: 'رضيت بالله ربًا',
+        text: 'رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ ﷺ نَبِيًّا.',
+        count: '3 مرات'
+      },
+      {
+        title: 'حسبي الله لا إله إلا هو',
+        text: 'حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ، عَلَيْهِ تَوَكَّلْتُ، وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمُ.',
+        count: '7 مرات'
+      },
+      {
+        title: 'أعوذ بكلمات الله التامات',
+        text: 'أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ.',
+        count: '3 مرات'
+      },
+      {
+        title: 'اللهم إني أمسيت أشهدك',
+        text: 'اللَّهُمَّ إِنِّي أَمْسَيْتُ أُشْهِدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَهَ إِلَّا أَنْتَ، وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ.',
+        count: '4 مرات'
+      },
+      {
+        title: 'أمسينا على فطرة الإسلام',
+        text: 'أَمْسَيْنَا عَلَى فِطْرَةِ الْإِسْلَامِ، وَعَلَى كَلِمَةِ الْإِخْلَاصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ ﷺ، وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ، حَنِيفًا مُسْلِمًا، وَمَا كَانَ مِنَ الْمُشْرِكِينَ.',
+        count: 'مرة واحدة'
+      },
+      {
+        title: 'سبحان الله وبحمده',
+        text: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ.',
+        count: '100 مرة'
+      },
+      {
+        title: 'لا إله إلا الله وحده لا شريك له',
+        text: 'لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.',
+        count: '100 مرة في اليوم'
+      },
+      {
+        title: 'اللهم إني أعوذ بك من الهم والحزن',
+        text: 'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَأَعُوذُ بِكَ مِنَ الْعَجْزِ وَالْكَسَلِ، وَأَعُوذُ بِكَ مِنَ الْجُبْنِ وَالْبُخْلِ، وَأَعُوذُ بِكَ مِنْ غَلَبَةِ الدَّيْنِ وَقَهْرِ الرِّجَالِ.',
+        count: 'مرة واحدة'
+      },
+      {
+        title: 'الاستغفار',
+        text: 'أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ.',
+        count: 'مرة واحدة'
+      },
+      {
+        title: 'الصلاة على النبي ﷺ',
+        text: 'اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ.',
+        count: 'مرة واحدة'
+      },
+      {
+        title: 'الذكر العام',
+        text: 'سُبْحَانَ اللَّهِ، وَالْحَمْدُ لِلَّهِ، وَلَا إِلَهَ إِلَّا اللَّهُ، وَاللَّهُ أَكْبَرُ.',
+        count: 'مرة واحدة'
+      },
+      {
+        title: 'لا حول ولا قوة إلا بالله',
+        text: 'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ.',
+        count: 'مرة واحدة'
+      }
+    ];
+  }
+
+  init() {
+    this.container = document.querySelector('.azkar-container');
+    if (!this.container) return;
+
+    this.renderAzkar();
+    this.updateProgress();
+  }
+
+  renderAzkar() {
+    const currentDhikr = this.azkarData[this.currentIndex];
+    const progress = ((this.currentIndex + 1) / this.azkarData.length) * 100;
+
+    this.container.innerHTML = `
+      <div class="azkar-aurora"></div>
+      
+      <h1 class="azkar-title">🌙 أذكار المساء</h1>
+      
+      <div class="azkar-card">
+        <div class="progress-section">
+          <div class="progress-label">
+            <span>التقدم</span>
+            <span class="progress-number">${this.currentIndex + 1} / ${this.azkarData.length}</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: ${progress}%"></div>
+          </div>
+        </div>
+        
+        <div class="dhikr-content">
+          <div class="dhikr-number">الذكر رقم ${this.currentIndex + 1}</div>
+          <h2 class="dhikr-title">${currentDhikr.title}</h2>
+          <p class="dhikr-text">${currentDhikr.text.replace(/\n/g, '<br>')}</p>
+          <p class="dhikr-count">التكرار: ${currentDhikr.count}</p>
+        </div>
+        
+        <div class="navigation-buttons">
+          <button class="nav-button secondary" id="prevBtn">
+            ← السابق
+          </button>
+          <button class="nav-button primary" id="nextBtn">
+            التالي →
+          </button>
+        </div>
+      </div>
+    `;
+
+    this.attachEventListeners();
+    
+    // Enable/disable prev button based on current index
+    const prevBtn = document.getElementById('prevBtn');
+    if (prevBtn) {
+      prevBtn.disabled = this.currentIndex === 0;
+    }
+  }
+
+  attachEventListeners() {
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => this.previousDhikr());
+      // Disable prev button at the start
+      if (this.currentIndex === 0) {
+        prevBtn.disabled = true;
+      }
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => this.nextDhikr());
+    }
+  }
+
+  nextDhikr() {
+    if (this.currentIndex < this.azkarData.length - 1) {
+      this.currentIndex++;
+      this.renderAzkar();
+      this.updateProgress();
+    } else {
+      this.showCelebration();
+    }
+  }
+
+  previousDhikr() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.renderAzkar();
+      this.updateProgress();
+    }
+  }
+
+  updateProgress() {
+    const progress = ((this.currentIndex + 1) / this.azkarData.length) * 100;
+    const progressBar = document.querySelector('.progress-bar-fill');
+    if (progressBar) {
+      progressBar.style.width = `${progress}%`;
+    }
+  }
+
+  showCelebration() {
+    this.createConfetti();
+    
+    this.container.innerHTML = `
+      <div class="azkar-aurora"></div>
+      
+      <div class="azkar-card">
+        <div class="celebration-screen active">
+          <div class="celebration-icon">🎉</div>
+          <h1 class="celebration-title">أحسنت!</h1>
+          <p class="celebration-message">بارك الله فيك</p>
+          <p class="celebration-subtitle">لقد أكملت جميع أذكار المساء</p>
+          <button class="restart-button" id="restartBtn">
+            إعادة الأذكار ↻
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      this.currentIndex = 0;
+      this.renderAzkar();
+      this.updateProgress();
+    });
+  }
+
+  createConfetti() {
+    const colors = ['#ffd700', '#ffaa00', '#667eea', '#764ba2', '#f093fb', '#4facfe'];
+    
+    for (let i = 0; i < 150; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti-piece';
+      
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const left = Math.random() * 100;
+      const animationDuration = 3 + Math.random() * 2;
+      const delay = Math.random() * 0.5;
+      
+      confetti.style.cssText = `
+        left: ${left}%;
+        background: ${color};
+        animation-duration: ${animationDuration}s;
+        animation-delay: ${delay}s;
+        border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+      `;
+      
+      document.body.appendChild(confetti);
+      
+      setTimeout(() => confetti.remove(), animationDuration * 1000 + delay * 1000);
+    }
+  }
+}
+
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', () => {
+  new EveningAzkarPro();
+});

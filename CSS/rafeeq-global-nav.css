@@ -1,0 +1,391 @@
+/* ========================================
+   RAFEEQ GLOBAL NAVIGATION SYSTEM
+   ======================================== */
+
+/* Navigation Container */
+.rafeeq-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--rafeeq-z-sticky);
+    background: var(--rafeeq-surface-1);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--rafeeq-secondary-100);
+    padding: var(--rafeeq-space-4) var(--rafeeq-space-6);
+    transition: all var(--rafeeq-transition-base);
+}
+
+.rafeeq-nav.scrolled {
+    box-shadow: var(--rafeeq-shadow-md);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="dark"] .rafeeq-nav.scrolled {
+    background: rgba(15, 23, 42, 0.95);
+}
+
+/* Navigation Container - Mobile Responsive */
+.rafeeq-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* Navigation Brand */
+.rafeeq-nav-brand {
+    font-family: var(--rafeeq-font-display);
+    font-size: var(--rafeeq-text-2xl);
+    font-weight: 700;
+    color: var(--rafeeq-primary-600);
+    text-decoration: none;
+    transition: color var(--rafeeq-transition-base);
+    display: flex;
+    align-items: center;
+    gap: var(--rafeeq-space-2);
+}
+
+.rafeeq-nav-brand:hover {
+    color: var(--rafeeq-primary-700);
+}
+
+.rafeeq-nav-brand i {
+    font-size: var(--rafeeq-text-3xl);
+}
+
+/* Navigation Links */
+.rafeeq-nav-links {
+    display: flex;
+    gap: var(--rafeeq-space-6);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.rafeeq-nav-link {
+    color: var(--rafeeq-secondary-700);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--rafeeq-text-base);
+    transition: color var(--rafeeq-transition-base);
+    position: relative;
+    padding: var(--rafeeq-space-2) 0;
+}
+
+.rafeeq-nav-link:hover {
+    color: var(--rafeeq-primary-600);
+}
+
+.rafeeq-nav-link.active {
+    color: var(--rafeeq-primary-600);
+    font-weight: 600;
+}
+
+.rafeeq-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--rafeeq-primary-500);
+    transition: width var(--rafeeq-transition-base);
+}
+
+.rafeeq-nav-link:hover::after,
+.rafeeq-nav-link.active::after {
+    width: 100%;
+}
+
+/* Mobile Menu Button */
+.rafeeq-mobile-menu-btn {
+    display: none;
+    background: var(--rafeeq-secondary-100);
+    border: none;
+    border-radius: var(--rafeeq-radius-md);
+    padding: var(--rafeeq-space-3);
+    cursor: pointer;
+    transition: all var(--rafeeq-transition-base);
+}
+
+.rafeeq-mobile-menu-btn:hover {
+    background: var(--rafeeq-secondary-200);
+}
+
+.rafeeq-mobile-menu-btn i {
+    font-size: var(--rafeeq-text-xl);
+    color: var(--rafeeq-secondary-700);
+}
+
+/* Mobile Menu Panel */
+.rafeeq-mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--rafeeq-surface-1);
+    box-shadow: var(--rafeeq-shadow-xl);
+    z-index: var(--rafeeq-z-modal);
+    transition: right var(--rafeeq-transition-base);
+    padding: var(--rafeeq-space-8);
+    overflow-y: auto;
+}
+
+.rafeeq-mobile-menu.active {
+    right: 0;
+}
+
+.rafeeq-mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: var(--rafeeq-z-modal) - 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--rafeeq-transition-base);
+}
+
+.rafeeq-mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.rafeeq-mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--rafeeq-space-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.rafeeq-mobile-menu-link {
+    color: var(--rafeeq-secondary-700);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--rafeeq-text-lg);
+    padding: var(--rafeeq-space-3);
+    border-radius: var(--rafeeq-radius-md);
+    transition: all var(--rafeeq-transition-base);
+    display: flex;
+    align-items: center;
+    gap: var(--rafeeq-space-3);
+}
+
+.rafeeq-mobile-menu-link:hover {
+    background: var(--rafeeq-primary-50);
+    color: var(--rafeeq-primary-600);
+}
+
+.rafeeq-mobile-menu-link.active {
+    background: var(--rafeeq-primary-100);
+    color: var(--rafeeq-primary-600);
+}
+
+.rafeeq-mobile-menu-link i {
+    font-size: var(--rafeeq-text-xl);
+}
+
+/* Mobile Menu Close Button */
+.rafeeq-mobile-menu-close {
+    position: absolute;
+    top: var(--rafeeq-space-4);
+    left: var(--rafeeq-space-4);
+    background: var(--rafeeq-secondary-100);
+    border: none;
+    border-radius: var(--rafeeq-radius-full);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--rafeeq-transition-base);
+}
+
+.rafeeq-mobile-menu-close:hover {
+    background: var(--rafeeq-secondary-200);
+}
+
+.rafeeq-mobile-menu-close i {
+    font-size: var(--rafeeq-text-lg);
+    color: var(--rafeeq-secondary-700);
+}
+
+/* Theme Toggle */
+.rafeeq-theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: var(--rafeeq-z-sticky);
+    background: var(--rafeeq-surface-1);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--rafeeq-secondary-100);
+    border-radius: var(--rafeeq-radius-full);
+    padding: var(--rafeeq-space-3);
+    cursor: pointer;
+    transition: all var(--rafeeq-transition-base);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rafeeq-theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--rafeeq-shadow-md);
+}
+
+.rafeeq-theme-toggle i {
+    font-size: var(--rafeeq-text-xl);
+    color: var(--rafeeq-secondary-700);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .rafeeq-nav-links {
+        gap: var(--rafeeq-space-4);
+    }
+    
+    .rafeeq-nav-link {
+        font-size: var(--rafeeq-text-sm);
+    }
+}
+
+@media (max-width: 768px) {
+    .rafeeq-nav-links {
+        display: none;
+    }
+    
+    .rafeeq-mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .rafeeq-theme-toggle {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .rafeeq-nav-container {
+        padding: 0 var(--rafeeq-space-4);
+    }
+}
+
+/* Telegram Mini App Specific Styles */
+@media (display-mode: browser) {
+    .rafeeq-nav {
+        padding-top: max(var(--rafeeq-space-4), env(safe-area-inset-top));
+    }
+}
+
+/* Navigation Animations */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.rafeeq-nav {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Active State Indicator */
+.rafeeq-nav-link.active::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--rafeeq-primary-500);
+    animation: expandWidth 0.3s ease-out;
+}
+
+@keyframes expandWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Hover Glow Effect */
+.rafeeq-nav-link:hover {
+    text-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+}
+
+/* Submenu Dropdown (for future use) */
+.rafeeq-nav-dropdown {
+    position: relative;
+}
+
+.rafeeq-nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--rafeeq-surface-1);
+    border: 1px solid var(--rafeeq-secondary-100);
+    border-radius: var(--rafeeq-radius-lg);
+    box-shadow: var(--rafeeq-shadow-lg);
+    min-width: 200px;
+    padding: var(--rafeeq-space-2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all var(--rafeeq-transition-base);
+}
+
+.rafeeq-nav-dropdown:hover .rafeeq-nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.rafeeq-nav-dropdown-item {
+    display: block;
+    padding: var(--rafeeq-space-3) var(--rafeeq-space-4);
+    color: var(--rafeeq-secondary-700);
+    text-decoration: none;
+    border-radius: var(--rafeeq-radius-md);
+    transition: all var(--rafeeq-transition-base);
+}
+
+.rafeeq-nav-dropdown-item:hover {
+    background: var(--rafeeq-primary-50);
+    color: var(--rafeeq-primary-600);
+}
+
+/* Navigation Badge (for notifications) */
+.rafeeq-nav-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: var(--rafeeq-error-500);
+    color: white;
+    font-size: var(--rafeeq-text-xs);
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: var(--rafeeq-radius-full);
+    min-width: 18px;
+    text-align: center;
+}
+
+/* Navigation Icon */
+.rafeeq-nav-icon {
+    margin-left: var(--rafeeq-space-2);
+    font-size: var(--rafeeq-text-sm);
+}

@@ -1,0 +1,724 @@
+/* 
+ * 📿 Tasbeeh Pro Max - Ultra Modern Digital Tasbeeh
+ * Inspired by Aceternity UI, shadcn/ui, Codrops, and GSAP
+ * Advanced particle system with haptic feedback
+ */
+
+/* ============================================================
+   MODERN CSS CUSTOM PROPERTIES
+   ============================================================ */
+
+@property --gradient-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --glow-hue {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 45deg;
+}
+
+@property --bead-glow {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #ffd700;
+}
+
+/* ============================================================
+   GLOBAL STYLES
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  color: white;
+  position: relative;
+}
+
+/* ============================================================
+   AURORA BACKGROUND
+   ============================================================ */
+
+.aurora-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 50%, #ff6b6b 100%);
+  background-size: 400% 400%;
+  animation: aurora-shift 20s ease infinite;
+}
+
+@keyframes aurora-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Aurora Orbs */
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.5;
+  animation: float-orb 25s ease-in-out infinite;
+}
+
+.aurora-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  animation-delay: 0s;
+}
+
+.aurora-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #ff8c00 0%, transparent 70%);
+  bottom: -150px;
+  left: -150px;
+  animation-delay: 8s;
+}
+
+.aurora-orb-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #ff6347 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 16s;
+}
+
+@keyframes float-orb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(60px, -60px) scale(1.15); }
+  50% { transform: translate(-40px, 40px) scale(0.9); }
+  75% { transform: translate(-60px, -60px) scale(1.1); }
+}
+
+/* ============================================================
+   PARTICLE SYSTEM
+   ============================================================ */
+
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 215, 0, 0.8);
+  border-radius: 50%;
+  animation: particle-float 15s linear infinite;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(80vh) rotate(90deg) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(20vh) rotate(630deg) scale(1);
+  }
+  100% {
+    transform: translateY(-100vh) rotate(720deg) scale(0);
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+
+.tasbeeh-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(20px, 4vw, 40px);
+  position: relative;
+  z-index: 10;
+}
+
+/* ============================================================
+   BENTO GRID LAYOUT
+   ============================================================ */
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: clamp(20px, 3vw, 30px);
+  max-width: min(1200px, 95vw);
+  width: 100%;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   HEADER CARD
+   ============================================================ */
+
+.header-card {
+  grid-column: span 12;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(30px);
+  border-radius: 30px;
+  padding: clamp(30px, 4vw, 50px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 1s ease-out;
+  animation-delay: 0.1s;
+}
+
+.header-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  animation: shimmer 6s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.tasbeeh-title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  margin-bottom: clamp(10px, 1.5vw, 20px);
+  background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-shimmer 3s linear infinite;
+  text-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes text-shimmer {
+  to { background-position: 200% center; }
+}
+
+.current-phrase {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  color: #ffd700;
+  margin-bottom: clamp(5px, 1vw, 10px);
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.phrase-translation {
+  font-size: clamp(14px, 1.5vw, 18px);
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+/* ============================================================
+   BEAD CIRCLE CARD
+   ============================================================ */
+
+.bead-card {
+  grid-column: span 12;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(30px);
+  border-radius: 30px;
+  padding: clamp(40px, 5vw, 60px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 1s ease-out;
+  animation-delay: 0.2s;
+}
+
+.bead-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  animation: shimmer 6s infinite;
+}
+
+/* Bead Circle */
+.bead-circle {
+  position: relative;
+  width: clamp(280px, 30vw, 400px);
+  height: clamp(280px, 30vw, 400px);
+  margin: 0 auto clamp(20px, 3vw, 30px);
+  animation: float-circle 6s ease-in-out infinite;
+}
+
+@keyframes float-circle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.bead-circle::before {
+  content: '';
+  position: absolute;
+  inset: -25px;
+  border: 3px solid rgba(255, 215, 0, 0.3);
+  border-radius: 50%;
+  animation: pulse-ring 3s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.1); opacity: 0.6; }
+}
+
+.bead-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 215, 0, 0.5);
+  animation: spin-ring 25s linear infinite;
+}
+
+@keyframes spin-ring {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.bead-counter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(120px, 15vw, 160px);
+  height: clamp(120px, 15vw, 160px);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 140, 0, 0.9));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(40px, 5vw, 60px);
+  font-weight: 900;
+  color: #1a1a2e;
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bead-counter:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 70px rgba(255, 215, 0, 1);
+}
+
+.bead-counter:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.bead-counter.clicking {
+  animation: bead-click 0.3s ease;
+}
+
+@keyframes bead-click {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(0.85); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Progress Bar */
+.progress-section {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.progress-bar {
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: clamp(8px, 1vw, 12px);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700, #ff8c00);
+  border-radius: 6px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: progress-shine 2s linear infinite;
+}
+
+@keyframes progress-shine {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+/* ============================================================
+   PHRASE SELECTION CARD
+   ============================================================ */
+
+.phrase-card {
+  grid-column: span 12;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(30px);
+  border-radius: 30px;
+  padding: clamp(25px, 3vw, 35px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: fadeInUp 1s ease-out;
+  animation-delay: 0.3s;
+}
+
+.phrase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: clamp(12px, 2vw, 15px);
+}
+
+.phrase-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: clamp(14px, 2vw, 18px) clamp(20px, 2.5vw, 28px);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(10px);
+  font-size: clamp(14px, 1.5vw, 16px);
+  font-weight: 600;
+  font-family: 'Cairo', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.phrase-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.phrase-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.phrase-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+}
+
+.phrase-btn.active {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 140, 0, 0.3));
+  border-color: #ffd700;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   STATS CARD
+   ============================================================ */
+
+.stats-card {
+  grid-column: span 12;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(30px);
+  border-radius: 30px;
+  padding: clamp(25px, 3vw, 35px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: fadeInUp 1s ease-out;
+  animation-delay: 0.4s;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: clamp(15px, 2vw, 20px);
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: clamp(20px, 2.5vw, 30px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.stat-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.stat-icon {
+  font-size: clamp(28px, 3vw, 36px);
+  margin-bottom: clamp(10px, 1.5vw, 15px);
+  display: block;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-value {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 900;
+  color: #ffd700;
+  margin-bottom: 5px;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.stat-label {
+  font-size: clamp(12px, 1.2vw, 14px);
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   ACTIONS CARD
+   ============================================================ */
+
+.actions-card {
+  grid-column: span 12;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(30px);
+  border-radius: 30px;
+  padding: clamp(25px, 3vw, 35px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  gap: clamp(15px, 2vw, 20px);
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInUp 1s ease-out;
+  animation-delay: 0.5s;
+}
+
+.action-btn {
+  background: linear-gradient(135deg, rgba(255, 100, 0, 0.8), rgba(255, 50, 0, 0.8));
+  border: none;
+  color: white;
+  padding: clamp(14px, 2vw, 18px) clamp(30px, 3.5vw, 40px);
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: clamp(14px, 1.5vw, 16px);
+  font-weight: 700;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(10px);
+  font-family: 'Cairo', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid rgba(255, 100, 0, 0.3);
+}
+
+.action-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(255, 100, 0, 0.5);
+  border-color: rgba(255, 100, 0, 0.6);
+}
+
+.action-btn.secondary {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.action-btn.secondary:hover {
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.5);
+  border-color: rgba(102, 126, 234, 0.6);
+}
+
+/* ============================================================
+   BACK BUTTON
+   ============================================================ */
+
+.back-button {
+  position: fixed;
+  top: clamp(20px, 3vw, 30px);
+  right: clamp(20px, 3vw, 30px);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 50%;
+  width: clamp(50px, 6vw, 60px);
+  height: clamp(50px, 6vw, 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: clamp(18px, 2vw, 24px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  animation: fadeInUp 1s ease-out;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background: rgba(255, 215, 0, 0.3);
+  border-color: #ffd700;
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .bento-grid {
+    gap: clamp(15px, 2vw, 20px);
+  }
+
+  .header-card,
+  .bead-card,
+  .phrase-card,
+  .stats-card,
+  .actions-card {
+    padding: clamp(20px, 3vw, 25px);
+  }
+
+  .phrase-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions-card {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ============================================================
+   DARK MODE SUPPORT
+   ============================================================ */
+
+body.dark-mode .aurora-background {
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+body.dark-mode .header-card,
+body.dark-mode .bead-card,
+body.dark-mode .phrase-card,
+body.dark-mode .stats-card,
+body.dark-mode .actions-card {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.6);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.8);
+}

@@ -1,0 +1,777 @@
+/* 
+ * 📿 Tasbeeh Pro Max Reimagined - Revolutionary Design
+ * Inspired by Aceternity UI, shadcn/ui, Codrops, and GSAP
+ * Morphing 3D beads with fluid animations
+ */
+
+/* ============================================================
+   ADVANCED CSS CUSTOM PROPERTIES
+   ============================================================ */
+
+@property --morph-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --fluid-color {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #ffd700;
+}
+
+@property --bead-radius {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 50%;
+}
+
+/* ============================================================
+   GLOBAL STYLES
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: #0a0a0f;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  color: white;
+  position: relative;
+}
+
+/* ============================================================
+   FLUID GRADIENT BACKGROUND
+   ============================================================ */
+
+.fluid-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 215, 0, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(255, 140, 0, 0.1), transparent),
+    radial-gradient(ellipse 50% 30% at 20% 80%, rgba(255, 99, 71, 0.1), transparent);
+  animation: fluid-shift 20s ease-in-out infinite;
+}
+
+@keyframes fluid-shift {
+  0%, 100% {
+    background-position: 0% 0%, 100% 50%, 50% 100%;
+  }
+  50% {
+    background-position: 100% 0%, 0% 50%, 100% 100%;
+  }
+}
+
+/* Fluid Shapes */
+.fluid-shape {
+  position: absolute;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: morph-shape 15s ease-in-out infinite;
+}
+
+.fluid-shape-1 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  top: -150px;
+  right: -150px;
+  animation-delay: 0s;
+}
+
+.fluid-shape-2 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(225deg, #ff6347, #ff4500);
+  bottom: -100px;
+  left: -100px;
+  animation-delay: 5s;
+}
+
+.fluid-shape-3 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(45deg, #ffa500, #ff8c00);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 10s;
+}
+
+@keyframes morph-shape {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: translate(-50%, -50%) rotate(90deg) scale(1.1);
+  }
+  50% {
+    border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%;
+    transform: translate(-50%, -50%) rotate(180deg) scale(0.9);
+  }
+  75% {
+    border-radius: 60% 40% 60% 30% / 70% 30% 50% 60%;
+    transform: translate(-50%, -50%) rotate(270deg) scale(1.05);
+  }
+}
+
+/* ============================================================
+   GRID NOISE OVERLAY
+   ============================================================ */
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   MAIN CONTAINER
+   ============================================================ */
+
+.tasbeeh-wrapper {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(20px, 4vw, 60px);
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+
+.hero-section {
+  text-align: center;
+  margin-bottom: clamp(40px, 6vw, 80px);
+  animation: hero-reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title {
+  font-size: clamp(48px, 7vw, 80px);
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: clamp(15px, 2vw, 25px);
+  background: linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #ff6347 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-flow 4s ease infinite;
+  letter-spacing: -0.02em;
+}
+
+@keyframes gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-subtitle {
+  font-size: clamp(18px, 2.5vw, 28px);
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   POWERFUL BEAD BUTTON
+   ============================================================ */
+
+.control-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 30px;
+  padding: clamp(30px, 4vw, 50px);
+  max-width: min(600px, 90vw);
+  width: 100%;
+  animation: panel-appear 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+@keyframes panel-appear {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Phrase Selector */
+.phrase-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(10px, 1.5vw, 15px);
+  justify-content: center;
+  margin-bottom: clamp(30px, 4vw, 50px);
+}
+
+.phrase-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  padding: clamp(12px, 1.5vw, 18px) clamp(20px, 2.5vw, 30px);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: clamp(14px, 1.5vw, 16px);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.phrase-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.2));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.phrase-pill:hover {
+  border-color: rgba(255, 215, 0, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+}
+
+.phrase-pill:hover::before {
+  opacity: 1;
+}
+
+.phrase-pill.active {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.2));
+  border-color: #ffd700;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+  transform: scale(1.05);
+}
+
+.phrase-pill.active::before {
+  opacity: 1;
+}
+
+/* Progress Ring */
+.progress-ring-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: clamp(30px, 4vw, 50px);
+}
+
+.progress-ring {
+  width: clamp(150px, 20vw, 200px);
+  height: clamp(150px, 20vw, 200px);
+  position: relative;
+}
+
+.progress-ring-svg {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 8;
+}
+
+.progress-ring-fill {
+  fill: none;
+  stroke: url(#progressGradient);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+}
+
+.progress-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.progress-number {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 900;
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.progress-label {
+  font-size: clamp(12px, 1.2vw, 14px);
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 5px;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(15px, 2vw, 20px);
+  margin-bottom: clamp(30px, 4vw, 50px);
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: clamp(20px, 2.5vw, 30px);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.stat-box:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 215, 0, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+}
+
+.stat-value {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: clamp(11px, 1.2vw, 13px);
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: clamp(15px, 2vw, 20px);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: clamp(14px, 1.5vw, 18px) clamp(30px, 3.5vw, 40px);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-size: clamp(14px, 1.5vw, 16px);
+  font-weight: 700;
+  font-family: 'Cairo', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 215, 0, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+}
+
+.action-btn.danger {
+  border-color: rgba(255, 99, 71, 0.3);
+}
+
+.action-btn.danger:hover {
+  background: rgba(255, 99, 71, 0.1);
+  border-color: rgba(255, 99, 71, 0.6);
+  box-shadow: 0 15px 30px rgba(255, 99, 71, 0.3);
+}
+
+/* ============================================================
+   POWERFUL BEAD BUTTON
+   ============================================================ */
+
+.power-bead-btn {
+  position: relative;
+  width: clamp(280px, 35vw, 380px);
+  height: clamp(280px, 35vw, 380px);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #ff6347 100%);
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 
+    0 0 60px rgba(255, 215, 0, 0.6),
+    0 0 100px rgba(255, 140, 0, 0.4),
+    0 0 140px rgba(255, 99, 71, 0.2),
+    inset 0 0 60px rgba(255, 255, 255, 0.3);
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+}
+
+.power-bead-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.5) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.power-bead-btn::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffd700, #ff8c00, #ff6347, #ffd700);
+  background-size: 400% 400%;
+  animation: border-glow 3s linear infinite;
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.6;
+}
+
+@keyframes border-glow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.power-bead-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 
+    0 0 80px rgba(255, 215, 0, 0.8),
+    0 0 120px rgba(255, 140, 0, 0.6),
+    0 0 160px rgba(255, 99, 71, 0.4),
+    inset 0 0 80px rgba(255, 255, 255, 0.4);
+}
+
+.power-bead-btn:active {
+  transform: scale(0.92);
+  box-shadow: 
+    0 0 40px rgba(255, 215, 0, 0.4),
+    0 0 60px rgba(255, 140, 0, 0.3),
+    0 0 80px rgba(255, 99, 71, 0.2),
+    inset 0 0 40px rgba(255, 255, 255, 0.2);
+}
+
+/* Ripple Effect */
+.power-bead-btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple-effect 0.8s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-effect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Pulse Ring */
+.power-bead-btn .pulse-ring {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 215, 0, 0.5);
+  animation: pulse-expand 2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse-expand {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Wave Effect */
+.power-bead-btn .wave {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  animation: wave-expand 1.5s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes wave-expand {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Inner Glow */
+.power-bead-btn .inner-glow {
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  animation: inner-pulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes inner-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% { 
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Counter Display */
+.power-bead-btn .counter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(80px, 10vw, 120px);
+  font-weight: 900;
+  color: #0a0a0f;
+  text-shadow: 
+    0 0 30px rgba(255, 215, 0, 0.8),
+    0 0 60px rgba(255, 140, 0, 0.6);
+  pointer-events: none;
+  user-select: none;
+  z-index: 10;
+  transition: transform 0.1s ease;
+}
+
+.power-bead-btn:active .counter {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+/* Sparkle Particles */
+.power-bead-btn .sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkle-float 1s ease-out forwards;
+}
+
+@keyframes sparkle-float {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Press Effect Layers */
+.power-bead-btn .press-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.power-bead-btn:active .press-layer {
+  animation: press-wave 0.6s ease-out;
+}
+
+@keyframes press-wave {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Magnetic Effect Container */
+.magnetic-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Counter Text */
+.counter-text {
+  position: absolute;
+  bottom: clamp(30px, 4vw, 50px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   BACK BUTTON
+   ============================================================ */
+
+.back-btn {
+  position: fixed;
+  top: clamp(25px, 3vw, 35px);
+  right: clamp(25px, 3vw, 35px);
+  width: clamp(50px, 6vw, 60px);
+  height: clamp(50px, 6vw, 60px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: clamp(18px, 2vw, 24px);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1000;
+  text-decoration: none;
+  animation: fade-in 1s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.back-btn:hover {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.5);
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+.back-btn {
+  position: fixed;
+  top: clamp(25px, 3vw, 35px);
+  right: clamp(25px, 3vw, 35px);
+  width: clamp(50px, 6vw, 60px);
+  height: clamp(50px, 6vw, 60px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: clamp(18px, 2vw, 24px);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1000;
+  text-decoration: none;
+  animation: fade-in 1s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.back-btn:hover {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.5);
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .phrase-selector {
+    flex-direction: column;
+  }
+
+  .phrase-pill {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+
+body.dark-mode .fluid-background {
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 215, 0, 0.1), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(255, 140, 0, 0.08), transparent),
+    radial-gradient(ellipse 50% 30% at 20% 80%, rgba(255, 99, 71, 0.08), transparent);
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
